@@ -5,7 +5,7 @@ export default class CarService{
     return axios.get("http://localhost:8080/api/cars/getAll")
   }
 
-  getByCarId(id){
+  getByCarId(id?:string){
     return axios.get("http://localhost:8080/api/cars/{id}?id="+id)
   }
 }

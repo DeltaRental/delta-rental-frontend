@@ -1,6 +1,10 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 
-const SignedIn = ({signOut}) => {
+type Props = {
+  signOut:MouseEventHandler<HTMLAnchorElement> | undefined, 
+}
+
+const SignedIn = (props: Props) => {
   return (
     <div>
       <div className="nav-item dropdown navbar-nav">
@@ -16,7 +20,7 @@ const SignedIn = ({signOut}) => {
           <a href="#" className="dropdown-item">
             Bilgilerim
           </a>
-          <a onClick={signOut} href="#" className="dropdown-item">
+          <a onClick={props.signOut} href="#" className="dropdown-item">
             Çıkış Yap
           </a>
         </div>

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import CarService from "../services/carService";
 import { Link } from "react-router-dom";
+import { CarModel } from "../model/CarModel";
 
 const CarList = () => {
-  const [cars, setCars] = useState([]);
+  const [cars, setCars] = useState<CarModel[]>([]);
 
   useEffect(() => {
     let carService = new CarService();

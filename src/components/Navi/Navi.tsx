@@ -1,4 +1,4 @@
-import React, { useState, useHistory } from "react";
+import React, { useState } from "react";
 import CartSummary from "../CartSummary/CartSummary";
 import SignedOut from "../SignedOut/SignedOut";
 import SignedIn from "../SignedIn/SignedIn";
