@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import CartSummary from "../CartSummary/CartSummary";
 import SignedOut from "../SignedOut/SignedOut";
 import SignedIn from "../SignedIn/SignedIn";
-import { useNavigate } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navi = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const { cartItems } = useSelector((state: any) => state.cart);
 
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   function handleSignOut() {
     setIsAuthenticated(false);
-    navigate('/')
+    navigate("/");
   }
 
   function handleSignIn() {
@@ -25,10 +26,10 @@ const Navi = () => {
         className="navbar bg-dark navbar-expand-lg sticky-top"
         data-bs-theme="dark"
       >
-        <div className="container" >
-          <a href="#" className="navbar-brand">
-            Brand
-          </a>
+        <div className="container">
+          <Link to={"/"} className="navbar-brand">
+            RENT
+          </Link>
           <button
             type="button"
             className="navbar-toggler"
@@ -42,12 +43,9 @@ const Navi = () => {
             id="navbarCollapse"
           >
             <div className="navbar-nav">
-              <a href="#" className="nav-item nav-link active">
-                Home
-              </a>
-              <a href="#" className="nav-item nav-link">
-                Profile
-              </a>
+              <Link to={"/car/add"} className="nav-item nav-link">
+                Add Car
+              </Link>
               <div className="nav-item dropdown">
                 <a
                   href="#"
@@ -81,11 +79,13 @@ const Navi = () => {
                 </button>
               </div>
             </form>
-            <CartSummary />
+            {cartItems.length > 0 && <CartSummary />}
             <div className="d-flex flex-row align-items-center">
-            {
-              isAuthenticated ? <SignedIn signOut={handleSignOut} /> : <SignedOut signIn={handleSignIn}/>
-            }
+              {isAuthenticated ? (
+                <SignedIn signOut={handleSignOut} />
+              ) : (
+                <SignedOut signIn={handleSignIn} />
+              )}
             </div>
           </div>
         </div>

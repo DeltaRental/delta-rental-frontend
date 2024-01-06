@@ -1,7 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const CartSummary = () => {
+  const { cartItems } = useSelector((state:any) => state.cart);
+
   return (
     <div>
       <div className="nav-item dropdown navbar-nav">
@@ -13,20 +16,13 @@ const CartSummary = () => {
           Sepet
         </a>
         <div className="dropdown-menu">
-          <a href="#" className="dropdown-item">
-            BMW
-          </a>
-          <a href="#" className="dropdown-item">
-            Mercedes
-          </a>
-          <a href="#" className="dropdown-item">
-            Audi
-          </a>
+          {cartItems.map((cartItem:any,index:number) => (
+            <a key={index} href="#" className="dropdown-item">
+              {cartItem.car.modelName}
+              <span className="badge bg-primary rounded-pill ms-3">{cartItem.quantity}</span>
+            </a>
+          ))}
           <li>
-            <hr className="dropdown-divider" />
-          </li>
-          <li>
-            
             <Link to={"/cart"} className="dropdown-item">
               Sepete Git
             </Link>

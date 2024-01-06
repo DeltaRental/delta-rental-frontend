@@ -15,7 +15,7 @@ const CarDetail = () => {
 
   return (
     <div>
-      <div className="card w-100">
+      <div className="card w-100 text-center">
         <img src="https://img.autoabc.lv/opel-vectra/opel-vectra_1995_Hecbeks_221545517_17.jpg" className="card-img-top" alt="..." />
         <div className="card-body">
           <h5 className="card-title">{car?.modelName}</h5>
