@@ -11,9 +11,8 @@ import HomePage from "../../pages/HomePage";
 const Dashboard = () => {
   return (
     <div>
-      <div className="row">
+      <div className="row ">
         <div className="col-12">
-          
             <Routes>
               <Route path="/" element={<HomePage />}></Route>
               <Route path="/cars" element={<CarList />}></Route>
@@ -22,6 +21,7 @@ const Dashboard = () => {
               <Route path="/car/add" element={<CarAdd/>}></Route>
               <Route path="*" element={<div>Not found</div>}></Route>
             </Routes>
+            
         </div>
       </div>
     </div>
