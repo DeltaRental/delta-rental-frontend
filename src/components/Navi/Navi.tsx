@@ -51,9 +51,8 @@ const Navi = () => {
       <nav className="container p-3 mx-auto md:p-6 lg:p-8 xl:p-10 ">
         <div className="flex items-center justify-between flex-row-reverse">
           <FontAwesomeIcon
-            className={`w-7 h-7 md:hidden cursor-pointer transition-transform transform ${
-              isMenuOpen ? "rotate-0" : "rotate-180"
-            }`}
+            className={`w-7 h-7 md:hidden cursor-pointer transition-transform transform ${isMenuOpen ? "rotate-0" : "rotate-180"
+              }`}
             icon={isMenuOpen ? faTimes : faBars}
             onClick={toggleMenu}
           />
@@ -74,13 +73,17 @@ const Navi = () => {
             <div className="col-span-4 text-base lg:text-lg md:border-y border-y-black">
               <ul className="justify-between md:flex ">
                 <li className="p-2 py-4 lg:p-4 border-b  md:border-0">
-                  <a href="#">Home</a>
+                  <Link to="/">
+
+                    <p className="text-2xl font-medium text-gray-900 dark:text-white">Ana Sayfa</p>
+
+                  </Link>
                 </li>
                 <li className="p-2 py-4 lg:p-4 border-b  md:border-0">
-                  <a href="#">Products</a>
+                  <Link to="#"><p className="text-2xl font-medium text-gray-900 dark:text-white">Araçlar</p></Link>
                 </li>
                 <li className="p-2 py-4 lg:p-4 border-b  md:border-0">
-                  <a href="#">Pricing</a>
+                  <Link to="#"><p className="text-2xl font-medium text-gray-900 dark:text-white">Hakkımızda</p></Link>
                 </li>
               </ul>
             </div>
@@ -99,7 +102,7 @@ const Navi = () => {
             <div className=" col-span-4 md:border-y border-y-black">
               <ul className="justify-between text-base lg:text-lg  md:flex">
                 <li className="p-2 py-4 lg:p-4 border-b  md:border-0">
-                  <a href="#">Company</a>
+                  <Link to="#"><p className="text-2xl font-medium text-gray-900 dark:text-white">Company</p></Link>
                 </li>
 
                 <div
@@ -108,7 +111,7 @@ const Navi = () => {
                   onMouseLeave={() => handleToggleDropdown("services")}
                 >
                   <li className="p-2 py-4 lg:p-4 border-b md:border-0">
-                    <a href="#">Services</a>
+                    <Link to="#"><p className="text-2xl font-medium text-gray-900 dark:text-white">Services</p></Link>
                     {dropdownStates.services && (
                       <div className="md:absolute bg-white left-0 z-10 top-[57px] lg:top-[60px] md:w-[200px] shadow-md">
                         <div className="cursor-pointer p-4 text-black hover:text-red-600 hover:bg-gray-300">
@@ -131,7 +134,7 @@ const Navi = () => {
                   onMouseLeave={() => handleToggleDropdown("contactUs")}
                 >
                   <li className="p-2 py-4 lg:p-4 border-b md:border-0">
-                    <a href="#">Contact Us</a>
+                    <Link to="#"><p className="text-2xl font-medium text-gray-900 dark:text-white">İletişim</p></Link>
                     {dropdownStates.contactUs && (
                       <div className="md:absolute bg-white left-0 z-10 top-[57px] lg:top-[60px] md:w-[200px] shadow-md">
                         <div className="cursor-pointer p-4 text-black hover:text-red-600 hover:bg-gray-300">

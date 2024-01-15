@@ -2,6 +2,7 @@ import { Carousel } from "@material-tailwind/react";
 import ListBox from "../components/ListBox/ListBox";
 import Button from "../components/Button/Button";
 import DatePicker from "../components/DatePicker/DatePicker";
+import Footer from "../components/Footer/Footer";
 
 type Props = {};
 
@@ -68,7 +69,9 @@ const HomePage = (props: Props) => {
           </div>
         </div>
       </div>
+      <Footer></Footer>
     </div>
+    
   );
 };
 
