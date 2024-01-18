@@ -15,7 +15,7 @@ const Dashboard = () => {
         <div className="col-12">
             <Routes>
               <Route path="/" element={<HomePage />}></Route>
-              <Route path="/cars" element={<CarList />}></Route>
+              <Route path="/cars/getAll" element={<CarList />}></Route>
               <Route path="/cars/:id" element={<CarDetail/>}></Route>
               <Route path="/cart" element={<CartDetail/>}></Route>
               <Route path="/car/add" element={<CarAdd/>}></Route>
