@@ -4,15 +4,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Dashboard from './components/Dashboard/Dashboard';
 import Navi from './components/Navi/Navi';
 import CartDetail from './pages/CartDetail';
-import CarDetail from './pages/CarDetail';
-import Card from './components/Card/Card';
+
 
 function App() {
   return (
     <div className='App'>
       <Navi />
 
-      {/* <Dashboard /> */}
+      <Dashboard />
      
       
     </div>

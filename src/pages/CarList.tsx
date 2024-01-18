@@ -9,11 +9,15 @@ import toast, { ToastBar, Toaster } from "react-hot-toast";
 const CarList = () => {
   const [cars, setCars] = useState<CarModel[]>([]);
   const dispatch = useDispatch(); // çalıştıracağın fonksiyonu bunula çekiyorsun.
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    setLoading(false);
     let carService = new CarService();
-    carService.getProducts().then((result) => setCars(result.data));
+    carService.getAll().then((result) => {setCars(result.data)});
+   
   }, []);
+
 
   const handleAddToCart = (car: CarModel) => {
     dispatch(addToCart(car));
@@ -27,50 +31,45 @@ const CarList = () => {
     })};
 
   return (
-    <>
-      <Toaster />
-
-      <div className="table-responsive text-center">
-        <table className="table table-striped table-hover table-bordered border-black">
-          <thead className="table-dark">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Plate</th>
-              <th scope="col">Model Name</th>
-              <th scope="col">Color</th>
-              <th scope="col">Kilometer</th>
-              <th scope="col">Year</th>
-              <th scope="col">Daily Price</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
-            {cars.map((car, index) => (
-              <tr key={index}>
-                <th scope="row">{index + 1}</th>
-                <td>
-                  <Link to={`/cars/${car.id}`}>{car.plate}</Link>
-                </td>
-                <td>{car.modelName}</td>
-                <td>{car.colorName}</td>
-                <td>{car.kilometer}</td>
-                <td>{car.year}</td>
-                <td>{car.dailyPrice}</td>
-                <td>
-                  <button
+    
+      <div className="container flex flex-wrap">
+         <Toaster />
+      {loading && <div>Yükleniyor...</div>}
+                  {
+        cars.map((car)=>(
+          <div key={car.id} className=' rounded-lg w-96 shadow-lg shadow-blue-300/50 m-4 cursor-pointer hover:bg-blue-100 active:bg-blue-100'>
+            <img className='w-80  items-center' src="https://www.avis.com.tr/Avis/media/Avis/Cars/n-citroen-c-elysee.png" alt="" />
+            <button
                     id="liveToastBtn"
                     onClick={() => handleAddToCart(car)}
                     className="btn btn-success"
                   >
-                    Sepete Ekle
+                    Hemen Kirala
                   </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+          <div  className='w-80 items-center flex justify-between'>
+            <div className='order-first p-2'>
+             <p>Araç Özellikleri</p>
+            <ul>
+              <li>{car.modelName}</li>
+              
+              <li>{car.plate}</li>
+              <li>{car.colorName}</li>
+             </ul>
+             </div>
+             <div className='order-last p-2'>
+              <p>Kiralama Koşulları</p>
+             <ul>
+              <li>{car.dailyPrice}</li>
+              <li>{car.kilometer}</li>
+              <li>{car.year} </li>
+             </ul>
+            </div>
+          </div>
+        </div>
+         ))
+      }
       </div>
-    </>
+    
   );
 };
 
