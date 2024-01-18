@@ -3,18 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
-=======
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
->>>>>>> main
     "@fortawesome/free-brands-svg-icons": "^6.5.1",
     "@fortawesome/free-regular-svg-icons": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
-<<<<<<< HEAD
-=======
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
     "@material-tailwind/react": "^2.1.8",
@@ -23,7 +18,6 @@
     "@mui/material": "^5.10.14",
     "@mui/styled-engine-sc": "^6.0.0-alpha.12",
     "@mui/x-date-pickers": "^6.19.0",
->>>>>>> main
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -33,13 +27,10 @@
     "@types/react-dom": "^18.2.18",
     "axios": "^1.6.2",
     "bootstrap": "^5.3.2",
-<<<<<<< HEAD
     "fontawesome-common-types": "^6.4.0",
-=======
     "dayjs": "^1.11.10",
     "flowbite": "^2.2.1",
     "flowbite-react": "^0.7.2",
->>>>>>> main
     "formik": "^2.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
