@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import CarService from "../services/carService";
-import { CarModel } from "../model/CarModel";
+import CarService from "../../services/carService";
+import { CarModel } from "../../model/CarModel";
 
 const CarDetail = () => {
   let { id } = useParams();

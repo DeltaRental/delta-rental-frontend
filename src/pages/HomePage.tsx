@@ -3,6 +3,7 @@ import ListBox from "../components/ListBox/ListBox";
 import Button from "../components/Button/Button";
 import DatePicker from "../components/DatePicker/DatePicker";
 import Footer from "../components/Footer/Footer";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -58,6 +59,7 @@ const HomePage = (props: Props) => {
             </div>
           </div>
           <div className="grid justify-end mt-3">
+            <Link to="/cars/getCarAvailability">
             <Button
               size={48}
               text="Uygun Aracı Bul"
@@ -66,6 +68,7 @@ const HomePage = (props: Props) => {
               _hover_bg_color="green-600"
               _hover_text_color="green-200"
             />
+            </Link>
           </div>
         </div>
       </div>

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import CarService from "../services/carService";
+import CarService from "../../services/carService";
 import { Link } from "react-router-dom";
-import { CarModel } from "../model/CarModel";
+import { CarModel } from "../../model/CarModel";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../store/actions/cartActions";
+import { addToCart } from "../../store/actions/cartActions";
 import toast, { ToastBar, Toaster } from "react-hot-toast";
 
 const CarList = () => {

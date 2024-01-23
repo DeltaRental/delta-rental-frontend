@@ -7,6 +7,7 @@ type Props = {
   _text_color:string,
   _hover_bg_color:string,
   _hover_text_color:string,
+  
 
 }
 

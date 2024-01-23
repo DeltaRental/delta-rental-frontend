@@ -6,4 +6,5 @@ export interface CarModel {
 	plate: string;
 	modelName: string;
 	colorName: string;
+	status ?: boolean;
 }

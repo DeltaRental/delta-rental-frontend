@@ -1,6 +1,6 @@
 import { Form, Formik } from 'formik'
 import { number, object } from 'yup';
-import FormikInput from '../components/FormikInput/FormikInput';
+import FormikInput from '../../components/FormikInput/FormikInput';
 
 type Props = {}
 
