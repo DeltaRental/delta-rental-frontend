@@ -3,17 +3,17 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { configureStore } from "./store/configureStore";
 import { ThemeProvider } from "@material-tailwind/react";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { store } from "./store/store";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <ThemeProvider>
-    <Provider store={configureStore()}>
+    <Provider store={store}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <BrowserRouter>
           <App />

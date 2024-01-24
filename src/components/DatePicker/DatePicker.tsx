@@ -6,7 +6,7 @@ type Props = {}
 
 const DatePicker = (props: Props) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
-  console.log({selectedDate: selectedDate && selectedDate?.getDate});
+  //console.log({selectedDate: selectedDate && selectedDate?.getDate});
   
   return (
     <DateTimePicker 

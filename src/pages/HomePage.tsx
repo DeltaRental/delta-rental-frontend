@@ -4,10 +4,29 @@ import Button from "../components/Button/Button";
 import DatePicker from "../components/DatePicker/DatePicker";
 import Footer from "../components/Footer/Footer";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+import { BranchModel } from "../model/BranchModel";
+import BranchService from "../services/branchService";
+import { log } from "console";
 
 type Props = {};
 
 const HomePage = (props: Props) => {
+  const [branches, setBranches] = useState<BranchModel[]>([]);
+
+  useEffect(() => {
+    fetchBranch();
+  },[])
+  
+  
+  const fetchBranch = async() => {
+    let branchService = new BranchService();
+    let response = await branchService.getAll();
+    setBranches(response.data);
+    
+  }
+  
   return (
     <div className="relative h-[1299px]">
       <Carousel
@@ -46,8 +65,8 @@ const HomePage = (props: Props) => {
         <div className="bg-cyan-100 w-[1000px] h-[400px] rounded-3xl p-5">
           <div className="grid grid-cols-3 gap-2">
             <div className="me-4">
-              <p>Şehir:</p>
-              <ListBox />
+              <p>Şube:</p>
+              <ListBox branches={branches}/>
             </div>
             <div className="">
               <p>Alış Tarihi:</p>

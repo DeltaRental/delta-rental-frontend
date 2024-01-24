@@ -3,7 +3,6 @@ import CarService from "../../services/carService";
 import { Link } from "react-router-dom";
 import { CarModel } from "../../model/CarModel";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../store/actions/cartActions";
 import toast, { ToastBar, Toaster } from "react-hot-toast";
 
 const CarList = () => {
@@ -12,15 +11,19 @@ const CarList = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    fetchCarList();
+  },[])
+  
+  
+  const fetchCarList = async() => {
     setLoading(false);
     let carService = new CarService();
-    carService.getAll().then((result) => {setCars(result.data)});
-   
-  }, []);
+    let response = await carService.getAll();
+    setCars(response.data);
+  }
 
 
   const handleAddToCart = (car: CarModel) => {
-    dispatch(addToCart(car));
     toast("Araç sepete eklendi.", {
       duration: 4000,
       position: "bottom-right",
@@ -32,7 +35,8 @@ const CarList = () => {
 
   return (
     
-      <div className="container flex flex-wrap">
+      <div className="container mx-auto">
+        <div className="flex justify-center flex-wrap">
          <Toaster />
       {loading && <div>Yükleniyor...</div>}
                   {
@@ -68,6 +72,7 @@ const CarList = () => {
         </div>
          ))
       }
+      </div>
       </div>
     
   );

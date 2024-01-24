@@ -17,7 +17,6 @@ type DropdownStates = {
 
 const Navi = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
-  const { cartItems } = useSelector((state: any) => state.cart);
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [dropdownStates, setDropdownStates] = useState<DropdownStates>({
     services: false,
