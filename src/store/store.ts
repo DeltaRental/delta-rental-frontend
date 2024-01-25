@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import availableCarListReducer from './slices/availableCarListSlice'
+import { branchReducer } from './slices/branchSlice'
 
 export const store = configureStore({
   reducer: {
     availableCarList:availableCarListReducer,
+    branch:branchReducer,
   },
 })
 

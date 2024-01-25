@@ -8,24 +8,23 @@ import { useEffect, useState } from "react";
 
 import { BranchModel } from "../model/BranchModel";
 import BranchService from "../services/branchService";
-import { log } from "console";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "../store/store";
+import { fetchBranches } from "../store/slices/branchSlice";
+
 
 type Props = {};
 
 const HomePage = (props: Props) => {
-  const [branches, setBranches] = useState<BranchModel[]>([]);
+  //const [branches, setBranches] = useState<BranchModel[]>([]);
 
-  useEffect(() => {
-    fetchBranch();
-  },[])
+  const branchesState = useSelector((state: any) => state.branch);
+	const dispatch = useDispatch<AppDispatch>();
+
+	useEffect(() => {
+		dispatch(fetchBranches());
+	}, []);
   
-  
-  const fetchBranch = async() => {
-    let branchService = new BranchService();
-    let response = await branchService.getAll();
-    setBranches(response.data);
-    
-  }
   
   return (
     <div className="relative h-[1299px]">
@@ -66,7 +65,7 @@ const HomePage = (props: Props) => {
           <div className="grid grid-cols-3 gap-2">
             <div className="me-4">
               <p>Şube:</p>
-              <ListBox branches={branches}/>
+              <ListBox />
             </div>
             <div className="">
               <p>Alış Tarihi:</p>

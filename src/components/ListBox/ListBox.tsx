@@ -1,30 +1,34 @@
-import { useState, Fragment } from 'react'
+import { useState, Fragment, useEffect } from 'react'
 import { Combobox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { BranchModel } from '../../model/BranchModel';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '../../store/store';
+import { fetchBranches, setBranches } from '../../store/slices/branchSlice';
 
 type Props = {
-  branches:BranchModel[],
+  //branches:BranchModel[],
 };
 
-// const people = [
-//   { id: 1, name: 'İstanbul' },
-//   { id: 2, name: 'Ankara' },
-//   { id: 3, name: 'Rize' },
-//   { id: 4, name: 'Trabzon' },
-//   { id: 5, name: 'Şanlıurfa' },
-// ]
+
 const ListBox = (props: Props) => {
-  console.log(props.branches.map((branch) => branch.city));
-  
+
+  const branchesState = useSelector((state:any) => state.branch);
+	const dispatch = useDispatch<AppDispatch>();
+
   const [selected, setSelected] = useState()
   const [query, setQuery] = useState('')
+  
+	useEffect(() => {
+    dispatch(fetchBranches());
+	}, []);
+
   
   
   const filteredBranch =
     query === ''
-      ? props.branches
-      : props.branches.filter((branch) =>
+      ? branchesState.branches
+      : branchesState.branches.filter((branch:any) =>
           branch.city
             .toLowerCase()
             .replace(/\s+/g, '')
@@ -33,6 +37,11 @@ const ListBox = (props: Props) => {
 
   return (
     <div className="w-full ">
+      {branchesState.branches.length === 0 ? (
+        // veriler gelene kadar yükleme animasyonu göster
+        <div>Loading..</div>
+      ) : (
+        // veriler geldiğinde combobox elementini göster
       <Combobox value={selected} onChange={setSelected}>
         <div className="relative">
           <div className="relative w-full pe-[12.5px] py-[9px] box-content cursor-default overflow-hidden rounded-[4px] bg-white hover:border-black border text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-lg">
@@ -62,7 +71,7 @@ const ListBox = (props: Props) => {
                   Nothing found.
                 </div>
               ) : (
-                filteredBranch.map((branch) => (
+                filteredBranch.map((branch:any) => (
                   <Combobox.Option
                     key={branch.id}
                     className={({ active }) =>
@@ -98,7 +107,7 @@ const ListBox = (props: Props) => {
             </Combobox.Options>
           </Transition>
         </div>
-      </Combobox>
+      </Combobox>)}
     </div>
   )
 }
