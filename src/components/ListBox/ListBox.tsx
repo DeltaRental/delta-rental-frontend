@@ -23,6 +23,10 @@ const ListBox = (props: Props) => {
     dispatch(fetchBranches());
 	}, []);
 
+  useEffect(() => {
+    dispatch(setBranches(selected))
+  },[selected])
+  
   
   
   const filteredBranch =

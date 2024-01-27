@@ -18,12 +18,12 @@ type Props = {};
 const HomePage = (props: Props) => {
   //const [branches, setBranches] = useState<BranchModel[]>([]);
 
-  const branchesState = useSelector((state: any) => state.branch);
-	const dispatch = useDispatch<AppDispatch>();
+  // const branchesState = useSelector((state: any) => state.branch);
+	// const dispatch = useDispatch<AppDispatch>();
 
-	useEffect(() => {
-		dispatch(fetchBranches());
-	}, []);
+	// useEffect(() => {
+	// 	dispatch(fetchBranches());
+	// }, []);
   
   
   return (

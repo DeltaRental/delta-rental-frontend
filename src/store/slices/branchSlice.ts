@@ -25,11 +25,12 @@ const branchSlice = createSlice({
 	initialState: {
 		loading: "initial",
 		branches: [] as any[],
+		selectedBranch: [] as any[],
 		lastFetch: new Date().getTime(),
 	},
 	reducers: {
     setBranches(state, action) {
-      state.branches = action.payload
+      state.selectedBranch = action.payload
     }
   },
 	extraReducers: builder => {

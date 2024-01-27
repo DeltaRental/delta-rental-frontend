@@ -16,7 +16,7 @@ const Dashboard = () => {
             <Routes>
               <Route path="/" element={<HomePage />}></Route>
               <Route path="/cars/getAll" element={<CarList />}></Route>
-              <Route path="/cars/getCarAvailability" element={<CarList />}></Route>
+              <Route path="/cars/getCarAvailability" element={<CarAvailability />}></Route>
               <Route path="/cars/:id" element={<CarDetail/>}></Route>
               <Route path="/car/add" element={<CarAdd/>}></Route>
               <Route path="*" element={<div>Not found</div>}></Route>
