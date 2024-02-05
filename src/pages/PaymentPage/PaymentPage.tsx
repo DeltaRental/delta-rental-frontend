@@ -20,7 +20,9 @@ const PaymentPage: React.FC<PaymentPageProps> = () => {
     // Create PaymentIntent as soon as the page loads
     fetch("http://localhost:8080/api/payments/create-payment-intent", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json",
+      Authorization: 'Bearer ' + localStorage.getItem('jsonwebtoken')
+      },
       body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
     })
       .then((res) => res.json())

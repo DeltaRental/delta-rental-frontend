@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import CartSummary from "../CartSummary/CartSummary";
-import SignedOut from "../SignedOut/SignedOut";
-import SignedIn from "../SignedIn/SignedIn";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,7 +14,6 @@ type DropdownStates = {
 };
 
 const Navi = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [dropdownStates, setDropdownStates] = useState<DropdownStates>({
     services: false,
@@ -25,14 +22,6 @@ const Navi = () => {
 
   const navigate = useNavigate();
 
-  function handleSignOut() {
-    setIsAuthenticated(false);
-    navigate("/");
-  }
-
-  function handleSignIn() {
-    setIsAuthenticated(true);
-  }
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
@@ -46,8 +35,8 @@ const Navi = () => {
   };
 
   return (
-    <div className="bg-red-600">
-      <nav className="container p-3 mx-auto md:p-6 lg:p-8 xl:p-10 ">
+    <div className="bg-black">
+      <nav className="container p-3 mx-auto md:p-6 lg:p-8 ">
         <div className="flex items-center justify-between flex-row-reverse">
           <FontAwesomeIcon
             className={`w-7 h-7 md:hidden cursor-pointer transition-transform transform ${isMenuOpen ? "rotate-0" : "rotate-180"
@@ -69,20 +58,20 @@ const Navi = () => {
           id="menu"
         >
           <div className="grid grid-cols-1 md:grid-cols-9 ">
-            <div className="col-span-4 text-base lg:text-lg md:border-y border-y-black">
+            <div className="col-span-4 text-base lg:text-lg md:border-y border-y-white">
               <ul className="justify-between md:flex ">
-                <li className="p-2 py-4 lg:p-4 border-b  md:border-0">
+                <li className="p-2 py-2 lg:p-2 border-b  md:border-0">
                   <Link to="/">
 
-                    <p className="text-2xl font-medium text-gray-900 dark:text-white">Ana Sayfa</p>
+                    <p className="text-xl font-medium text-white dark:text-white">Ana Sayfa</p>
 
                   </Link>
                 </li>
-                <li className="p-2 py-4 lg:p-4 border-b  md:border-0">
-                  <Link to="/cars/getAll"><p className="text-2xl font-medium text-gray-900 dark:text-white">Araçlar</p></Link>
+                <li className="p-2 py-2 lg:p-2 border-b  md:border-0">
+                  <Link to="/cars/getAll"><p className="text-xl font-medium text-white dark:text-white">Araçlar</p></Link>
                 </li>
-                <li className="p-2 py-4 lg:p-4 border-b  md:border-0">
-                  <Link to="#"><p className="text-2xl font-medium text-gray-900 dark:text-white">Hakkımızda</p></Link>
+                <li className="p-2 py-2 lg:p-2 border-b  md:border-0">
+                  <Link to="#"><p className="text-xl font-medium text-white dark:text-white">Hakkımızda</p></Link>
                 </li>
               </ul>
             </div>
@@ -90,7 +79,7 @@ const Navi = () => {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="p-1 border-2 border-black border-dotted rounded-full">
                   <img
-                    className="md:mx-auto w-14 h-14 lg:w-20 lg:h-20 xl:w-28 xl:h-28 rounded-full "
+                    className="md:mx-auto w-14 h-14 lg:w-20 lg:h-20 xl:w-24 xl:h-24 rounded-full "
                     src="https://avatars.githubusercontent.com/u/156099996?s=200&v=4"
                     alt="logo_4"
                     data-ezsrc="/static_files/images/logos/logo_4.png?ezimgfmt=rs:112x83/rscb1/ngcb1/notWebP"
@@ -98,10 +87,10 @@ const Navi = () => {
                 </div>
               </div>
             </div>
-            <div className=" col-span-4 md:border-y border-y-black">
+            <div className=" col-span-4 md:border-y border-y-white">
               <ul className="justify-between text-base lg:text-lg  md:flex">
-                <li className="p-2 py-4 lg:p-4 border-b  md:border-0">
-                  <Link to="#"><p className="text-2xl font-medium text-gray-900 dark:text-white">Company</p></Link>
+                <li className="p-2 py-2 lg:p-2 border-b  md:border-0">
+                  <Link to="#"><p className="text-xl font-medium text-white dark:text-white">Company</p></Link>
                 </li>
 
                 <div
@@ -109,10 +98,10 @@ const Navi = () => {
                   onMouseEnter={() => handleToggleDropdown("services")}
                   onMouseLeave={() => handleToggleDropdown("services")}
                 >
-                  <li className="p-2 py-4 lg:p-4 border-b md:border-0">
-                    <Link to="#"><p className="text-2xl font-medium text-gray-900 dark:text-white">Services</p></Link>
+                  <li className="p-2 py-2 lg:p-2 border-b md:border-0">
+                    <Link to="#"><p className="text-xl font-medium text-white dark:text-white">Services</p></Link>
                     {dropdownStates.services && (
-                      <div className="md:absolute bg-white left-0 z-10 top-[57px] lg:top-[60px] md:w-[200px] shadow-md">
+                      <div className="md:absolute bg-white left-0 z-10 top-[41px] lg:top-[44px] md:w-[200px] shadow-md">
                         <div className="cursor-pointer p-4 text-black hover:text-red-600 hover:bg-gray-300">
                           Settings
                         </div>
@@ -132,10 +121,10 @@ const Navi = () => {
                   onMouseEnter={() => handleToggleDropdown("contactUs")}
                   onMouseLeave={() => handleToggleDropdown("contactUs")}
                 >
-                  <li className="p-2 py-4 lg:p-4 border-b md:border-0">
-                    <Link to="#"><p className="text-2xl font-medium text-gray-900 dark:text-white">İletişim</p></Link>
+                  <li className="p-2 py-2 lg:p-2 border-b md:border-0">
+                    <Link to="#"><p className="text-xl font-medium text-white dark:text-white">İletişim</p></Link>
                     {dropdownStates.contactUs && (
-                      <div className="md:absolute bg-white left-0 z-10 top-[57px] lg:top-[60px] md:w-[200px] shadow-md">
+                      <div className="md:absolute bg-white left-0 z-10 top-[41px] lg:top-[44px] md:w-[200px] shadow-md">
                         <div className="cursor-pointer p-4 text-black hover:text-red-600 hover:bg-gray-300">
                           Settings
                         </div>

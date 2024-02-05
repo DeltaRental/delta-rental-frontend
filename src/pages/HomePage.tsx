@@ -13,6 +13,7 @@ import { AppDispatch } from "../store/store";
 import { fetchBranches } from "../store/slices/branchSlice";
 
 
+
 type Props = {};
 
 const HomePage = (props: Props) => {
@@ -27,7 +28,7 @@ const HomePage = (props: Props) => {
   
   
   return (
-    <div className="relative h-[1299px]">
+    <div className="relative w-full" style={{height: "calc(100vh - 7rem)"}} >
       <Carousel
         transition={{ duration: 2 }}
         autoplay={true}

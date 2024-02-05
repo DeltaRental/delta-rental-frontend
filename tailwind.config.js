@@ -25,7 +25,14 @@ module.exports = withMT({
     '2xl': '1536px',
     // => @media (min-width: 1536px) { ... }
   },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'signin': `url(${'/public/assets/oooscillate.svg'}`
+      },
+      colors: {
+        'delta-yellow': '#f8e61b',
+      },
+    },
   },
   plugins: [
     require('flowbite/plugin')

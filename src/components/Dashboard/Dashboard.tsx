@@ -8,12 +8,11 @@ import CarAdd from "../../pages/Car/CarAdd";
 import HomePage from "../../pages/HomePage";
 import CarAvailability from "../../pages/Car/CarAvailability";
 import PaymentPage from "../../pages/PaymentPage/PaymentPage";
+import Login from "../../pages/Auth/Login/Login";
 
 const Dashboard = () => {
   return (
     <div>
-      <div className="row">
-        <div className="col-12">
             <Routes>
               <Route path="/" element={<HomePage />}></Route>
               <Route path="/cars/getAll" element={<CarList />}></Route>
@@ -21,11 +20,9 @@ const Dashboard = () => {
               <Route path="/payment" element={<PaymentPage />}></Route>
               <Route path="/cars/:id" element={<CarDetail/>}></Route>
               <Route path="/car/add" element={<CarAdd/>}></Route>
+              <Route path="/login" element={<Login/>}></Route>
               <Route path="*" element={<div>Not found</div>}></Route>
             </Routes>
-            
-        </div>
-      </div>
     </div>
   );
 };
