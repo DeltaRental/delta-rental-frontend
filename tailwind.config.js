@@ -26,9 +26,6 @@ module.exports = withMT({
     // => @media (min-width: 1536px) { ... }
   },
     extend: {
-      backgroundImage: {
-        'signin': `url(${'/public/assets/oooscillate.svg'}`
-      },
       colors: {
         'delta-yellow': '#f8e61b',
       },

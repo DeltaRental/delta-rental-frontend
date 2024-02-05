@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import CartSummary from "../CartSummary/CartSummary";
-import { Link, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
 import { icon } from "@fortawesome/fontawesome-svg-core";
 import { faHeart, faUserCircle } from "@fortawesome/free-regular-svg-icons";
+import Link from "../CustomLink/Link";
+import Bars from "../TransitionBar/TransitionBar";
 
 type DropdownStates = {
   services: boolean;
@@ -143,6 +145,7 @@ const Navi = () => {
           </div>
         </div>
       </nav>
+      <Bars/>
     </div>
   );
 };
