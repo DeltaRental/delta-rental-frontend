@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navi from "../Navi/Navi";
 import Categories from "../Categories/Categories";
 import CarList from "../../pages/Car/CarList";
@@ -10,9 +10,12 @@ import CarAvailability from "../../pages/Car/CarAvailability";
 import PaymentPage from "../../pages/PaymentPage/PaymentPage";
 import Login from "../../pages/Auth/Login/Login";
 
+
 const Dashboard = () => {
+  
   return (
-    <div>
+    <>
+      
             <Routes>
               <Route path="/" element={<HomePage />}></Route>
               <Route path="/cars/getAll" element={<CarList />}></Route>
@@ -23,7 +26,7 @@ const Dashboard = () => {
               <Route path="/login" element={<Login/>}></Route>
               <Route path="*" element={<div>Not found</div>}></Route>
             </Routes>
-    </div>
+    </>
   );
 };
 

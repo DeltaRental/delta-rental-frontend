@@ -2,10 +2,15 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Navi from "./components/Navi/Navi";
+import OverlayLoader from "./components/OverlayLoader/OverlayLoader";
+import { useEffect } from "react";
+import axiosInstance from "./core/utils/interceptors/axiosInterceptors";
 
 function App() {
-  return (
-    <div className="App h-screen">
+    return (
+      
+    <div className="App ">
+      
       <div
         className="h-screen bg-fixed bg-cover bg-no-repeat bg-black"
         style={{
@@ -14,8 +19,10 @@ function App() {
           })`,
         }}
       >
-        <Navi />
+      
 
+        <OverlayLoader />
+        <Navi />
         <Dashboard />
       </div>
     </div>

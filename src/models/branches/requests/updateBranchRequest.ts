@@ -1,4 +1,4 @@
-export interface BranchModel {
+export interface UpdateBranchRequest {
 	id: number;
 	name: string;
 	address: string;

@@ -4,31 +4,12 @@ import Button from "../components/Button/Button";
 import DatePicker from "../components/DatePicker/DatePicker";
 import Footer from "../components/Footer/Footer";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-
-import { BranchModel } from "../model/BranchModel";
-import BranchService from "../services/branchService";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../store/store";
-import { fetchBranches } from "../store/slices/branchSlice";
-
-
 
 type Props = {};
 
 const HomePage = (props: Props) => {
-  //const [branches, setBranches] = useState<BranchModel[]>([]);
-
-  // const branchesState = useSelector((state: any) => state.branch);
-	// const dispatch = useDispatch<AppDispatch>();
-
-	// useEffect(() => {
-	// 	dispatch(fetchBranches());
-	// }, []);
-  
-  
-  return (
-    <div className="relative w-full" style={{height: "calc(100vh - 7rem)"}} >
+   return (
+    <div className="relative w-full" style={{ height: "calc(100vh - 7rem)" }}>
       <Carousel
         transition={{ duration: 2 }}
         autoplay={true}
@@ -62,7 +43,7 @@ const HomePage = (props: Props) => {
         />
       </Carousel>
       <div className="absolute top-96 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <div className="bg-cyan-100 w-[1000px] h-[400px] rounded-3xl p-5">
+        <div className="bg-delta-yellow w-[1000px] h-[400px] rounded-3xl p-5">
           <div className="grid grid-cols-3 gap-2">
             <div className="me-4">
               <p>Şube:</p>
@@ -79,21 +60,20 @@ const HomePage = (props: Props) => {
           </div>
           <div className="grid justify-end mt-3">
             <Link to="/cars/getCarAvailability">
-            <Button
-              size={48}
-              text="Uygun Aracı Bul"
-              _border_color="green-600"
-              _text_color="green-400"
-              _hover_bg_color="green-600"
-              _hover_text_color="green-200"
-            />
+              <Button
+                size={48}
+                text="Uygun Aracı Bul"
+                _border_color="green-600"
+                _text_color="green-400"
+                _hover_bg_color="green-600"
+                _hover_text_color="green-200"
+              />
             </Link>
           </div>
         </div>
       </div>
       <Footer></Footer>
     </div>
-    
   );
 };
 

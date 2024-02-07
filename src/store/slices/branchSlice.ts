@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import BranchService from "../../services/branchService";
+import branchService from "../../services/branchService";
 
 
 export const fetchBranches = createAsyncThunk(
@@ -14,8 +14,7 @@ export const fetchBranches = createAsyncThunk(
 			return state.branch.branches;
 		}
 
-		const service: BranchService = new BranchService();
-		const response = await service.getAll();
+		const response = await branchService.getAll();
 		return response.data;
 	},
 );

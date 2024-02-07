@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-//bu alana interceptor importu eklenecek axiosInstance
+import axiosInstance from "../core/utils/interceptors/axiosInterceptors";
 
 
 export class BaseService<
@@ -20,7 +20,7 @@ export class BaseService<
             return axiosInstance.get<GetAllType>(this.apiUrl + "/getAll");
         }
 
-        getById(id: number): Promise<AxiosResponse<GetByIdType, any>>{
+        getById(id?:string): Promise<AxiosResponse<GetByIdType, any>>{
             return axiosInstance.get<GetByIdType>(this.apiUrl + "/" + id);
         }
         add(request: AddRequestType): Promise<AxiosResponse<AddResponseType, any>>{

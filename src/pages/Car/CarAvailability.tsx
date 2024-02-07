@@ -1,45 +1,42 @@
 import toast, { Toaster } from "react-hot-toast";
-import { CarModel } from "../../model/CarModel";
+import { GetAllCarResponse } from "../../models/cars/response/getAllCarResponse";
 import { AppDispatch } from "../../store/store";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchCars } from "../../store/slices/carListSlice";
 
-type Props = {
-    
-}
+type Props = {};
 
 const CarAvailability = (props: Props) => {
-    const branchesState = useSelector((state: any) => state.branch);
-    const carsState = useSelector((state:any) => state.car);
-  
-    const dispatch = useDispatch<AppDispatch>();
-  
-  
-    useEffect(() => {
-      dispatch(fetchCars());
-      }, []);
-  
-    console.log(carsState);
-    
-  
-    const handleAddToCart = (car: CarModel) => {
-      toast("Araç sepete eklendi.", {
-        duration: 4000,
-        position: "bottom-right",
-        style: {},
-        className: "bg-success text-light",
-        icon: "👏",
-      });
-    };
+  const branchesState = useSelector((state: any) => state.branch);
+  const carsState = useSelector((state: any) => state.car);
 
-    return (
-        <div className="container mx-auto mt-5">
-        <div className="grid grid-cols-3 gap-2 ">
-          <Toaster />
-          {carsState.cars.map((car:CarModel) => ( 
-            
-            car.branch?.name == branchesState.selectedBranch?.name && car.branch?.city == branchesState.selectedBranch?.city && car.carState == "AVAILABLE" ? (
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(fetchCars());
+  }, []);
+
+  console.log(carsState);
+
+  const handleAddToCart = (car: GetAllCarResponse) => {
+    toast("Araç sepete eklendi.", {
+      duration: 4000,
+      position: "bottom-right",
+      style: {},
+      className: "bg-success text-light",
+      icon: "👏",
+    });
+  };
+
+  return (
+    <div className="container mx-auto mt-5">
+      <div className="grid grid-cols-3 gap-2 ">
+        <Toaster />
+        {carsState.cars.map((car: GetAllCarResponse) =>
+          car.branch?.name == branchesState.selectedBranch?.name &&
+          car.branch?.city == branchesState.selectedBranch?.city &&
+          car.carState == "AVAILABLE" ? (
             <div
               key={car.id}
               className=" rounded-lg w-auto shadow-lg shadow-blue-300/50 m-4 cursor-pointer hover:bg-blue-100 active:bg-blue-100"
@@ -61,7 +58,7 @@ const CarAvailability = (props: Props) => {
                   <p>Araç Özellikleri</p>
                   <ul>
                     <li>{car.modelName}</li>
-  
+
                     <li>{car.plate}</li>
                     <li>{car.colorName}</li>
                   </ul>
@@ -76,11 +73,11 @@ const CarAvailability = (props: Props) => {
                 </div>
               </div>
             </div>
-           ) : (null)
-          ))}
-        </div>
+          ) : null
+        )}
       </div>
-    );
-}
+    </div>
+  );
+};
 
-export default CarAvailability
+export default CarAvailability;

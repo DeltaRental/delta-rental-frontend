@@ -7,6 +7,9 @@ import { ThemeProvider } from "@material-tailwind/react";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { store } from "./store/store";
+import { injectStore } from "./core/utils/interceptors/axiosInterceptors";
+
+injectStore(store)
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
