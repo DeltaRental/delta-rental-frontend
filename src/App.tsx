@@ -5,6 +5,7 @@ import Navi from "./components/Navi/Navi";
 import OverlayLoader from "./components/OverlayLoader/OverlayLoader";
 import { useEffect } from "react";
 import axiosInstance from "./core/utils/interceptors/axiosInterceptors";
+import AdminPage from "./pages/AdminPage/AdminPage";
 
 function App() {
     return (
@@ -19,8 +20,6 @@ function App() {
           })`,
         }}
       >
-      
-
         <OverlayLoader />
         <Navi />
         <Dashboard />

@@ -17,6 +17,14 @@ import { UpdateCarResponse } from "../models/cars/response/updateCarResponse";
 //     })
 //   }
 
+// }
+
+// {
+//    getAll(){
+//     return axios.get("http://localhost:8080/api/cars/getAll")
+//   }
+
+
 //   getByCarId(id?:string){
 //     return axios.get("http://localhost:8080/api/cars/{id}?id="+id)
 //   }
@@ -24,6 +32,7 @@ import { UpdateCarResponse } from "../models/cars/response/updateCarResponse";
 //   getCarAvailability(){
 //     return axios.get("http://localhost:8080/api/cars/getCarAvailability")
 //   }
+
 // }
 
 class CarService extends BaseService<GetAllCarResponse,
@@ -42,3 +51,4 @@ UpdateCarResponse
 }
 
 export default new CarService();
+

@@ -7,7 +7,7 @@ export const store = configureStore({
   reducer: {
     car:carReducer,
     branch:branchReducer,
-    loading:loadingReducer,
+    loading:loadingReducer
   },
 })
 

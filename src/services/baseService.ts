@@ -1,7 +1,6 @@
 import { AxiosResponse } from "axios";
 import axiosInstance from "../core/utils/interceptors/axiosInterceptors";
 
-
 export class BaseService<
     GetAllType,
     GetByIdType,

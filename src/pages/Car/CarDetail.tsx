@@ -5,7 +5,7 @@ import { GetAllCarResponse } from "../../models/cars/response/getAllCarResponse"
 import carService from "../../services/carService";
 
 const CarDetail = () => {
-  let { id } = useParams();
+  let {id} = useParams();
 
   const [car, setCar] = useState<GetAllCarResponse>();
 
