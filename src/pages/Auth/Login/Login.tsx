@@ -6,6 +6,7 @@ import { Form, Formik } from "formik";
 import { object, string } from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Link from "../../../components/CustomLink/Link";
 
 type Props = {};
 
@@ -75,13 +76,13 @@ const Login = (props: Props) => {
                       name="email"
                       label="Email"
                       type="email"
-                      placeholder="Mailinizi girin..."
+                      placeholder="Mailinizi giriniz..."
                     />
                     <FormikInput
                       name="password"
                       label="Şifre"
                       type="password"
-                      placeholder="Şifrenizi girin..."
+                      placeholder="Şifrenizi giriniz..."
                     />
 
                     <div className="flex items-center justify-between">
@@ -117,12 +118,13 @@ const Login = (props: Props) => {
               <div className="mb-7 flex justify-center">
                 <p className="text-white">
                   Hesabın yok mu?{" "}
-                  <a
-                    href="#"
-                    className="text-sm text-purple-700 hover:text-purple-700"
-                  >
-                    Üye ol
-                  </a>
+                  <Link
+                  className="text-purple-700 hover:text-purple-700"
+                  to="/signup"
+                >
+
+                  Üye ol
+                </Link>
                 </p>
               </div>
             </div>

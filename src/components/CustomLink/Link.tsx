@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 type Props = {
   to: any,
   children: any,
+  className?: string,
 }
 
 const Link = (props: Props) => {
@@ -22,7 +23,7 @@ const Link = (props: Props) => {
   };
 
   return(
-    <a onClick={handleClicked}>
+    <a onClick={handleClicked} className={`${props.className} cursor-pointer`}>
       {props.children}
     </a>
   )
