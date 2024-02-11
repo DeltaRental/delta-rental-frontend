@@ -9,6 +9,7 @@ import HomePage from "../../pages/HomePage";
 import CarAvailability from "../../pages/Car/CarAvailability";
 import PaymentPage from "../../pages/PaymentPage/PaymentPage";
 import Login from "../../pages/Auth/Login/Login";
+import AdminPage from "../../pages/AdminPage/AdminPage";
 
 
 const Dashboard = () => {
@@ -24,6 +25,7 @@ const Dashboard = () => {
               <Route path="/cars/:id" element={<CarDetail/>}></Route>
               <Route path="/car/add" element={<CarAdd/>}></Route>
               <Route path="/login" element={<Login/>}></Route>
+              <Route path="/admin" element={<AdminPage/>}></Route>
               <Route path="*" element={<div>Not found</div>}></Route>
             </Routes>
     </>

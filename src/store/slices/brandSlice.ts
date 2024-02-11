@@ -1,94 +1,116 @@
-// import { GetAllBrandResponse } from './../../model/brands/response/getAllBrandResponse';
-// import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-// import brandService from '../../services/brandService';
-// import { AddBrandRequest } from '../../model/brands/request/addBrandRequest';
-// import { UpdateBrandRequest } from '../../model/brands/request/updateBrandRequest';
-// import { UpdateBrandResponse } from '../../model/brands/response/updateBrandResponse';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import brandService from "../../services/brandService";
+import { AddBrandRequest } from "../../models/brands/requests/addBrandRequest";
+import { UpdateBrandRequest } from "../../models/brands/requests/updateBrandRequest";
 
-// export const fetchBrands = createAsyncThunk(
-//     "brands/fetchBrands",
-//     async (args, thunkAPI) =>{
-        
-//         try {
-//             const allBrands = await brandService.getAll();
-//             return allBrands.data.brands;
-//         } catch (error) {
-//             console.error("Error fetching brands:", error);
-//             throw error;
-//         }
-//     }
-// );
+export const brandList = createAsyncThunk(
+    "brands/brandList",
+    async(thunkAPI) => {
+        try {
+            const response = await brandService.getAll();
+        return response.data;
+        } catch (error) {
+            console.error("Marka listeleme hatası:", error);
+            throw error;
+        }
+    },
+);
 
-// export const addBrand = createAsyncThunk(
-//     "brands/addBrand",
-//     async(newBrand: AddBrandRequest, thunkAPI) =>{
-//         try {
-//             const addBrand = await brandService.add(newBrand);
-//             console.log(addBrand);
+export const addBrand = createAsyncThunk(
+    "brands/addBrand",
+    async (newBrand: AddBrandRequest, thunkAPI) =>{
+        try{
+            const addedBrand = await brandService.add(newBrand);
+            return addedBrand.data;
+        }catch(error){
+            console.error("Marka ekleme hatası:", error);
+            throw error;
+        }
+    }
+);
 
-//             return addBrand.data;
-            
-//         } catch (error) {
-//             console.error("Error adding brand:", error);
-//         }
-//     }
-// );
+export const updateBrand = createAsyncThunk(
+    "brands/updateBrand",
+    async (newBrand: UpdateBrandRequest, thunkAPI) =>{
+        try {
+            const updatedBrand = await brandService.update(newBrand);
+            return updatedBrand.data;
+        } catch (error) {
+            console.error("Marka güncelleme hatası:", error);
+            throw error;
+        }
+    }
+);
 
-// export const updateBrand = createAsyncThunk(
-//     "brands/updateBrand",
-//     async(newBrand: UpdateBrandRequest, thunkAPI) =>{
-//         try {
-//             const updateBrand = await brandService.update(newBrand);
-//             console.log(updateBrand);
-            
-//             return updateBrand.data;
-//         } catch (error) {
-//             console.error("Error updating brand:", error);
-//         }
-//     }
-// );
+export const deleteBrand = createAsyncThunk(
+    "brands/deleteBrand",
+    async ({id}: {id: number;}, thunkAPI) =>{
+        try {
+            await brandService.delete(id);
+            return{
+                deletedBrandId: id
+            };
+        } catch (error) {
+            console.error("Marka silme hatası:", error);
+            throw error;
+        }
+    }
+);
 
-// export const deleteBrand = createAsyncThunk(
-//     "brands/deleteBrand",
-//     async(brandId: number, thunkAPI)=>{
-//         try {
-//             await brandService.delete(brandId);
-//             return brandId;
-//         } catch (error) {
-//             console.error("Brand deletion failed:", error);
-//         }
-//     }
-// );
-
-// const brandSlice = createSlice({
-//     name: "brand",
-//     initialState: {brands: [] as any[], error:null},
-//     reducers: {},
-//     extraReducers: (builder) =>{
-//         builder.addCase(fetchBrands.pending, (state) =>{});
-//         builder.addCase(fetchBrands.fulfilled, (state, action) =>{
-//             state.brands = action.payload;
-//         });
-//         builder.addCase(fetchBrands.rejected, (state) =>{});
-
-
-//         builder.addCase(addBrand.pending, (state) =>{});
-//         builder.addCase(addBrand.fulfilled, (state, action) =>{
-//             state.brands.push(action.payload);
-//         });
-//         builder.addCase(addBrand.rejected, (state) =>{});
+const initialState ={
+    brands: [] as any,
+    loading: "initial",
+}
+const brandSlice = createSlice({
+    name: "brands",
+    initialState,
+    reducers:{},
+    extraReducers: (builder) => {
+        builder.addCase(brandList.pending, state=>{
+            state.loading = "loading";
+        });
+        builder.addCase(brandList.fulfilled, (state, action)=>{
+            state.brands = action.payload;    
+        });
+        builder.addCase(brandList.rejected, state=>{
+            state.loading = "error";
+        });
 
 
-//         builder.addCase(updateBrand.pending, (state) =>{});
-//         builder.addCase(updateBrand.fulfilled, (state, action) =>{
-//             state.brands = [];
-//         });
-//         builder.addCase(updateBrand.rejected, (state)=>{});
+        builder.addCase(addBrand.pending, state =>{
+            state.loading = "loading";
+        });
+        builder.addCase(addBrand.fulfilled, (state, action)=>{
+            state.brands.push(action.payload);
+        });
+        builder.addCase(addBrand.rejected, state=>{
+            state.loading = "error";
+        });
 
 
-//         builder.addCase(deleteBrand.pending, (state)=>{});
-//     },
-// });
+        builder.addCase(updateBrand.pending, state =>{
+            state.loading = "loading";
+        });
+        builder.addCase(updateBrand.fulfilled, (state, action) =>{
+            state.brands = [];
+        });
+        builder.addCase(updateBrand.rejected, state =>{
+            state.loading = "error";
+        });
 
-// export const brandReducer = brandSlice.reducer;
-// export const {} = brandSlice.actions;
+
+        builder.addCase(deleteBrand.pending, state =>{
+            state.loading = "loading";
+        });
+        builder.addCase(deleteBrand.fulfilled, (state, action) =>{
+            const deletedBrand = action.payload.deletedBrandId;
+            state.brands = state.brands.filter((brand: any) => brand.id !== deletedBrand);
+        });
+        builder.addCase(deleteBrand.rejected, state =>{
+            state.loading = "error";
+        });
+    },
+});
+
+export const brandReducer = brandSlice.reducer;
+export const {} = brandSlice.actions;
