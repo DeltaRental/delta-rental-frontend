@@ -3,6 +3,10 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../../components/PaymentCheckoutForm/CheckoutForm";
 import "../PaymentPage/PaymentPage.css";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { AppDispatch } from "../../store/store";
+import { addRental } from "../../store/slices/rentalSlice";
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
@@ -14,7 +18,9 @@ const stripePromise = loadStripe(
 interface PaymentPageProps {}
 
 const PaymentPage: React.FC<PaymentPageProps> = () => {
+
   const [clientSecret, setClientSecret] = useState<string>("");
+
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
@@ -29,6 +35,10 @@ const PaymentPage: React.FC<PaymentPageProps> = () => {
       .then((data) => setClientSecret(data.clientSecret));
   }, []);
 
+ 
+
+
+
   const appearance = {
     theme: "stripe" as const,
   };
@@ -36,6 +46,11 @@ const PaymentPage: React.FC<PaymentPageProps> = () => {
     clientSecret,
     appearance,
   };
+
+  
+    //console.log(rentalData);
+  
+  
 
   return (
       <div className="h-screen flex justify-center items-center">

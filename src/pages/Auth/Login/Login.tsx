@@ -5,15 +5,22 @@ import FormikInput from "../../../components/FormikInput/FormikInput";
 import { Form, Formik } from "formik";
 import { object, string } from "yup";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Link from "../../../components/CustomLink/Link";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "../../../store/store";
+import { userInfo } from "../../../store/slices/userSlice";
 
 type Props = {};
 
 const Login = (props: Props) => {
   const [credentials, setCredentials] = useState({});
+  const usersState = useSelector((state: any) => state.user);
 
+  const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
+
 
   const initialValues = {
     email: "",
@@ -28,20 +35,23 @@ const Login = (props: Props) => {
       .max(30),
   });
 
-  const handleLogin = () => {
-    axios.post("http://localhost:8080/api/auth/authenticate", credentials).then(
-      (response) => {
+  const handleLogin = (values:any) => {    
+    axios.post("http://localhost:8080/api/auth/authenticate", values).then(
+      (response) => {      
         console.log(response.data);
         const token = response.data.token;
         localStorage.setItem("jsonwebtoken", token);
-        navigate("/");
+        navigate(location.state?.from || "/");
+        dispatch(userInfo(values.email))
+        
+        console.log(usersState);
       },
       (error) => {
         console.log(error);
       }
     );
   };
-
+    
   return (
     <div
       className="container w-full mx-auto flex justify-center items-center"
@@ -66,8 +76,10 @@ const Login = (props: Props) => {
               <div className="flex justify-center mt-10 ">
                 <Formik
                   initialValues={initialValues}
-                  onSubmit={(values) => {
+                  onSubmit={(values) => {                 
+                    handleLogin(values);
                     setCredentials(values);
+                    
                   }}
                   validationSchema={validationSchema}
                 >
@@ -100,7 +112,6 @@ const Login = (props: Props) => {
                       <button
                         type="submit"
                         className="w-full flex justify-center bg-purple-800  hover:bg-purple-700 text-gray-100 p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500 shadow-[0px_0px_10px_5px_#f8e61b]"
-                        onClick={handleLogin}
                       >
                         Giriş Yap
                       </button>

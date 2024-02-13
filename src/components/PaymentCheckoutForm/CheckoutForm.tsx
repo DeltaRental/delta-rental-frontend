@@ -5,14 +5,38 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import { Stripe, StripeElements, StripePaymentElementOptions } from "@stripe/stripe-js";
+import OverlayLoader from "../OverlayLoader/OverlayLoader";
+import { Spinner } from "@material-tailwind/react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "../../store/store";
+import { addRental } from "../../store/slices/rentalSlice";
 
 export const CheckoutForm = () => {
+  const rentalState = useSelector((state: any) => state.rental);
+  const branchState = useSelector((state: any) => state.branch);
+  const carsState = useSelector((state: any) => state.car);
+  const dispatch = useDispatch<AppDispatch>();
+  const rentalData = {
+    startDate: rentalState.selectedStartDate,
+      endDate: rentalState.selectedEndDate,
+      startLocation: branchState.selectedBranch.name,
+      carId: carsState.selectedCar.id,
+      customerId: 5,
+      employeeId: 1
+    };
+
+  
   const stripe: Stripe | null = useStripe();
   const elements: StripeElements | null = useElements();
 
   const [message, setMessage] = useState<string | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(false);
 
+  
+ 
+    console.log(rentalData);
+  
+  
   useEffect(() => {
     if (!stripe) {
       return;
@@ -59,7 +83,7 @@ export const CheckoutForm = () => {
       elements,
       confirmParams: {
         // Burası ödemeden sonra yönlenicek sayfa path' i
-        return_url: "http://localhost:3000/cars/getAll",
+        return_url: "http://localhost:3000/payment",
       },
     });
 
@@ -78,6 +102,11 @@ export const CheckoutForm = () => {
     setIsLoading(false);
   };
 
+
+  const clickButton = () => {
+    dispatch(addRental(rentalData))
+  }
+
   const paymentElementOptions: StripePaymentElementOptions = {
     layout: "tabs",
   };
@@ -85,9 +114,9 @@ export const CheckoutForm = () => {
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
       <PaymentElement id="payment-element" options={paymentElementOptions} />
-      <button disabled={isLoading || !stripe || !elements} id="submit">
+      <button onClick={clickButton} disabled={isLoading || !stripe || !elements} id="submit">
         <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
+          {isLoading ? <Spinner/> : "Pay now"}
         </span>
       </button>
       {/* Show any error or success messages */}

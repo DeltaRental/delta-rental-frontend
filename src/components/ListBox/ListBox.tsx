@@ -16,7 +16,7 @@ const ListBox = (props: Props) => {
   const [query, setQuery] = useState("");
   
   const branchesState = useSelector((state: any) => state.branch);
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch<AppDispatch>();  
   
   useEffect(() => {
     dispatch(fetchBranches());
@@ -25,7 +25,8 @@ const ListBox = (props: Props) => {
   useEffect(() => {
     dispatch(setBranches(selected));
   }, [selected]);
-
+  console.log(branchesState);
+  
   const filteredBranch =
     query === ""
       ? branchesState.branches

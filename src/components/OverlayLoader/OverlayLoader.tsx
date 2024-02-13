@@ -5,7 +5,7 @@ type Props = {};
 
 const OverlayLoader = (props: Props) => {
   const loadingState = useSelector((state: any) => state.loading);
-  console.log(loadingState);
+  //console.log(loadingState);
 
   return (
     <>

@@ -2,12 +2,16 @@ import toast, { Toaster } from "react-hot-toast";
 import { GetAllCarResponse } from "../../models/cars/response/getAllCarResponse";
 import { AppDispatch } from "../../store/store";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { fetchCars } from "../../store/slices/carListSlice";
+import { useEffect, useState } from "react";
+import { fetchCars, setSelectedCar } from "../../store/slices/carListSlice";
+import Link from "../../components/CustomLink/Link";
+import { useLocation, useNavigate } from "react-router-dom";
 
 type Props = {};
 
 const CarAvailability = (props: Props) => {
+  const location = useLocation();
+
   const branchesState = useSelector((state: any) => state.branch);
   const carsState = useSelector((state: any) => state.car);
 
@@ -46,13 +50,34 @@ const CarAvailability = (props: Props) => {
                 src="https://www.avis.com.tr/Avis/media/Avis/Cars/n-citroen-c-elysee.png"
                 alt=""
               />
-              <button
-                id="liveToastBtn"
-                onClick={() => handleAddToCart(car)}
-                className="btn btn-success"
-              >
-                Hemen Kirala
-              </button>
+              {localStorage.getItem("jsonwebtoken") != null ? (
+                <Link to={"/payment"}>
+                  <button
+                    id="liveToastBtn"
+                    onClick={() => {
+                      dispatch(setSelectedCar(car));
+                      handleAddToCart(car);
+                    }}
+                    className="btn btn-success"
+                  >
+                    Hemen Kirala
+                  </button>
+                </Link>
+              ) : (
+                <Link to={"/login"} state={{ from: location }}>
+                  <button
+                    id="liveToastBtn"
+                    onClick={() => {
+                      dispatch(setSelectedCar(car));
+                      handleAddToCart(car);
+                    }}
+                    className="btn btn-success"
+                  >
+                    Hemen Kirala
+                  </button>
+                </Link>
+              )}
+
               <div className="w-80 items-center flex justify-between">
                 <div className="order-first p-2">
                   <p>Araç Özellikleri</p>

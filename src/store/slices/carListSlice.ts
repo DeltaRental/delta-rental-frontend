@@ -24,10 +24,13 @@ const carSlice = createSlice({
 	initialState: {
 		loading: "initial",
 		cars: [] as any[],
+		selectedCar: [] as any,
 		lastFetch: new Date().getTime(),
 	},
 	reducers: {
-
+		setSelectedCar(state, action) {
+      state.selectedCar = action.payload
+    }
   },
 	extraReducers: builder => {
 		builder.addCase(fetchCars.pending, state => {
@@ -44,4 +47,4 @@ const carSlice = createSlice({
 });
 
 export const carReducer = carSlice.reducer;
-export const { } = carSlice.actions;
+export const {setSelectedCar } = carSlice.actions;

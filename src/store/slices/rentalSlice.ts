@@ -60,16 +60,26 @@ export const deleteRental = createAsyncThunk(
 const initialState ={
     rentals: [] as any,
     loading: "initial",
+    selectedStartDate: "",
+    selectedEndDate:"",
 }
 const rentalSlice = createSlice({
     name: "rentals",
     initialState,
-    reducers:{},
+    reducers:{
+        setStartDate(state, action) {
+            state.selectedStartDate = action.payload
+        },
+        setEndDate(state, action) {
+            state.selectedEndDate = action.payload
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(rentalList.pending, state=>{
             state.loading = "loading";
         });
         builder.addCase(rentalList.fulfilled, (state, action)=>{
+            state.loading = "loaded";
             state.rentals = action.payload;    
         });
         builder.addCase(rentalList.rejected, state=>{
@@ -81,6 +91,7 @@ const rentalSlice = createSlice({
             state.loading = "loading";
         });
         builder.addCase(addRental.fulfilled, (state, action)=>{
+            state.loading = "loaded";
             state.rentals.push(action.payload);
         });
         builder.addCase(addRental.rejected, state=>{
@@ -92,6 +103,7 @@ const rentalSlice = createSlice({
             state.loading = "loading";
         });
         builder.addCase(updateRental.fulfilled, (state, action) =>{
+            state.loading = "loaded";
             state.rentals = [];
         });
         builder.addCase(updateRental.rejected, state =>{
@@ -103,6 +115,7 @@ const rentalSlice = createSlice({
             state.loading = "loading";
         });
         builder.addCase(deleteRental.fulfilled, (state, action) =>{
+            state.loading = "loaded";
             const deletedRental = action.payload.deletedRentalId;
             state.rentals = state.rentals.filter((rental: any) => rental.id !== deletedRental);
         });
@@ -113,4 +126,4 @@ const rentalSlice = createSlice({
 });
 
 export const rentalReducer = rentalSlice.reducer;
-export const {} = rentalSlice.actions;
+export const {setStartDate,setEndDate} = rentalSlice.actions;

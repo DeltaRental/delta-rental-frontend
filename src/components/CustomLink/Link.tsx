@@ -1,14 +1,16 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 type Props = {
   to: any,
   children: any,
   className?: string,
+  state?: any
 }
 
 const Link = (props: Props) => {
   const navigate = useNavigate()
+
 
   const handleClicked = () => {
     const bars = document.getElementById("bars")
@@ -18,7 +20,7 @@ const Link = (props: Props) => {
     setTimeout(() => {
       bars?.classList.remove("show")
       bars?.classList.add("hide")
-      navigate(props.to)
+      navigate(props.to, { state: props.state });
     },800)
   };
 

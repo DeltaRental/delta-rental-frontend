@@ -4,11 +4,105 @@ import Button from "../components/Button/Button";
 import DatePicker from "../components/DatePicker/DatePicker";
 import Footer from "../components/Footer/Footer";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "../store/store";
+import {
+  RefAttributes,
+  SetStateAction,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+import {
+  addRental,
+  rentalList,
+  setEndDate,
+  setStartDate,
+} from "../store/slices/rentalSlice";
+import {
+  DateTimePicker,
+  DateTimePickerProps,
+  DateTimeValidationError,
+  DateValidationError,
+} from "@mui/x-date-pickers";
+import dayjs, { Dayjs } from "dayjs";
+import { TextField } from "@mui/material";
 
 type Props = {};
 
 const HomePage = (props: Props) => {
-   return (
+  const rentalState = useSelector((state: any) => state.rental);
+  const branchState = useSelector((state: any) => state.branch);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const [selectedStartDate, setSelectedStartDate] = useState<Dayjs | null>(
+    null
+  );
+  const [selectedEndDate, setSelectedEndDate] = useState<Dayjs | null>(null);
+
+  const [error, setError] = useState<DateTimeValidationError | null>(null);
+  // Butonu pasif yapmak için bir state tanımladık
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  const errorMessage = useMemo(() => {
+    switch (error) {
+      case "maxDate":
+      case "minDate": {
+        return "Geçerli bir tarih giriniz.";
+      }
+
+      case "minTime": {
+        return "Seçilen tarih alış tarihinden önce olmamalıdır.";
+      }
+
+      default: {
+        return "";
+      }
+    }
+  }, [error]);
+
+  // const rentalData = {
+  //   startDate: rentalState.selectedStartDate,
+  //   endDate: rentalState.selectedEndDate,
+  //   startLocation: branchState.selectedBranch
+  // };
+
+  // console.log(rentalData);
+  
+
+  useEffect(() => {
+    dispatch(rentalList());
+  }, [dispatch]);
+
+  /* StartDate için global state*/
+  useEffect(() => {
+    dispatch(setStartDate(selectedStartDate?.format("YYYY-MM-DD")));
+  }, [selectedStartDate]);
+
+  /* EndDate için global state*/
+  useEffect(() => {
+    dispatch(setEndDate(selectedEndDate?.format("YYYY-MM-DD")));
+    // dispatch(setEndDate(selectedEndDate?.format("YYYY-MM-DD HH:mm")));  doğru olan
+  }, [selectedEndDate]);
+
+  // Seçim yaptığımız yerlerdeki değişiklikleri takip etmek için bir useEffect kullandık
+  useEffect(() => {
+    // Seçim yaptığımız yerlerin boş olup olmadığını kontrol ettik
+    if (
+      selectedStartDate &&
+      selectedEndDate &&
+      branchState.selectedBranch !== undefined &&
+      error == null
+    ) {
+      // Eğer boş değilse, butonu aktif yaptık
+      setIsDisabled(false);
+    } else {
+      // Eğer boşsa, butonu pasif yaptık
+      setIsDisabled(true);
+    }
+  }, [selectedStartDate, selectedEndDate, branchState.selectedBranch, error]);
+
+  return (
     <div className="relative w-full" style={{ height: "calc(100vh - 7rem)" }}>
       <Carousel
         transition={{ duration: 2 }}
@@ -51,23 +145,53 @@ const HomePage = (props: Props) => {
             </div>
             <div className="">
               <p>Alış Tarihi:</p>
-              <DatePicker />
+              <DateTimePicker
+                ampm={false}
+                disablePast
+                format="DD/MM/YYYY HH:mm"
+                value={selectedStartDate}
+                onChange={(newValue: Dayjs | null) => {
+                  setSelectedStartDate(newValue);
+                }}
+                className="w-full cursor-default shadow-md sm:text-sm rounded-[4px] bg-white"
+              />
             </div>
             <div className="">
               <p>Teslim Tarihi:</p>
-              <DatePicker />
+              <DateTimePicker
+                ampm={false}
+                disablePast
+                format="DD/MM/YYYY HH:mm"
+                value={selectedEndDate}
+                onChange={(newValue: Dayjs | null) => {
+                  setSelectedEndDate(newValue);
+                }}
+                className="w-full cursor-default shadow-md sm:text-sm rounded-[4px] bg-white"
+                minTime={
+                  selectedStartDate?.format("MM-DD") ==
+                  selectedEndDate?.format("MM-DD")
+                    ? selectedStartDate?.add(1, "hour")
+                    : dayjs().startOf("day")
+                } // alış tarihinden 1 saat sonrası
+                minDate={selectedStartDate?.add(0, "day")}
+                onError={(newError: any) => setError(newError)}
+                slotProps={{
+                  textField: {
+                    helperText: errorMessage,
+                  },
+                }}
+              />
             </div>
           </div>
           <div className="grid justify-end mt-3">
             <Link to="/cars/getCarAvailability">
-              <Button
-                size={48}
-                text="Uygun Aracı Bul"
-                _border_color="green-600"
-                _text_color="green-400"
-                _hover_bg_color="green-600"
-                _hover_text_color="green-200"
-              />
+              <button
+                type="submit"
+                className="w-full flex justify-center bg-purple-800  hover:bg-purple-700 text-gray-100 p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500 shadow-[0px_0px_10px_5px_#f8e61b]"
+                disabled={isDisabled}
+              >
+                Uygun aracı kirala
+              </button>
             </Link>
           </div>
         </div>
