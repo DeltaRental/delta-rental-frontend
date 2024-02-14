@@ -5,6 +5,7 @@ import { AddCarRequest } from "../models/cars/requests/addCarRequest";
 import { AddCarResponse } from "../models/cars/response/addCarResponse";
 import { UpdateCarRequest } from "../models/cars/requests/updateCarRequest";
 import { UpdateCarResponse } from "../models/cars/response/updateCarResponse";
+import axiosInstance from "../core/utils/interceptors/axiosInterceptors";
 
 // export default class CarService{
 //    getAll(){
@@ -47,6 +48,18 @@ UpdateCarResponse
 		this.apiUrl = "cars";
 	}
 
+getFilteredCars(
+	startDate: string,
+	endDate: string,
+	startLocation:string){
+	return axiosInstance.get(this.apiUrl + "/filter", {
+		params: {
+			startDate: startDate,
+			endDate:endDate,
+			startLocation:startLocation,
+		}
+	});
+}
 
 }
 

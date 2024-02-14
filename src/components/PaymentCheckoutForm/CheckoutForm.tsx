@@ -17,9 +17,9 @@ export const CheckoutForm = () => {
   const carsState = useSelector((state: any) => state.car);
   const dispatch = useDispatch<AppDispatch>();
   const rentalData = {
-    startDate: rentalState.selectedStartDate,
+      startDate: rentalState.selectedStartDate,
       endDate: rentalState.selectedEndDate,
-      startLocation: branchState.selectedBranch.name,
+      //startLocation: branchState.selectedBranch.name,
       carId: carsState.selectedCar.id,
       customerId: 5,
       employeeId: 1

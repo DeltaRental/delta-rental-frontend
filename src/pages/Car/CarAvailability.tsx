@@ -3,26 +3,34 @@ import { GetAllCarResponse } from "../../models/cars/response/getAllCarResponse"
 import { AppDispatch } from "../../store/store";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { fetchCars, setSelectedCar } from "../../store/slices/carListSlice";
+import { fetchCars, getFilteredCars, setSelectedCar } from "../../store/slices/carListSlice";
 import Link from "../../components/CustomLink/Link";
 import { useLocation, useNavigate } from "react-router-dom";
+import { CarFilterRequest } from "../../models/cars/requests/CarFilterRequest";
 
 type Props = {};
 
 const CarAvailability = (props: Props) => {
   const location = useLocation();
 
-  const branchesState = useSelector((state: any) => state.branch);
+  const rentalState = useSelector((state: any) => state.rental);
+  const branchState = useSelector((state: any) => state.branch);
   const carsState = useSelector((state: any) => state.car);
 
   const dispatch = useDispatch<AppDispatch>();
 
+  const filteredCars:CarFilterRequest = {
+    endDate: rentalState.selectedEndDate,
+    startDate: rentalState.selectedStartDate,
+    startLocation: branchState.selectedBranch.name,
+  };
+
   useEffect(() => {
-    dispatch(fetchCars());
+    dispatch(getFilteredCars(filteredCars));
   }, []);
 
-  console.log(carsState);
-
+  console.log(filteredCars);
+  
   const handleAddToCart = (car: GetAllCarResponse) => {
     toast("Araç sepete eklendi.", {
       duration: 4000,
@@ -37,10 +45,7 @@ const CarAvailability = (props: Props) => {
     <div className="container mx-auto mt-5">
       <div className="grid grid-cols-3 gap-2 ">
         <Toaster />
-        {carsState.cars.map((car: GetAllCarResponse) =>
-          car.branch?.name == branchesState.selectedBranch?.name &&
-          car.branch?.city == branchesState.selectedBranch?.city &&
-          car.carState == "AVAILABLE" ? (
+        {carsState.filteredCars.map((car: GetAllCarResponse) =>
             <div
               key={car.id}
               className=" rounded-lg w-auto shadow-lg shadow-blue-300/50 m-4 cursor-pointer hover:bg-blue-100 active:bg-blue-100"
@@ -98,7 +103,6 @@ const CarAvailability = (props: Props) => {
                 </div>
               </div>
             </div>
-          ) : null
         )}
       </div>
     </div>

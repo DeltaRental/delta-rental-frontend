@@ -1,5 +1,4 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Navi from "./components/Navi/Navi";
 import OverlayLoader from "./components/OverlayLoader/OverlayLoader";
