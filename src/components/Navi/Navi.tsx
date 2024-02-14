@@ -73,7 +73,7 @@ const Navi = () => {
                   <Link to="/cars/getAll"><p className="text-xl font-medium text-blue-gray-300 dark:text-blue-gray-300">Araçlar</p></Link>
                 </li>
                 <li className="p-2 py-2 lg:p-2 border-b  md:border-0">
-                  <Link to="#"><p className="text-xl font-medium text-blue-gray-300 dark:text-blue-gray-300">Hakkımızda</p></Link>
+                  <Link to="/About"><p className="text-xl font-medium text-blue-gray-300 dark:text-blue-gray-300">Hakkımızda</p></Link>
                 </li>
               </ul>
             </div>
