@@ -1,37 +1,36 @@
-import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/store";
-import { addBrand } from "../../../store/slices/brandSlice";
-import { Field, Form, Formik, ErrorMessage } from "formik";
+import {  Form, Formik } from "formik";
 import { object, string } from "yup";
 import FormikInput from "../../FormikInput/FormikInput";
+import { addColor } from "../../../store/slices/colorSlice";
 
 type Props = {};
 
-const AddBrand = (props: Props) => {
+const AddColor = (props: Props) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const initialValues = {
-    brand: ''
+    color: ''
   }
   const validationSchema = object({
-    brand: string().required("Marka alanı zorunludur").min(3)
+    color: string().required("Renk alanı zorunludur").min(3)
   })
   return (
     <div className="bg-gray-800 border border-gray-800 rounded-lg top-0 h-[10rem] shadow-md shadow-blue-600 hover:shadow-lg hover:shadow-yellow-400">  
       <Formik initialValues={initialValues}
         onSubmit={(values) => {
-          if (values.brand.trim() !== "") {
-            dispatch(addBrand({ name: values.brand }));
-            values.brand = "";
+          if (values.color.trim() !== "") {
+            dispatch(addColor({ name: values.color }));
+            values.color = "";
           }
         }}
         validationSchema={validationSchema}
         >  
         <Form className="p-3">  
-          <FormikInput name="brand" label="Marka" type="text" placeholder="Marka ekle"/>
+          <FormikInput name="color" label="Renk" type="text" placeholder="Renk ekle"/>
           <button type="submit" className="shadow-inner shadow-md shadow-gray-600 font-bold text-gray-800 bg-gray-300 text-sm border border-gray-400 rounded-xl w-[8rem] h-full">
-            Marka Ekle
+            Renk Ekle
           </button>
         </Form>
       </Formik>
@@ -39,4 +38,4 @@ const AddBrand = (props: Props) => {
   );
 };
 
-export default AddBrand;
+export default AddColor;

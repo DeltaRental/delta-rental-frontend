@@ -14,7 +14,7 @@ export const datas =[
     {
         id:2,
         icon:<FontAwesomeIcon icon={faPen}/>,
-        text: "Araç Güncelle"
+        text: "Araçlarım"
     },
     {
         id:3,

@@ -16,11 +16,24 @@ export const modelList = createAsyncThunk(
     },
 );
 
+// export const getByIdmodel = createAsyncThunk(
+//     "models/getByIdModel",
+//     async({brandId}: {brandId: number;})=>{
+//         try {
+//             const response = await modelService.getByBrandId(brandId);
+//             return response.data;
+//         } catch (error) {
+//             console.error("BrandId ekleme hatası:", error);
+//             throw error;
+//         }
+//     }
+// )
 export const addModel = createAsyncThunk(
     "models/addModel",
-    async (newModel: AddModelRequest, thunkapı) =>{
+    async (newModel: AddModelRequest, thunkAPI) =>{
         try {
             const addedModel = await modelService.add(newModel);
+            console.log("asdasdas4dasd")
             return addedModel.data;
         } catch (error) {
             console.error("Model ekleme hatası:", error);
@@ -111,6 +124,17 @@ const modelSlice = createSlice({
         builder.addCase(deleteModel.rejected, state=>{
             state.loading = "error";
         });
+
+
+        // builder.addCase(getByIdmodel.pending, state=>{
+        //     state.loading = "loading";
+        // });
+        // builder.addCase(getByIdmodel.fulfilled, (state, action)=>{
+        //     state.models = action.payload;
+        // });
+        // builder.addCase(getByIdmodel.rejected, state=>{
+        //     state.loading = "error";
+        // });
     },
 });
 

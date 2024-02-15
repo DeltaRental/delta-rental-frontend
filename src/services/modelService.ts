@@ -21,6 +21,8 @@ class ModelService extends BaseService<
         super();
         this.apiUrl = "models";
     }
-    
+    // getByBrandId(brandId: number){
+    //     return axiosInstance.get<GetAllModelResponse>(`models/brands/${brandId}`)
+    // }
 }
 export default new ModelService();

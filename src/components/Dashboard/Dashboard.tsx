@@ -28,7 +28,7 @@ const Dashboard = () => {
               <Route path="/car/add" element={<CarAdd/>}></Route>
               <Route path="/login" element={<Login/>}></Route>
               <Route path="/about" element={<About/>}></Route>
-              {/* <Route path="/admin" element={<AdminPage/>}></Route> */}
+              <Route path="/admin" element={<AdminPage/>}></Route>
               <Route path="/signup" element={<Signup/>}></Route>
               <Route path="*" element={<div>Not found</div>}></Route>
             </Routes>

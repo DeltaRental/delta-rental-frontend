@@ -7,6 +7,7 @@ import UpdateModel from "./UpdateModel";
 import { brandList } from "../../../store/slices/brandSlice";
 import { GetAllModelResponse } from "../../../models/carModels/response/getAllModelResponse";
 import Brand from "../Brand/Brand";
+
 type Props = {};
 
 const Model = (props: Props) => {
@@ -26,6 +27,15 @@ const Model = (props: Props) => {
     setSelectedModel(modelId);
   };
 
+  const handleBrandSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const brandId = parseInt(e.target.value, 10);
+    setSelectedBrand(brandId);
+  };
+
+  const filteredModels = selectedBrand
+    ? modelState.models.filter((model: any) => model.brandId === selectedBrand)
+    : modelState.models;
+
   const handDeleteModel = async () => {
     if (selectedModel !== null) {
       await dispatch(deleteModel({ id: selectedModel }));
@@ -33,18 +43,29 @@ const Model = (props: Props) => {
       dispatch(modelList());
     }
   };
+
   return (
     <div>
-      <h2>Markalar</h2>
-
-      <h2>Modeller</h2>
+      <div>
+        <label>Marka Seçiniz</label>
+        <select value={selectedBrand || ""} onChange={handleBrandSelectChange}>
+          <option value="" disabled>
+            Marka seç
+          </option>
+          {brandState.brands.map((brand: any) => (
+            <option key={brand.id} value={brand.id}>
+              {brand.name}
+            </option>
+          ))}
+        </select>
+      </div>
       <div>
         <label>Model Seçiniz</label>
         <select value={selectedModel || ""} onChange={handleModelSelectchange}>
           <option value="" disabled>
             Model seç
           </option>
-          {modelState.models.map((model: GetAllModelResponse) => (
+          {filteredModels.map((model: any) => (
             <option key={model.id} value={model.id}>
               {model.name}
             </option>

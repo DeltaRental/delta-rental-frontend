@@ -1,5 +1,6 @@
 import { GetByIdBranchResponse } from "../../branches/response/getByIdBranchResponse";
-
+import { GetByIdModelResponse } from "../../carModels/response/getByIdModelResponse";
+import { GetByIdColorResponse } from "../../colors/response/GetByIdColorResponse";
 
 export interface GetAllCarResponse {
 	id: number;
@@ -7,8 +8,8 @@ export interface GetAllCarResponse {
 	year: number;
 	dailyPrice: number;
 	plate: string;
-	modelName: string;
-	colorName: string;
+	model: GetByIdModelResponse;
+	color: GetByIdColorResponse;
 	carState?: string;
 	gearType: string;
 	fuelType: string;

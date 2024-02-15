@@ -10,17 +10,16 @@ const SideBar = (props: Props) => {
 
   return (
     <div
-      className={`${toggle ? "w-[5.8rem]" : ""} @apply bg-gray-800 text-gray-300 
-    h-[38rem] w-[20rem] rounded-lg mt-2
-    ml-4 p-4 transition-all duration-500
+      className={`${toggle ? "w-[5.8rem]" : ""} @apply bg-gray-600 text-gray-300 
+     h-screen fixed left-0 w-[20rem] p-4 transition-all duration-500
     border-solid border-glass relative `}
     >
       <UserProfile toggle={toggle}/>
       <SidebarData toogle={toggle}/>
       <div
-        className="absolute top-[7rem] flex
+        className="absolute top-[2rem] flex right-1
                       justify-center items-center 
-                      -left-5 w-9 h-9 bg-white text-black 
+                       w-9 h-9 bg-white text-black 
                       rounded-full cursor-pointer"
         onClick={() => {
           setToggle(!toggle);

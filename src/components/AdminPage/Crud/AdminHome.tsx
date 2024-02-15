@@ -3,18 +3,18 @@ import Model from '../CarModel/Model'
 import Brand from '../Brand/Brand'
 import AddBrand from '../Brand/AddBrand'
 import UpdateBrand from '../Brand/UpdateBrand'
+import AddModel from '../CarModel/AddModel'
+import AddCar from './AddCar'
 
 type Props = {}
 
 const AdminHome = (props: Props) => {
   return (
     <div >
-        <div className='m-3 w-[49rem] h-[38rem] text-black rounded-lg bg-gray-800'>
+        <div className='m-3 w-[54.15rem] overflow-y-auto h-[39rem] text-black rounded-lg'>
         AdminHome
-        <Model/>
-        <Brand/>
-      <AddBrand/>
-      <UpdateBrand/>
+        <AddCar/>
+        {/* <AddModel/> */}
         </div>
     </div>
   )

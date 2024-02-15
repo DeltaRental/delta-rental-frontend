@@ -36,7 +36,8 @@ import axiosInstance from "../core/utils/interceptors/axiosInterceptors";
 
 // }
 
-class CarService extends BaseService<GetAllCarResponse,
+class CarService extends BaseService<
+GetAllCarResponse,
 GetByIdCarResponse,
 AddCarRequest,
 AddCarResponse,

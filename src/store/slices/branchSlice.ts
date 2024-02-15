@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import branchService from "../../services/branchService";
+import { AddBranchRequest } from "../../models/branches/requests/addBranchRequest";
 
 
 export const fetchBranches = createAsyncThunk(
@@ -18,7 +19,18 @@ export const fetchBranches = createAsyncThunk(
 		return response.data;
 	},
 );
-
+export const addBranch = createAsyncThunk(
+    "branches/addBranch",
+    async (newBranch: AddBranchRequest, thunkAPI) =>{
+        try{
+            const addedBranch = await branchService.add(newBranch);
+            return addedBranch.data;
+        }catch(error){
+            console.error("Şube ekleme hatası:", error);
+            throw error;
+        }
+    }
+);
 const branchSlice = createSlice({
 	name: "branch",
 	initialState: {
@@ -43,6 +55,17 @@ const branchSlice = createSlice({
 		builder.addCase(fetchBranches.rejected, state => {
 			state.loading = "error";
 		});
+
+
+		builder.addCase(addBranch.pending, state =>{
+            state.loading = "loading";
+        });
+        builder.addCase(addBranch.fulfilled, (state, action)=>{
+            state.branches.push(action.payload);
+        });
+        builder.addCase(addBranch.rejected, state=>{
+            state.loading = "error";
+        });
 	},
 });
 

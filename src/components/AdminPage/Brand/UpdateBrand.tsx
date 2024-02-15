@@ -4,6 +4,7 @@ import { AppDispatch } from "../../../store/store";
 import { object, string } from "yup";
 import { brandList, updateBrand } from "../../../store/slices/brandSlice";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import FormikInput from "../../FormikInput/FormikInput";
 
 type Props = {};
 
@@ -39,8 +40,8 @@ const UpdateBrand = (props: Props) => {
     brandName: string().required("Marka alanı zorunludur").min(3),
   });
   return (
-    <div>
-      <h2>Marka</h2>
+    <div >
+      <h2 className="text-gray-400">Marka</h2>
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
@@ -49,8 +50,8 @@ const UpdateBrand = (props: Props) => {
         validationSchema={validationSchema}
       >
         <Form>
-          <h2>Brand List</h2>
-          <select value={selectedBrand || ""} onChange={handleSelectChange}>
+          <h2 className="text-white font-bold">Brand List</h2>
+          <select value={selectedBrand || ""} onChange={handleSelectChange} className="rounded-lg text-black">
             <option value="" disabled>
               Select a brand
             </option>
@@ -62,14 +63,9 @@ const UpdateBrand = (props: Props) => {
           </select>
           {selectedBrand !== null && (
             <div>
-              <Field type="text" name="brandName" />
-              <ErrorMessage name="brandName">
-                {(message) => (
-                  <span className="text-yellow-400">{message} </span>
-                )}
-              </ErrorMessage>
-              <button type="submit">Marka Güncelle</button>
-              <button onClick={() => setSelectedBrand(null)}>Cancel</button>
+             <FormikInput label="Marka" type="text" name="brandName" placeholder="Marka ekle"/>
+              <button className="font-bold text-gray-800 bg-gray-300 text-sm border border-gray-400 rounded-md mr-2 w-[8rem] h-full" type="submit">Güncelle</button>
+              <button className="font-bold text-gray-800 bg-gray-300 text-sm border border-gray-400 rounded-md w-[8rem] h-full" onClick={() => setSelectedBrand(null)}>Cancel</button>
             </div>
           )}
         </Form>

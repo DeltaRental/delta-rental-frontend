@@ -54,10 +54,11 @@ const CarList = () => {
                 <div className="order-first p-2">
                   <p>Araç Özellikleri</p>
                   <ul>
-                    <li>{car.modelName}</li>
+                    <li>{car.model.brandName}</li>
+                    <li>{car.model.name}</li>
 
                     <li>{car.plate}</li>
-                    <li>{car.colorName}</li>
+                    <li>{car.color.name}</li>
                   </ul>
                 </div>
                 <div className="order-last p-2">

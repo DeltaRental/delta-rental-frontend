@@ -23,12 +23,13 @@ const CarDetail = () => {
           alt="..."
         />
         <div className="card-body">
-          <h5 className="card-title">{car?.modelName}</h5>
+          <h5 className="card-title">{car?.model.brandName}</h5>
           <p className="card-text">
             <div>
               <ul className="list-unstyled">
                 <li>Araç Plakası: {car?.plate}</li>
-                <li>Araç Rengi: {car?.colorName}</li>
+                <li>Araç Modeli:{car?.model.name} </li>
+                <li>Araç Rengi: {car?.color.name}</li>
                 <li>Araç Kilometresi: {car?.kilometer}</li>
                 <li>Araç Yılı: {car?.year}</li>
                 <li>Araç Günlük Kira Ücreti: {car?.dailyPrice}</li>

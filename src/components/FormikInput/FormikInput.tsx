@@ -22,7 +22,7 @@ const FormikInput = (props: Props) => {
     <>
       <div className="mb-3">
         <div className="relative flex flex-col">
-          <div className="text-white font-bold inline-block pb-2">
+          <div className="text-black font-bold inline-block pb-2">
             {props.label}
           </div>
           {props.type === "password" ? ( // props.type "password" ise, şifre göster/gizle butonunu ve ilgili mantığı ekleyin
