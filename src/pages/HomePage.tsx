@@ -196,7 +196,7 @@ const HomePage = (props: Props) => {
           </div>
         </div>
       </div>
-      <Footer></Footer>
+
     </div>
   );
 };

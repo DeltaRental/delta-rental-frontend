@@ -26,9 +26,9 @@ const Dashboard = () => {
               <Route path="/payment" element={<PaymentPage />}></Route>
               <Route path="/cars/:id" element={<CarDetail/>}></Route>
               <Route path="/car/add" element={<CarAdd/>}></Route>
+              <Route path="/admin" element={<AdminPage/>}></Route>
               <Route path="/login" element={<Login/>}></Route>
               <Route path="/about" element={<About/>}></Route>
-              <Route path="/admin" element={<AdminPage/>}></Route>
               <Route path="/signup" element={<Signup/>}></Route>
               <Route path="*" element={<div>Not found</div>}></Route>
             </Routes>

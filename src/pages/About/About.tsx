@@ -43,8 +43,6 @@ const About = (props: Props) => {
                 </div>
 
             </div>
-
-            <Footer></Footer>
         </div>
 
     )
