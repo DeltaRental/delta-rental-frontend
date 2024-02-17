@@ -35,6 +35,7 @@
     "fontawesome-common-types": "^6.4.0",
     "formik": "^2.4.5",
     "react": "^18.2.0",
+    "react-card-flip": "^1.2.2",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-redux": "^9.0.4",

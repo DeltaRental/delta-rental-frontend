@@ -42,7 +42,7 @@ const Navi = () => {
     return null
   }
   return (
-    <div className=" sticky top-0 left-0 right-0 bg-gray-500 bg-opacity-40">
+    <div className=" sticky top-0 left-0 right-0 bg-gray-500 bg-opacity-40 z-50">
       <nav className=" container mx-auto p-3  md:p-6 lg:p-8 ">
         <div className="flex items-center justify-between flex-row-reverse">
           <FontAwesomeIcon
