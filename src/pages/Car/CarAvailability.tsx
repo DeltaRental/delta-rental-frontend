@@ -7,6 +7,7 @@ import { fetchCars, getFilteredCars, setSelectedCar } from "../../store/slices/c
 import Link from "../../components/CustomLink/Link";
 import { useLocation, useNavigate } from "react-router-dom";
 import { CarFilterRequest } from "../../models/cars/requests/CarFilterRequest";
+import FilteredCarCard from "../../components/CarCard/FilteredCarCard";
 
 type Props = {};
 
@@ -43,67 +44,10 @@ const CarAvailability = (props: Props) => {
 
   return (
     <div className="container mx-auto mt-5">
-      <div className="grid grid-cols-3 gap-2 ">
+      <div className="grid grid-cols-3 gap-5">
         <Toaster />
         {carsState.filteredCars.map((car: GetAllCarResponse) =>
-            <div
-              key={car.id}
-              className=" rounded-lg w-auto shadow-lg shadow-blue-300/50 m-4 cursor-pointer hover:bg-blue-100 active:bg-blue-100"
-            >
-              <img
-                className="w-full  items-center"
-                src="https://www.avis.com.tr/Avis/media/Avis/Cars/n-citroen-c-elysee.png"
-                alt=""
-              />
-              {localStorage.getItem("jsonwebtoken") != null ? (
-                <Link to={"/payment"}>
-                  <button
-                    id="liveToastBtn"
-                    onClick={() => {
-                      dispatch(setSelectedCar(car));
-                      handleAddToCart(car);
-                    }}
-                    className="btn btn-success"
-                  >
-                    Hemen Kirala
-                  </button>
-                </Link>
-              ) : (
-                <Link to={"/login"} state={{ from: location }}>
-                  <button
-                    id="liveToastBtn"
-                    onClick={() => {
-                      dispatch(setSelectedCar(car));
-                      handleAddToCart(car);
-                    }}
-                    className="btn btn-success"
-                  >
-                    Hemen Kirala
-                  </button>
-                </Link>
-              )}
-
-              <div className="w-80 items-center flex justify-between">
-                <div className="order-first p-2">
-                  <p>Araç Özellikleri</p>
-                  <ul>
-                    <li>{car.model.brandName}</li>
-                    <li>{car.model.name}</li>
-
-                    <li>{car.plate}</li>
-                    <li>{car.color.name}</li>
-                  </ul>
-                </div>
-                <div className="order-last p-2">
-                  <p>Kiralama Koşulları</p>
-                  <ul>
-                    <li>{car.dailyPrice}</li>
-                    <li>{car.kilometer}</li>
-                    <li>{car.year} </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <FilteredCarCard key={car.id} car={car} />
         )}
       </div>
     </div>

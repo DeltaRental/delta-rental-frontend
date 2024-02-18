@@ -38,6 +38,7 @@ const Navi = () => {
       [dropdownName]: !prevState[dropdownName],
     }));
   };
+  //AdminPage' de navbarı etkisizleştirir.
   if(location.pathname === "/admin") {
     return null
   }
