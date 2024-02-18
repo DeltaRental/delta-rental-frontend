@@ -1,32 +1,49 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CartSummary from "../CartSummary/CartSummary";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTimes,
+  faBars,
+  faRightToBracket,
+} from "@fortawesome/free-solid-svg-icons";
 import { icon } from "@fortawesome/fontawesome-svg-core";
 import { faHeart, faUserCircle } from "@fortawesome/free-regular-svg-icons";
 import Link from "../CustomLink/Link";
 import Bars from "../TransitionBar/TransitionBar";
+import { JwtPayload, jwtDecode } from "jwt-decode";
+import { MyJwtPayload } from "../../models/JwtTokenPayload/MyJwtPayload";
+import { AppDispatch } from "../../store/store";
+import { setIsLoggedIn } from "../../store/slices/userSlice";
 
 type DropdownStates = {
   services: boolean;
-  contactUs: boolean;
+  user: boolean;
   // Diğer dropdownlar eklenebilir
 };
 
 const Navi = () => {
-  const location = useLocation()
+  const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
 
+  const userState = useSelector((state: any) => state.user);
 
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [dropdownStates, setDropdownStates] = useState<DropdownStates>({
     services: false,
-    contactUs: false,
+    user: false,
   });
+  const [decode, setDecode] = useState<MyJwtPayload>();
 
-  const navigate = useNavigate();
-
+  useEffect(() => {
+    let token: string | null = localStorage.getItem("jsonwebtoken");
+    if (token) {
+      const jwtDecoded = jwtDecode(token) as MyJwtPayload;
+      setDecode(jwtDecoded);
+    }
+  }, [userState.isloggedIn]);
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
@@ -38,17 +55,28 @@ const Navi = () => {
       [dropdownName]: !prevState[dropdownName],
     }));
   };
-  //AdminPage' de navbarı etkisizleştirir.
-  if(location.pathname === "/admin") {
-    return null
+
+  const handleLogOut = () =>{
+      localStorage.setItem("isLoggedIn", "false");
+      localStorage.removeItem("jsonwebtoken");
+      dispatch(setIsLoggedIn(false));
+      navigate("/")
   }
+
+  //AdminPage' de navbarı etkisizleştirir.
+  if (location.pathname === "/admin") {
+    return null;
+  }
+
+
   return (
     <div className=" sticky top-0 left-0 right-0 bg-gray-500 bg-opacity-40 z-50">
       <nav className=" container mx-auto p-3  md:p-6 lg:p-8 ">
         <div className="flex items-center justify-between flex-row-reverse">
           <FontAwesomeIcon
-            className={`w-7 h-7 md:hidden cursor-pointer transition-transform transform ${isMenuOpen ? "rotate-0" : "rotate-180"
-              }`}
+            className={`w-7 h-7 md:hidden cursor-pointer transition-transform transform ${
+              isMenuOpen ? "rotate-0" : "rotate-180"
+            }`}
             icon={isMenuOpen ? faTimes : faBars}
             onClick={toggleMenu}
           />
@@ -70,16 +98,24 @@ const Navi = () => {
               <ul className="justify-between md:flex ">
                 <li className="p-2 py-2 lg:p-2 border-b  md:border-0">
                   <Link to="/">
-
-                    <p className="text-xl font-medium text-white dark:text-white">Ana Sayfa</p>
-
+                    <p className="text-xl font-medium text-white dark:text-white">
+                      Ana Sayfa
+                    </p>
                   </Link>
                 </li>
                 <li className="p-2 py-2 lg:p-2 border-b  md:border-0">
-                  <Link to="/cars/getAll"><p className="text-xl font-medium text-white dark:text-white">Araçlar</p></Link>
+                  <Link to="/cars/getAll">
+                    <p className="text-xl font-medium text-white dark:text-white">
+                      Araçlar
+                    </p>
+                  </Link>
                 </li>
                 <li className="p-2 py-2 lg:p-2 border-b  md:border-0">
-                  <Link to="/about"><p className="text-xl font-medium text-white dark:text-white">Hakkımızda</p></Link>
+                  <Link to="/about">
+                    <p className="text-xl font-medium text-white dark:text-white">
+                      Hakkımızda
+                    </p>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -98,16 +134,24 @@ const Navi = () => {
             <div className=" col-span-4 md:border-y border-y-white">
               <ul className="justify-between text-base lg:text-lg  md:flex">
                 <li className="p-2 py-2 lg:p-2 border-b  md:border-0">
-                  <Link to="#"><p className="text-xl font-medium text-white dark:text-white">Company</p></Link>
+                  <Link to="#">
+                    <p className="text-xl font-medium text-white dark:text-white">
+                      Company
+                    </p>
+                  </Link>
                 </li>
 
                 <div
-                  className="relative hover:bg-white hover:text-red-600"
+                  className="relative text-white hover:bg-white hover:text-black"
                   onMouseEnter={() => handleToggleDropdown("services")}
                   onMouseLeave={() => handleToggleDropdown("services")}
                 >
                   <li className="p-2 py-2 lg:p-2 border-b md:border-0">
-                    <Link to="#"><p className="text-xl font-medium text-white dark:text-white">Services</p></Link>
+                    <Link to="#">
+                      <p className="text-xl font-medium  dark:text-white">
+                        Services
+                      </p>
+                    </Link>
                     {dropdownStates.services && (
                       <div className="md:absolute bg-white left-0 z-10 top-[41px] lg:top-[44px] md:w-[200px] shadow-md">
                         <div className="cursor-pointer p-4 text-black hover:text-red-600 hover:bg-gray-300">
@@ -123,35 +167,60 @@ const Navi = () => {
                     )}
                   </li>
                 </div>
-
-                <div
-                  className="relative hover:bg-white hover:text-red-600"
-                  onMouseEnter={() => handleToggleDropdown("contactUs")}
-                  onMouseLeave={() => handleToggleDropdown("contactUs")}
-                >
-                  <li className="p-2 py-2 lg:p-2 border-b md:border-0">
-                    <Link to="#"><p className="text-xl font-medium text-white dark:text-white">İletişim</p></Link>
-                    {dropdownStates.contactUs && (
-                      <div className="md:absolute bg-white left-0 z-10 top-[41px] lg:top-[44px] md:w-[200px] shadow-md">
-                        <div className="cursor-pointer p-4 text-black hover:text-red-600 hover:bg-gray-300">
-                          Settings
+                {localStorage.getItem("jsonwebtoken") == null ? (
+                  <div className="relative">
+                    <li className="p-2 py-2 lg:p-2 border-b md:border-0">
+                      <Link
+                        className="flex justify-center items-center whitespace-nowrap"
+                        to="/login"
+                      >
+                        <p className="text-xl font-medium text-white dark:text-white">
+                          Üye Girişi
+                        </p>
+                        <FontAwesomeIcon
+                          className="text-white ms-2"
+                          icon={faRightToBracket}
+                        />
+                      </Link>
+                    </li>
+                  </div>
+                ) : (
+                  <div
+                    className="relative text-white hover:bg-white hover:text-black"
+                    onMouseEnter={() => handleToggleDropdown("user")}
+                    onMouseLeave={() => handleToggleDropdown("user")}
+                  >
+                    <li className="p-2 py-2 lg:p-2 border-b md:border-0 ">
+                      <Link to="#">
+                        <p className="text-xl font-medium   dark:text-white">
+                          {`Merhaba ${decode?.firstname}`}
+                        </p>
+                      </Link>
+                      {dropdownStates.user && (
+                        <div className="md:absolute bg-white  left-0 z-10 top-[41px] lg:top-[44px] md:w-[200px] shadow-md">
+                          <div className="cursor-pointer p-4 text-black hover:text-red-600 hover:bg-gray-300">
+                            Siparişlerim
+                          </div>
+                          <div className="cursor-pointer p-4 text-black hover:text-red-600 hover:bg-gray-300">
+                            Kullanıcı bilgilerim
+                          </div>
+                          <button
+                            className="w-full justify-start flex cursor-pointer p-4 text-black hover:text-red-600 hover:bg-gray-300"
+                            onClick={handleLogOut}
+                          >
+                            Çıkış yap
+                          </button>
                         </div>
-                        <div className="cursor-pointer p-4 text-black hover:text-red-600 hover:bg-gray-300">
-                          User
-                        </div>
-                        <div className="cursor-pointer p-4 text-black hover:text-red-600 hover:bg-gray-300">
-                          Class
-                        </div>
-                      </div>
-                    )}
-                  </li>
-                </div>
+                      )}
+                    </li>
+                  </div>
+                )}
               </ul>
             </div>
           </div>
         </div>
       </nav>
-      <Bars/>
+      <Bars />
     </div>
   );
 };

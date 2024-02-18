@@ -9,13 +9,16 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Link from "../../../components/CustomLink/Link";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../../store/store";
-import { userInfo } from "../../../store/slices/userSlice";
+import { setIsLoggedIn, userInfo } from "../../../store/slices/userSlice";
+import { jwtDecode } from "jwt-decode";
+import { MyJwtPayload } from "../../../models/JwtTokenPayload/MyJwtPayload";
 
 type Props = {};
 
 const Login = (props: Props) => {
   const [credentials, setCredentials] = useState({});
-  const usersState = useSelector((state: any) => state.user);
+  const rentalState = useSelector((state: any) => state.rental);
+
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -41,10 +44,18 @@ const Login = (props: Props) => {
         console.log(response.data);
         const token = response.data.token;
         localStorage.setItem("jsonwebtoken", token);
-        navigate(location.state?.from || "/");
-        dispatch(userInfo(values.email))
+        dispatch(setIsLoggedIn(true))
+
+        const decoded = jwtDecode(token!) as MyJwtPayload;
+        if(decoded.role?.includes("ADMIN")){
+          localStorage.setItem("isLoggedIn", "true");
+          navigate("/admin");
+        }else{
+          navigate(location.state?.from || "/");
+        }
+
+     
         
-        console.log(usersState);
       },
       (error) => {
         console.log(error);

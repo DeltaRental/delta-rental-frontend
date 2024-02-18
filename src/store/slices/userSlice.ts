@@ -57,14 +57,18 @@ export const deleteUser = createAsyncThunk(
 
 const initialState = {
   users: [] as any,
-  loggedInUser: [] as any,
+  isloggedIn: false,
   loading: "initial",
 };
 
 const userSlice = createSlice({
   name: "users",
   initialState,
-  reducers: {},
+  reducers: {
+    setIsLoggedIn(state, action) {
+      state.isloggedIn = action.payload
+  },
+  },
   extraReducers: (builder) => {
     builder.addCase(userList.pending, (state) => {
       state.loading = "loading";
@@ -77,16 +81,6 @@ const userSlice = createSlice({
       state.loading = "error";
     });
 
-    builder.addCase(userInfo.pending, (state) => {
-      state.loading = "loading";
-    });
-    builder.addCase(userInfo.fulfilled, (state, action) => {
-      state.loading = "loaded";
-      state.loggedInUser = action.payload;
-    });
-    builder.addCase(userInfo.rejected, (state) => {
-      state.loading = "error";
-    });
 
     builder.addCase(updateUser.pending, (state) => {
       state.loading = "loading";
@@ -114,4 +108,4 @@ const userSlice = createSlice({
 });
 
 export const userReducer = userSlice.reducer;
-export const {} = userSlice.actions;
+export const {setIsLoggedIn} = userSlice.actions;
