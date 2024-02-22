@@ -1,5 +1,4 @@
-export interface UpdateUserRequest {
-	id: number;
+export interface RegisterRequest {
 	name: string;
 	surname: string;
 	gsm: string;

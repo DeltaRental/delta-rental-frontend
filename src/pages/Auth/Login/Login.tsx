@@ -12,6 +12,9 @@ import { AppDispatch } from "../../../store/store";
 import { setIsLoggedIn, userInfo } from "../../../store/slices/userSlice";
 import { jwtDecode } from "jwt-decode";
 import { MyJwtPayload } from "../../../models/JwtTokenPayload/MyJwtPayload";
+import { AuthenticateRequest } from "../../../models/auth/requests/authenticateRequest";
+import { authAuthenticate } from "../../../store/slices/authSlice";
+import authService from "../../../services/authService";
 
 type Props = {};
 
@@ -38,31 +41,31 @@ const Login = (props: Props) => {
       .max(30),
   });
 
-  const handleLogin = (values:any) => {    
-    axios.post("http://localhost:8080/api/auth/authenticate", values).then(
-      (response) => {      
-        console.log(response.data);
-        const token = response.data.token;
-        localStorage.setItem("jsonwebtoken", token);
-        dispatch(setIsLoggedIn(true))
-
-        const decoded = jwtDecode(token!) as MyJwtPayload;
-        if(decoded.role?.includes("ADMIN")){
-          localStorage.setItem("isLoggedIn", "true");
-          navigate("/admin");
-        }else{
-          navigate(location.state?.from || "/");
+  const handleLogin = (values: AuthenticateRequest) => {
+    authService.authenticate(values).then(
+      (response) => {
+        console.log(response);
+        if (!response) {
+          throw new Error("Sunucudan yanıt alınamadı.");
+        } else {
+          const token = response.data.token;
+          localStorage.setItem("jsonwebtoken", token);
+          dispatch(setIsLoggedIn(true));
+  
+          const decoded = jwtDecode(token!) as MyJwtPayload;
+          if (decoded.role?.includes("ADMIN")) {
+            localStorage.setItem("isLoggedIn", "true");
+            navigate("/admin");
+          } else {
+            navigate(location.state?.from || "/");
+          }
         }
-
-     
-        
       },
       (error) => {
         console.log(error);
       }
     );
   };
-    
   return (
     <div
       className="container w-full mx-auto flex justify-center items-center"
@@ -138,10 +141,10 @@ const Login = (props: Props) => {
               </div>
 
               <div className="mb-7 flex justify-center">
-                <p className="text-white">
-                  Hesabın yok mu?{" "}
+                <p className="text-white flex">
+                  Hesabın yok mu?
                   <Link
-                  className="text-purple-700 hover:text-purple-700"
+                  className="text-purple-700 hover:text-purple-700 ms-1"
                   to="/signup"
                 >
 

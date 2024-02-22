@@ -56,21 +56,21 @@ const Navi = () => {
     }));
   };
 
-  const handleLogOut = () =>{
-      localStorage.setItem("isLoggedIn", "false");
-      localStorage.removeItem("jsonwebtoken");
-      dispatch(setIsLoggedIn(false));
-      navigate("/")
-  }
+  const handleLogOut = () => {
+    localStorage.setItem("isLoggedIn", "false");
+    localStorage.removeItem("jsonwebtoken");
+    dispatch(setIsLoggedIn(false));
+    // dropdownStates.user = false;
+    navigate("/");
+  };
 
   //AdminPage' de navbarı etkisizleştirir.
   if (location.pathname === "/admin") {
     return null;
   }
 
-
   return (
-    <div className=" sticky top-0 left-0 right-0 bg-gray-500 bg-opacity-40 z-50">
+    <div className=" sticky top-0 left-0 right-0 bg-[#344CB7] bg-opacity-80 z-50">
       <nav className=" container mx-auto p-3  md:p-6 lg:p-8 ">
         <div className="flex items-center justify-between flex-row-reverse">
           <FontAwesomeIcon
@@ -153,7 +153,7 @@ const Navi = () => {
                       </p>
                     </Link>
                     {dropdownStates.services && (
-                      <div className="md:absolute bg-white left-0 z-10 top-[41px] lg:top-[44px] md:w-[200px] shadow-md">
+                      <div className="md:absolute bg-white left-0 z-0 top-[41px] lg:top-[44px] md:w-[200px] shadow-md">
                         <div className="cursor-pointer p-4 text-black hover:text-red-600 hover:bg-gray-300">
                           Settings
                         </div>
@@ -197,13 +197,26 @@ const Navi = () => {
                         </p>
                       </Link>
                       {dropdownStates.user && (
-                        <div className="md:absolute bg-white  left-0 z-10 top-[41px] lg:top-[44px] md:w-[200px] shadow-md">
-                          <div className="cursor-pointer p-4 text-black hover:text-red-600 hover:bg-gray-300">
-                            Siparişlerim
-                          </div>
-                          <div className="cursor-pointer p-4 text-black hover:text-red-600 hover:bg-gray-300">
+                        <div className="md:absolute bg-white  left-0 z-0 top-[41px] lg:top-[44px] md:w-[200px] shadow-md">
+                          <Link
+                            className="w-full justify-start flex cursor-pointer p-4 text-black hover:text-red-600 hover:bg-gray-300"
+                            to={"/profile"}
+                          >
                             Kullanıcı bilgilerim
-                          </div>
+                          </Link>
+
+                          <Link
+                            className="w-full justify-start flex cursor-pointer p-4 text-black hover:text-red-600 hover:bg-gray-300"
+                            to={"/profile/rentals"}
+                          >
+                            Siparişlerim
+                          </Link>
+                          <Link
+                            className="w-full justify-start flex cursor-pointer p-4 text-black hover:text-red-600 hover:bg-gray-300"
+                            to={"/profile/invoices"}
+                          >
+                            Faturalarım
+                          </Link>
                           <button
                             className="w-full justify-start flex cursor-pointer p-4 text-black hover:text-red-600 hover:bg-gray-300"
                             onClick={handleLogOut}

@@ -7,6 +7,7 @@ import { modelReducer } from './slices/modelSlice'
 import { rentalReducer } from './slices/rentalSlice'
 import { colorReducer } from './slices/colorSlice'
 import { userReducer } from './slices/userSlice'
+import { authReducer } from './slices/authSlice'
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
     rental: rentalReducer,
     color: colorReducer,
     user: userReducer,
+    auth: authReducer,
   },
 })
 

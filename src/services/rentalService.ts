@@ -1,3 +1,4 @@
+import axiosInstance from "../core/utils/interceptors/axiosInterceptors";
 import { AddRentalRequest } from "../models/rentals/requests/AddRentalRequest";
 import { UpdateRentalRequest } from "../models/rentals/requests/UpdateRentalRequest";
 import { AddRentalResponse } from "../models/rentals/response/AddRentalResponse";
@@ -7,17 +8,20 @@ import { UpdateRentalResponse } from "../models/rentals/response/UpdateRentalRes
 import { BaseService } from "./baseService";
 
 class RentalService extends BaseService<
-    GetAllRentalResponse,
-    GetByIdRentalResponse,
-    AddRentalRequest,
-    AddRentalResponse,
-    UpdateRentalRequest,
-    UpdateRentalResponse
->{
-    constructor(){
-        super();
-        this.apiUrl = "rentals";
+  GetAllRentalResponse,
+  GetByIdRentalResponse,
+  AddRentalRequest,
+  AddRentalResponse,
+  UpdateRentalRequest,
+  UpdateRentalResponse
+> {
+  constructor() {
+    super();
+    this.apiUrl = "rentals";
+  }
 
-    }
+  getRentalByUser(userId:any) {
+    return axiosInstance.get(this.apiUrl + "/getRentalByUser?id=" + userId);
+  }
 }
 export default new RentalService();

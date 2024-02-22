@@ -7,21 +7,27 @@ import { object, string } from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Link from "../../../components/CustomLink/Link";
+import { RegisterRequest } from "../../../models/auth/requests/registerRequest";
+import { AppDispatch } from "../../../store/store";
+import { useDispatch } from "react-redux";
+import { authRegister } from "../../../store/slices/authSlice";
+import authService from "../../../services/authService";
 
 type Props = {};
 
 const Signup = (props: Props) => {
-  const [credentials, setCredentials] = useState({});
+  // const [credentials, setCredentials] = useState({});
 
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
 
   const initialValues = {
     name: "",
     surname: "",
+    gsm: " ",
     email: "",
     password: "",
-    roles: ["USER"],
-    gsm: " "
+    authorities: ["USER"],
   };
 
   const validationSchema = object({
@@ -40,9 +46,10 @@ const Signup = (props: Props) => {
       .max(30),
   });
 
-  const handleLogin = () => {
-    axios.post("http://localhost:8080/api/auth/register", credentials).then(
+  const handleLogin = (values: RegisterRequest) => {
+    authService.register(values).then(
       (response) => {
+        console.log(response);
         navigate("/login");
       },
       (error) => {
@@ -50,7 +57,6 @@ const Signup = (props: Props) => {
       }
     );
   };
-
   return (
     <div
       className="container w-full mx-auto flex justify-center items-center"
@@ -68,7 +74,7 @@ const Signup = (props: Props) => {
                 />
               </div>
 
-              <div className="flex justify-center mt-10 text-3xl font-bold text-white">
+              <div className="flex justify-center  mt-10 text-3xl font-bold text-white">
                 <p>ÜYE OL</p>
               </div>
 
@@ -76,7 +82,8 @@ const Signup = (props: Props) => {
                 <Formik
                   initialValues={initialValues}
                   onSubmit={(values) => {
-                    setCredentials(values);
+                    handleLogin(values);
+                    // setCredentials(values);
                   }}
                   validationSchema={validationSchema}
                 >
@@ -116,7 +123,6 @@ const Signup = (props: Props) => {
                       <button
                         type="submit"
                         className="w-full flex justify-center bg-purple-800  hover:bg-purple-700 text-gray-100 p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500 shadow-[0px_0px_10px_5px_#f8e61b]"
-                        onClick={handleLogin}
                       >
                         Üye Ol
                       </button>
@@ -132,15 +138,14 @@ const Signup = (props: Props) => {
               </div>
 
               <div className="mb-7 flex justify-center">
-                <p className="text-white">Hesabın yok mu?{" "}
-                
-                <Link
-                  className="text-purple-700 hover:text-purple-700"
-                  to="/login"
-                >
-
-                  Giriş yap
-                </Link>
+                <p className="text-white flex">
+                  Hesabın yok mu?
+                  <Link
+                    className="text-purple-700 hover:text-purple-700 ms-1"
+                    to="/login"
+                  >
+                    Giriş yap
+                  </Link>
                 </p>
               </div>
             </div>

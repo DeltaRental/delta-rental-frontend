@@ -15,5 +15,13 @@
 .card-front {
   backface-visibility: hidden;
   background-color: white;
+}
 
+
+.card-front-img {
+  transition: transform 0.7s, 
+}
+
+.card-front-img:hover {
+  transform: scale(1.1);
 }
