@@ -1,6 +1,3 @@
-import { AxiosResponse } from "axios";
-import axiosInstance from "../core/utils/interceptors/axiosInterceptors";
-import { GetByIdBrandResponse } from "../models/brands/response/getByIdBrandResponse";
 import { AddModelRequest } from "../models/carModels/requests/addModelRequest";
 import { UpdateModelRequest } from "../models/carModels/requests/updateModelRequest";
 import { AddModelResponse } from "../models/carModels/response/addModelResponse";

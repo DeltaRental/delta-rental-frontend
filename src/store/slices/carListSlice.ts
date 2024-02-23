@@ -177,7 +177,7 @@ const carSlice = createSlice({
 		});
 		builder.addCase(deleteCar.fulfilled, (state, action)=>{
 			const deletedCar = action.payload.deletedCarId;
-			state.cars.filter((car: any)=> car.id !== deletedCar);
+			state.carList.filter((car: any)=> car.id !== deletedCar);
 		});
 		builder.addCase(deleteCar.rejected, state=>{
 

@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import axiosInstance from "./core/utils/interceptors/axiosInterceptors";
 import AdminPage from "./pages/AdminPage/AdminPage";
 import Footer from "./components/Footer/Footer";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
@@ -35,7 +36,7 @@ function App() {
       > */}
           <OverlayLoader />
           <Navi />
-          <Dashboard />
+          <Dashboard/>
           <Footer></Footer>
           {/* </div> */}
         </div>

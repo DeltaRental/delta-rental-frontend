@@ -9,4 +9,5 @@ export interface AddCarRequest {
 	carState: string;
 	gearType: string;
 	fuelType: string;
+	imageUrl: string;
 }

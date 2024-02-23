@@ -43,8 +43,6 @@ const Brand = (props: Props) => {
       ))}
       </select>
       <button onClick={handDeleteBrand}  >Sil</button>
-      <AddBrand/>
-      <UpdateBrand/>
     </div>
   )
 }

@@ -28,6 +28,9 @@ module.exports = withMT({
     extend: {
       colors: {
         'delta-yellow': '#f8e61b',
+        'sidebar': '#092635',
+        'form': '#e0d2d1',
+        'admin': '#ebebeb'
       },
     },
   },

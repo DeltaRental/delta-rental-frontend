@@ -10,4 +10,5 @@ export interface GetByIdCarResponse {
 	carState: string;
 	gearType: string;
 	fuelType: string;
+	imageUrl: string;
 }

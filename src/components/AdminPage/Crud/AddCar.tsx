@@ -1,81 +1,33 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../../store/store";
-import { addBrand, brandList } from "../../../store/slices/brandSlice";
-import { addModel, modelList } from "../../../store/slices/modelSlice";
-import { addColor, colorList } from "../../../store/slices/colorSlice";
-import { addBranch, fetchBranches } from "../../../store/slices/branchSlice";
+import { modelList } from "../../../store/slices/modelSlice";
+import { colorList } from "../../../store/slices/colorSlice";
+import { fetchBranches } from "../../../store/slices/branchSlice";
 import { addCar } from "../../../store/slices/carListSlice";
 import { Field, Form, Formik } from "formik";
 import { number, object, string } from "yup";
-import AddModel from "../CarModel/AddModel";
-import { AddCarRequest } from "../../../models/cars/requests/addCarRequest";
 import FormikInput from "../../FormikInput/FormikInput";
-import axios from "axios";
-
+import {GearType} from "../../../models/enums/gearType"
+import { CarState } from "../../../models/enums/carState";
+import { FuelType } from "../../../models/enums/fuelType";
 type Props = {};
 
 const AddCar = (props: Props) => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const[selectedValue, setSelectedValue] = useState({});
+  const [selectedValue, setSelectedValue] = useState({});
 
+  const modelState = useSelector((state: any) => state.model);
+  const colorState = useSelector((state: any) => state.color);
+  const branchState = useSelector((state: any) => state.branch);
 
-  // const brandState = useSelector((state: any) => state.brand);
-  // const modelState = useSelector((state: any) => state.model);
-  // const colorState = useSelector((state: any) => state.color);
-  // const branchState = useSelector((state: any) => state.branch);
+  useEffect(() => {
+    dispatch(modelList());
+    dispatch(colorList());
+    dispatch(fetchBranches());
+  }, [dispatch]);
 
-  // const [selectBrand, setSelectBrand] = useState<number | any>();
-  // const [selectModel, setSelectModel] = useState<number>();
-  // const [selectColor, setSelectColor] = useState<number>();
-  // const [selectBranch, setSelectBranch] = useState<number>();
-  // const [modelName, setModelName] = useState("");
-  // const[brandName, setBrandName] = useState("");
-  // const[colorName, setColorName] = useState("");
-  // const[branchName, setBranchName] = useState("");
-  // const [kilometer, setKilometer] = useState<number>(0);
-  // const [year, setYear] = useState<number | undefined>(undefined);
-  // const [dailyPrice, setDailyPrice] = useState<number>(0);
-  // const [plate, setPlate] = useState("");
-  // const [carState, setCarState] = useState("");
-  // const [gearType, setGearType] = useState("");
-  // const [fuelType, setFuelType] = useState("");
-
-  // useEffect(() => {
-  //   dispatch(brandList());
-  //   dispatch(modelList());
-  //   dispatch(colorList());
-  //   dispatch(fetchBranches());
-  // }, [dispatch]);
-
-
-
-  // const handleSelectBrandChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-  //   const brandId = parseInt(e.target.value, 10);
-
-  //   setSelectBrand(brandId);
-   
-  // };
-
-  // const handleSelectModelChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-  //   const modelId = parseInt(e.target.value, 10);
-  //   setSelectModel(modelId);
-  // };
-
-  // const handleSelectColorChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-  //   const colorId = parseInt(e.target.value, 10);
-  //   setSelectColor(colorId);
-  // };
-
-  // const handleSelectBranchChange = (
-  //   e: React.ChangeEvent<HTMLSelectElement>
-  // ) => {
-  //   const branchId = parseInt(e.target.value, 10);
-  //   setSelectBranch(branchId);
-  // };
-
-  
   const initialValues = {
     kilometer: 0,
     year: 0,
@@ -87,6 +39,7 @@ const AddCar = (props: Props) => {
     carState: "",
     gearType: "",
     fuelType: "",
+    imageUrl: ""
   };
   const validationSchema = object({
     kilometer: number().required("Kilometre alanı zorunludur").min(0),
@@ -99,51 +52,143 @@ const AddCar = (props: Props) => {
     carState: string().required("Araç durumu alanı zorunludur").min(3),
     gearType: string().required("Vites tipi alanı zorunludur").min(3),
     fuelType: string().required("Yakıt tipi alanı zorunludur").min(3),
+    imageUrl: string().required("Görsel alanı zorunludur"),
   });
 
-const handleAddCar = (values: any) =>{
-  
-    axios.post("http://localhost:8080/api/cars", values).then(
-      (response) => {
-        console.log(response.data);
-        
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  
-    }
+  const handleAddCar = (values: any) => {
+    dispatch(addCar(values));
+    //values = "";
+  };
 
   return (
-    <div>
+    <div className="mr-32 ">
       <Formik
         initialValues={initialValues}
-        onSubmit={(values)=>{
-          handleAddCar(values)
-          setSelectedValue(values)
+        onSubmit={(values) => {
+          handleAddCar(values);
+          setSelectedValue(values);
         }}
         validationSchema={validationSchema}
+        enableReinitialize={true}
       >
-       
-        <Form >
-          <div >
-          <FormikInput name="kilometer" label="Kilometre" type="number" placeholder="" />
-          <FormikInput name="year" label="Yıl" type="number" placeholder="" />
-          <FormikInput name="dailyPrice" label="Günlük Ücret" type="number" placeholder="" />
-          <FormikInput name="plate" label="Plaka" type="text" placeholder="" />
-          <FormikInput name="modelId" label="Model" type="number" placeholder="" />
-          <FormikInput name="colorId" label="Renk" type="number" placeholder="" />
-          <FormikInput name="branchId" label="Şube" type="number" placeholder="" />
-          <FormikInput name="carState" label="Araç Durumu" type="text" placeholder="" />
-          <FormikInput name="gearType" label="Vites Tipi" type="text" placeholder="" />
-          <FormikInput name="fuelType" label="Yakıt Tipi" type="text" placeholder="" />
-          <button type="submit" >
-            Araç Ekle
-          </button>
+        <Form className="bg-form">
+          <div className="">
+          <FormikInput
+            name="kilometer"
+            label="Kilometre"
+            type="number"
+            placeholder=""
+    
+          />
           </div>
+          <div className="">
+          <FormikInput 
+          name="year" 
+          label="Yıl" 
+          type="number" 
+          placeholder="" 
+          />
+          </div>
+         <div>
+         <FormikInput
+            name="dailyPrice"
+            label="Günlük Ücret"
+            type="number"
+            placeholder=""
+          />
+         </div>
+          <div>
+          <FormikInput name="plate" label="Plaka" type="text" placeholder="" />
+          </div>
+          <div>
+          <label className="font-bold flex">Model</label>
+          <Field name="modelId" as="select" className="mt-1 text-gray-700 border border-gray-300 rounded-lg w-full">
+            <option value="" disabled>
+              Model Seç{" "}
+            </option>
+            {modelState.models.map((model: any) => (
+              <option key={model.id} value={model.id}>
+                {`${model.brandName} ${model.name}`}
+              </option>
+            ))}
+          </Field>
+          </div>
+          <div>
+          <label className="font-bold flex">Renk</label>
+          <Field name="colorId" as="select" className="mt-1 text-gray-700 border border-gray-300 rounded-lg w-full">
+            <option value="" disabled>
+              Renk Seç{" "}
+            </option>
+            {colorState.colors.map((color: any) => (
+              <option key={color.id} value={color.id}>
+                {`${color.name}`}
+              </option>
+            ))}
+          </Field>
+          </div>
+          <div>
+          <label className="font-bold flex">Şube</label>
+          <Field name="branchId" as="select" className="mt-1 text-gray-700 border border-gray-300 rounded-lg w-full">
+            <option value="" disabled>
+              Şube Seç{" "}
+            </option>
+            {branchState.branches.map((branch: any) => (
+              <option key={branch.id} value={branch.id}>
+                {` ${branch.name}`}
+              </option>
+            ))}
+          </Field>
+          </div>
+          <div>
+          <label className="font-bold flex">Araç Durumu</label>
+          <Field name="carState" as="select" className="mt-1 text-gray-700 border border-gray-300 rounded-lg w-full">
+            <option value="" disabled>
+              Araç Durumu
+            </option>
+            {Object.values(CarState).map((value) => (
+              <option key={value} value={value}>
+                {value}
+              </option>
+            ))}
+          </Field>
+          </div>
+          <div>
+          <label className="font-bold flex">Vites</label>
+          <Field name="gearType" as="select" className="mt-1 text-gray-700 border border-gray-300 rounded-lg w-full">
+            <option value="" disabled>
+              Vites Tipi
+            </option>
+            {Object.values(GearType).map((value) => (
+              <option key={value} value={value}>
+                {value}
+              </option>
+            ))}
+          </Field>
+          </div>
+          <div>
+          <label className="font-bold flex">Yakıt</label>
+          <Field name="fuelType" as="select" className="mt-1 mb-1 text-gray-700 border border-gray-300 rounded-lg w-full">
+            <option value="" disabled>
+              Yakıt Tipi
+            </option>
+            {Object.values(FuelType).map((value) => (
+              <option key={value} value={value}>
+                {value}
+              </option>
+            ))}
+          </Field>
+          </div>
+         
+          <div>
+          <FormikInput
+            name="imageUrl"
+            label="Görsel"
+            type="text"
+            placeholder="Yüklenen görselin URL'ini ekle"
+          />
+          </div>
+          <button type="submit" className="bg-sidebar text-white w-[6rem] h-[2.75rem] rounded-lg font-bold">Araç Ekle</button>
         </Form>
-       
       </Formik>
     </div>
   );

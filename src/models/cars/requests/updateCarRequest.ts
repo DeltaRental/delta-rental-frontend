@@ -10,4 +10,5 @@ export interface UpdateCarRequest {
 	carState: string;
 	gearType: string;
 	fuelType: string;
+	imageUrl: string;
 }

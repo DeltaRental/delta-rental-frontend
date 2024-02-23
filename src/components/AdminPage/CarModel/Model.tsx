@@ -2,11 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../../store/store";
 import { deleteModel, modelList } from "../../../store/slices/modelSlice";
-import AddModel from "./AddModel";
-import UpdateModel from "./UpdateModel";
-import { brandList } from "../../../store/slices/brandSlice";
-import { GetAllModelResponse } from "../../../models/carModels/response/getAllModelResponse";
-import Brand from "../Brand/Brand";
 
 type Props = {};
 

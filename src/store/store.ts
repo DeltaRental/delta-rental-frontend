@@ -1,3 +1,4 @@
+import { dropdownReducer } from './slices/dropdownSlice';
 import { configureStore } from '@reduxjs/toolkit'
 import { branchReducer } from './slices/branchSlice'
 import { carReducer } from './slices/carListSlice'
@@ -8,7 +9,7 @@ import { rentalReducer } from './slices/rentalSlice'
 import { colorReducer } from './slices/colorSlice'
 import { userReducer } from './slices/userSlice'
 import { authReducer } from './slices/authSlice'
-
+import {adminPageReducer} from './slices/adminPageSlice'
 export const store = configureStore({
   reducer: {
     car:carReducer,
@@ -20,6 +21,8 @@ export const store = configureStore({
     color: colorReducer,
     user: userReducer,
     auth: authReducer,
+    adminPage: adminPageReducer,
+    dropdown: dropdownReducer
   },
 })
 

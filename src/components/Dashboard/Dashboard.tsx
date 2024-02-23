@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Navi from "../Navi/Navi";
 import Categories from "../Categories/Categories";
 import CarList from "../../pages/Car/CarList";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
 import CarDetail from "../../pages/Car/CarDetail";
 import CarAdd from "../../pages/Car/CarAdd";
 import HomePage from "../../pages/HomePage";
