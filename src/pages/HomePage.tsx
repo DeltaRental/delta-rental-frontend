@@ -137,7 +137,7 @@ const HomePage = (props: Props) => {
         />
       </Carousel>
       <div className="absolute top-96 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <div className="bg-delta-yellow w-[1000px] h-[400px] rounded-3xl p-5">
+        <div className="bg-delta-green-400 w-[1000px] h-[400px] rounded-3xl p-5">
           <div className="grid grid-cols-3 gap-2">
             <div className="me-4">
               <p>Şube:</p>
@@ -185,9 +185,9 @@ const HomePage = (props: Props) => {
           </div>
           <div className="grid justify-end mt-3">
             <Link to="/cars/getCarAvailability">
-              <button
+              <button 
                 type="submit"
-                className="w-full flex justify-center bg-purple-800  hover:bg-purple-700 text-gray-100 p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500 shadow-[0px_0px_10px_5px_#f8e61b]"
+                className="w-full flex justify-center bg-delta-green-1000 hover:bg-delta-green-600 text-white hover:text-black p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500 shadow-[0px_0px_2px_2px_#ddf051]"
                 disabled={isDisabled}
               >
                 Uygun aracı kirala

@@ -43,7 +43,7 @@ const CarCard = ({ car }: { car: GetAllCarResponse }) => {
           />
           <FontAwesomeIcon
             icon={faSyncAlt}
-            className="absolute right-2 top-2 text-gray-500 text-3xl cursor-pointer"
+            className="absolute right-2 top-2 text-delta-green-1000 text-3xl cursor-pointer"
             onClick={handleFlip}
           />
           <div className="mt-3">
@@ -72,14 +72,14 @@ const CarCard = ({ car }: { car: GetAllCarResponse }) => {
             </p>
             <div className="flex items-center justify-between mt-3">
               <div>
-                <p className="text-lg font-bold text-blue-600">
+                <p className="text-lg font-bold text-delta-green-1200">
                   {car.dailyPrice} TL
                 </p>
                 <p className="text-xs text-gray-600">Günlük Kiralama Ücreti</p>
               </div>
               <button
                 onClick={() => handleAddToCart(car)}
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg"
+                className="bg-delta-green-1000 hover:bg-delta-green-600 text-white hover:text-black px-4 py-2 rounded-lg"
               >
                 Hemen Kirala
               </button>
@@ -91,7 +91,7 @@ const CarCard = ({ car }: { car: GetAllCarResponse }) => {
         <div className="p-4">
           <FontAwesomeIcon
             icon={faSyncAlt}
-            className="absolute right-2 top-2 text-gray-500 text-3xl cursor-pointer"
+            className="absolute right-2 top-2 text-delta-green-1000 text-3xl cursor-pointer"
             onClick={handleFlip}
           />
           <div className="mt-3 gap-y-3 grid">
@@ -135,14 +135,14 @@ const CarCard = ({ car }: { car: GetAllCarResponse }) => {
         <div className="p-4">
           <div className="flex items-center justify-between mt-3">
             <div>
-              <p className="text-lg font-bold text-blue-600">
+              <p className="text-lg font-bold text-delta-green-1200">
                 {car.dailyPrice} TL
               </p>
               <p className="text-xs text-gray-600">Günlük Kiralama Ücreti</p>
             </div>
             <button
               onClick={() => handleAddToCart(car)}
-              className="bg-blue-600 text-white px-4 py-2 rounded-lg"
+              className="bg-delta-green-1000 hover:bg-delta-green-600 text-white hover:text-black px-4 py-2 rounded-lg"
             >
               Hemen Kirala
             </button>

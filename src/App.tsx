@@ -11,7 +11,7 @@ import { Route, Routes } from "react-router-dom";
 function App() {
   return (
     <>
-      <div className="bg-black relative z-0">
+      <div className="bg-[#292929] relative z-0">
         <div className="">
           <div className="flex justify-center ">
             <div className="absolute bg-transparent  stars bg-fixed h-full bg-cover bg-no-repeat"></div>

@@ -8,13 +8,13 @@
 }
 .card-back {
   backface-visibility: hidden;
-  background-color: white;
+  background-color: #FBFADA;
 
 }
 
 .card-front {
   backface-visibility: hidden;
-  background-color: white;
+  background-color: #FBFADA;
 }
 
 
