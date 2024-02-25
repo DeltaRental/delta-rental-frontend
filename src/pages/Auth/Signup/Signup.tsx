@@ -64,17 +64,17 @@ const Signup = (props: Props) => {
     >
       <div className="w-[70%] h-[80%]  rounded-3xl">
         <div className="grid grid-cols-2 p-2 h-full">
-          <div className="bg-black bg-opacity-40 grid grid-cols-1 rounded-s-3xl w-full px-10 shadow-[15px_0px_0px_-5px_#000000]">
+          <div className="bg-delta-green-400 bg-opacity-40 grid grid-cols-1 rounded-s-3xl w-full px-10 shadow-[15px_0px_0px_-5px_#000000]">
             <div className="flex flex-col justify-center">
               <div className="flex justify-center">
                 <img
-                  className="w-20 h-20 rounded-full shadow-[0px_0px_10px_10px_#f8e61b]"
+                  className="w-20 h-20 rounded-full shadow-[0px_0px_10px_10px_#12372A]"
                   src="https://avatars.githubusercontent.com/u/156099996?s=200&v=4"
                   alt="DeltaLogo"
                 />
               </div>
 
-              <div className="flex justify-center  mt-10 text-3xl font-bold text-white">
+              <div className="flex justify-center  mt-10 text-3xl font-bold text-delta-green-400">
                 <p>ÜYE OL</p>
               </div>
 
@@ -122,7 +122,7 @@ const Signup = (props: Props) => {
                     <div className="mt-8">
                       <button
                         type="submit"
-                        className="w-full flex justify-center bg-purple-800  hover:bg-purple-700 text-gray-100 p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500 shadow-[0px_0px_10px_5px_#f8e61b]"
+                        className="w-full flex justify-center bg-delta-green-1000 hover:bg-delta-green-600 text-delta-green-400 hover:text-delta-green-1000 p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500 shadow-[0px_0px_10px_5px_#ddf051]"
                       >
                         Üye Ol
                       </button>
@@ -132,16 +132,16 @@ const Signup = (props: Props) => {
               </div>
 
               <div className="flex items-center justify-center space-x-2 my-5">
-                <span className="h-px w-16 bg-white"></span>
-                <span className="text-white font-normal">or</span>
-                <span className="h-px w-16 bg-white"></span>
+                <span className="h-px w-16 bg-delta-green-400"></span>
+                <span className="text-delta-green-400 font-normal">or</span>
+                <span className="h-px w-16 bg-delta-green-400"></span>
               </div>
 
               <div className="mb-7 flex justify-center">
-                <p className="text-white flex">
-                  Hesabın yok mu?
+                <p className="text-delta-green-400 flex">
+                  Hesabın var mı?
                   <Link
-                    className="text-purple-700 hover:text-purple-700 ms-1"
+                    className="text-delta-green-1000 hover:text-delta-green-400 ms-1 font-bold"
                     to="/login"
                   >
                     Giriş yap
@@ -151,7 +151,7 @@ const Signup = (props: Props) => {
             </div>
           </div>
 
-          <div className="bg-delta-yellow text-white bg-opacity-20 grid grid-cols-1 rounded-e-3xl px-14">
+          <div className="bg-delta-green-800 text-delta-green-400 bg-opacity-40 grid grid-cols-1 rounded-e-3xl px-14">
             <div className="flex flex-col justify-center">
               <p className="text-6xl flex justify-center">Araç Kirala</p>
               <p className="mt-10 text-xl flex justify-center">

@@ -60,7 +60,7 @@ const CarCard = ({ car }: { car: GetAllCarResponse }) => {
                 className="mr-2 text-purple-500  w-7 h-7"
                 size="lg"
               />
-              İstanbul
+              {car.branch.city}
             </p>
             <p className="text-gray-600 flex items-center">
               <FontAwesomeIcon
@@ -68,7 +68,7 @@ const CarCard = ({ car }: { car: GetAllCarResponse }) => {
                 className="mr-2 text-orange-500 w-7 h-7"
                 size="lg"
               />
-              Büyükçekmece
+              {car.branch.name}
             </p>
             <div className="flex items-center justify-between mt-3">
               <div>

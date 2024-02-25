@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendarAlt,
@@ -14,12 +14,65 @@ import {
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "../../components/CustomLink/Link";
-
+import Button from "@mui/material/Button";
+import Dialog, { DialogProps } from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import invoiceService from "../../services/invoiceService";
+import { AppDispatch } from "../../store/store";
+import { useDispatch } from "react-redux";
 type Props = {
   rental: any;
 };
+type InvoiceInfoType = {
+  name?: string;
+  date?: string;
+  amount?: number;
+  address?: string;
 
+  // Diğer property'ler buraya eklenebilir
+};
 function RentalListByUser(props: Props) {
+  const [invoiceInfo, setInvoiceInfo] = useState<InvoiceInfoType>({});
+
+  const [open, setOpen] = useState(false);
+  const [scroll, setScroll] = React.useState<DialogProps["scroll"]>("paper");
+
+  const handleClickOpen = (scrollType: DialogProps["scroll"]) => () => {
+    setOpen(true);
+    setScroll(scrollType);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const descriptionElementRef = React.useRef<HTMLElement>(null);
+  React.useEffect(() => {
+    if (open) {
+      const { current: descriptionElement } = descriptionElementRef;
+      if (descriptionElement !== null) {
+        descriptionElement.focus();
+      }
+    }
+  }, [open]);
+
+  const handleRentalInfo = (rentalId: number) => {
+    invoiceService.getInvoiceDetails(rentalId).then(
+      (response) => {
+        console.log(response);
+        setInvoiceInfo({ ...response.data[0] });
+        setOpen(true);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  };
+  console.log(invoiceInfo);
+
   return (
     <div>
       <div className="flex flex-col mt-10 border-2 border-gray-300 dark:border-gray-700 rounded-2xl overflow-hidden shadow-xl">
@@ -58,7 +111,7 @@ function RentalListByUser(props: Props) {
             </div>
             <div className="col-span-2 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg">
               <div className="text-lg text-center font-semibold mb-2">
-              {`${props.rental.car.model.brandName} ${props.rental.car.model.name}`}
+                {`${props.rental.car.model.brandName} ${props.rental.car.model.name}`}
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <div className="flex items-center">
@@ -129,15 +182,48 @@ function RentalListByUser(props: Props) {
             </div>
           </div>
           <div className="col-span-1 lg:col-span-12 mt-4">
-            <Link to="#">
-              <button
-                type="submit"
-                className="w-full flex justify-center bg-gradient-to-r from-purple-800 to-pink-700 hover:from-purple-700 hover:to-pink-600 text-white p-3 rounded-lg tracking-wide font-semibold cursor-pointer transition ease-in duration-300"
-              >
-                Fatura Detayı
-              </button>
-            </Link>
+            <button
+              onClick={() => {
+                handleClickOpen("paper"); // Dialog'u açacak state'i günceller
+                handleRentalInfo(props.rental.id); // Rental ID'yi günceller
+              }}
+              className="w-full flex justify-center bg-gradient-to-r from-purple-800 to-pink-700 hover:from-purple-700 hover:to-pink-600 text-white p-3 rounded-lg tracking-wide font-semibold cursor-pointer transition ease-in duration-300"
+            >
+              Fatura Detayı
+            </button>
           </div>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            scroll={scroll}
+            aria-labelledby="scroll-dialog-title"
+            aria-describedby="scroll-dialog-description"
+          >
+            <DialogTitle id="scroll-dialog-title">Fatura Detayı</DialogTitle>
+            <DialogContent dividers={scroll === "paper"}>
+              <DialogContentText
+                id="scroll-dialog-description"
+                ref={descriptionElementRef}
+                tabIndex={-1}
+                className="w-[600px] h-[1000px] "
+              >
+                {invoiceInfo && (invoiceInfo.name || invoiceInfo.date || invoiceInfo.amount || invoiceInfo.address) ? (
+                  <div className="text-black">
+                    <p>{`İsim: ${invoiceInfo.name}`}</p>
+                    <p>{`Tarih: ${invoiceInfo.date}`}</p>
+                    <p>{`Toplam Fiyat: ${invoiceInfo.amount} ₺`}</p>
+                    <p>{`Kimlik Numarası: ${invoiceInfo.address}`}</p>
+                  </div>
+                ) : (
+                  <p>Faturası kesilmedi.</p>
+                )}
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>Cancel</Button>
+              <Button onClick={handleClose}>Subscribe</Button>
+            </DialogActions>
+          </Dialog>
         </div>
       </div>
     </div>

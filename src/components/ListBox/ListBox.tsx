@@ -79,8 +79,8 @@ const ListBox = (props: Props) => {
                     <Combobox.Option
                       key={branch.id}
                       className={({ active }) =>
-                        `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                          active ? "bg-delta-yellow text-black" : "text-gray-900"
+                        `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
+                          active ? "bg-delta-green-1000 text-white" : "text-gray-900"
                         }`
                       }
                       value={branch}

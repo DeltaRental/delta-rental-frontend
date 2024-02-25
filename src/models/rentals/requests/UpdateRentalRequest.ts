@@ -8,6 +8,6 @@ export interface UpdateRentalRequest{
     totalPrice: number;
     discount: number;
     carId: number;
-    customerId: number;
+    userId: number;
     employeeId: number;
 }

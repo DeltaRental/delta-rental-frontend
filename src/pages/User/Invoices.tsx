@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch } from '../../store/store';
-import invoiceService from '../../services/invoiceService';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "../../store/store";
+import invoiceService from "../../services/invoiceService";
 import InvoiceListByUser from "../../components/InvoiceListByUser/InvoiceListByUser";
 
-type Props = {}
+type Props = {};
 
 function Invoices({}: Props) {
   const userState = useSelector((state: any) => state.user);
@@ -12,10 +12,10 @@ function Invoices({}: Props) {
   const [invoices, setInvoices] = useState([]);
 
   useEffect(() => {
-    if (userState.rentals.id) {
+    if (userState.users.id) {
       invoiceService.getAllInvoiceDetails(userState.users.id).then(
-        (response) => {
-          console.log(response);
+        (response: any) => {
+          console.log("cevap geldi", response);
           setInvoices(response.data);
         },
         (error) => {
@@ -25,26 +25,22 @@ function Invoices({}: Props) {
     }
   }, [userState.users.id]);
 
-  console.log("invoices listelendi", invoices);
-  console.log(userState);
-
-
+  // console.log("invoices listelendi", invoices);
+  // console.log(userState);
+  console.log("kullanıcı id", userState.users.id);
 
   return (
     <div className="">
       <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
         {`Merhaba ${userState.users.name} ${userState.users.surname}`}
       </h3>
-      <p className="mb-2">
-        Bu sayfadan tüm faturalarını görüntüleyebilirsin.
-      </p>
+      <p className="mb-2">Bu sayfadan tüm faturalarını görüntüleyebilirsin.</p>
       <hr />
-      {invoices.map((invoice:any) => 
-<InvoiceListByUser key={invoice.id} invoice={invoice}/>
-        
-      )}
+      {invoices.map((invoice: any) => (
+        <InvoiceListByUser key={invoice.id} invoice={invoice} />
+      ))}
     </div>
-  )
+  );
 }
 
-export default Invoices
+export default Invoices;

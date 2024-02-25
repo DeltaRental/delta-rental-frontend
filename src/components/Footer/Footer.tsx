@@ -5,8 +5,11 @@ type Props = {}
 
 const Footer = (props: Props) => {
   const location = useLocation()
-  if(location.pathname === "/admin") {
-    return null
+  if (location.pathname === "/admin"){
+    return null;
+  }
+  else if (location.pathname === "/payment/success") {
+    return null;
   }
   return (
     <footer className="bg-delta-green-1000 bg-opacity-80 dark:bg-gray-900">

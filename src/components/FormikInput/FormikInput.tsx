@@ -1,8 +1,8 @@
 import { ErrorMessage, Field, getIn, useField } from "formik";
 import { useState } from "react";
 import PhoneInput from "react-phone-number-input";
-import 'react-phone-number-input/style.css'
-import './FormikInput.css'
+import "react-phone-number-input/style.css";
+import "./FormikInput.css";
 
 type Props = {
   name: string;
@@ -23,7 +23,7 @@ const FormikInput = (props: Props) => {
     <>
       <div className="mb-3">
         <div className="relative flex flex-col">
-          <div className="text-black font-bold inline-block pb-2">
+          <div className="text-delta-green-1000 font-bold inline-block pb-2">
             {props.label}
           </div>
           {props.type === "password" ? ( // props.type "password" ise, şifre göster/gizle butonunu ve ilgili mantığı ekleyin
@@ -41,7 +41,9 @@ const FormikInput = (props: Props) => {
               <div className="flex items-center absolute inset-y-0 right-0 mr-3 mt-8 text-sm leading-5">
                 <svg
                   onClick={toggleShow} // onClick fonksiyonunu toggleShow olarak belirleyin
-                  className={show ? "hidden" : "block h-4 text-purple-700"}
+                  className={
+                    show ? "hidden" : "block h-4 text-delta-green-1000"
+                  }
                   viewBox="0 0 576 512"
                 >
                   <path
@@ -52,7 +54,9 @@ const FormikInput = (props: Props) => {
 
                 <svg
                   onClick={toggleShow} // onClick fonksiyonunu toggleShow olarak belirleyin
-                  className={show ? "block h-4 text-purple-700" : "hidden "}
+                  className={
+                    show ? "block h-4 text-delta-green-1000" : "hidden "
+                  }
                   viewBox="0 0 640 512"
                 >
                   <path
@@ -63,23 +67,26 @@ const FormikInput = (props: Props) => {
               </div>
             </>
           ) : props.type === "phone" ? (
-            <div className={`phone-input-wrapper ${
-                meta.touched && meta.error ? "is-invalid" : ""
-              }`}>
-            <PhoneInput
-              international
-              countryCallingCodeEditable={false}
-              defaultCountry="TR"
-              type="phone"
-              className={`react-phone-number-input__input w-full text-sm px-4 py-3 bg-gray-200  border border-gray-200 rounded-lg focus:outline-none focus:border-purple-400 ${
+            <div
+              className={`phone-input-wrapper ${
                 meta.touched && meta.error ? "is-invalid" : ""
               }`}
-              value={field.value}
-              onChange={(value) => helpers.setValue(value)}
-              name={props.name}
-              aria-describedby="title"
-              placeholder={props.placeholder || ""}
-            /></div>
+            >
+              <PhoneInput
+                international
+                countryCallingCodeEditable={false}
+                defaultCountry="TR"
+                type="phone"
+                className={`react-phone-number-input__input w-full text-sm px-4 py-3 bg-gray-200  border border-gray-200 rounded-lg focus:outline-none focus:border-purple-400 ${
+                  meta.touched && meta.error ? "is-invalid" : ""
+                }`}
+                value={field.value}
+                onChange={(value) => helpers.setValue(value)}
+                name={props.name}
+                aria-describedby="title"
+                placeholder={props.placeholder || ""}
+              />
+            </div>
           ) : (
             <Field
               type={props.type || "text"}

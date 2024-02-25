@@ -68,7 +68,6 @@ const HomePage = (props: Props) => {
   // };
 
   // console.log(rentalData);
-  
 
   useEffect(() => {
     dispatch(rentalList());
@@ -137,7 +136,7 @@ const HomePage = (props: Props) => {
         />
       </Carousel>
       <div className="absolute top-96 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <div className="bg-delta-green-400 w-[1000px] h-[400px] rounded-3xl p-5">
+        <div className="  backdrop-blur-sm bg-delta-green-400/80  hover:backdrop-blur-lg hover:bg-delta-green-400 transition ease-in duration-500 w-[1000px] h-[200px] rounded-3xl p-5">
           <div className="grid grid-cols-3 gap-2">
             <div className="me-4">
               <p>Şube:</p>
@@ -185,9 +184,13 @@ const HomePage = (props: Props) => {
           </div>
           <div className="grid justify-end mt-3">
             <Link to="/cars/getCarAvailability">
-              <button 
+              <button
                 type="submit"
-                className="w-full flex justify-center bg-delta-green-1000 hover:bg-delta-green-600 text-white hover:text-black p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500 shadow-[0px_0px_2px_2px_#ddf051]"
+                className={
+                  isDisabled
+                    ? `w-full flex justify-center bg-delta-green-1000  text-white  p-3  rounded-lg tracking-wide font-semibold `
+                    : `w-full flex justify-center bg-delta-green-1000 hover:bg-delta-green-600 text-delta-green-400 hover:text-delta-green-1000 p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500 shadow-[0px_0px_2px_2px_#ddf051]`
+                }
                 disabled={isDisabled}
               >
                 Uygun aracı kirala
@@ -196,7 +199,6 @@ const HomePage = (props: Props) => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };

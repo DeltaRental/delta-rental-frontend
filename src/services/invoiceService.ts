@@ -1,4 +1,3 @@
-
 // export default class InvoiceService{
 //    getAll(){
 //     return axios.get<GetAllInvoiceResponse[]>("http://localhost:8080/api/Invoicees/getAll")
@@ -14,25 +13,27 @@ import { getByIdInvoiceResponse } from "../models/invoices/response/getByIdInvoi
 import { UpdateInvoiceResponse } from "../models/invoices/response/updateInvoiceResponse";
 import { BaseService } from "./baseService";
 
-
 class InvoiceService extends BaseService<
-getAllInvoiceResponse,
-getByIdInvoiceResponse,
-addInvoiceRequest,
-AddInvoiceResponse,
-updateInvoiceRequest,
-UpdateInvoiceResponse
->{
+  getAllInvoiceResponse,
+  getByIdInvoiceResponse,
+  addInvoiceRequest,
+  AddInvoiceResponse,
+  updateInvoiceRequest,
+  UpdateInvoiceResponse
+> {
   constructor() {
-		super();
-		this.apiUrl = "invoices";
-	}
+    super();
+    this.apiUrl = "invoices";
+  }
 
-    getAllInvoiceDetails(userId:any) {
-        return axiosInstance.get(this.apiUrl + "/getAllInvoiceDetails?id=" + userId);
-      }
-
-
+  getAllInvoiceDetails(userId: any) {
+    return axiosInstance.get(this.apiUrl + "/getAllInvoiceDetails?id=" + userId);
+  }
+  getInvoiceDetails(rentalId: any) {
+    return axiosInstance.get(
+      this.apiUrl + "/getInvoiceDetails?id=" + rentalId
+    );
+  }
 }
 
 export default new InvoiceService();

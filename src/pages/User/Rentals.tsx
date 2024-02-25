@@ -42,7 +42,7 @@ function Rentals({}: Props) {
     }
   }, [userState.users.id]);
 
-  console.log("rentals listelendi", rentals);
+ 
 
   return (
     <div className="">
@@ -53,9 +53,16 @@ function Rentals({}: Props) {
         Bu sayfadan geçmiş siparişlerini görüntüleyebilirsin.
       </p>
       <hr />
-      {rentals.map((rental:any) => 
-<RentalListByUser key={rental.id} rental={rental}/>
-        
+      {rentals.length > 0 ? (
+        rentals.map((rental: any) => (
+          <RentalListByUser key={rental.id} rental={rental} />
+        ))
+      ) : (
+        <div>
+          <div className="flex justify-center mt-10 font-bold text-xl">
+            <p>Siparişiniz bulunmamaktadır.</p>
+          </div>
+        </div>
       )}
     </div>
   );

@@ -53,7 +53,7 @@ const PaymentPage: React.FC<PaymentPageProps> = () => {
   
 
   return (
-      <div className="h-screen flex justify-center items-center">
+      <div className="">
         {clientSecret && (
           <Elements options={options} stripe={stripePromise}>
             <CheckoutForm />

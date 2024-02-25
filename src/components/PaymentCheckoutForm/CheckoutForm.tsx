@@ -4,39 +4,68 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-import { Stripe, StripeElements, StripePaymentElementOptions } from "@stripe/stripe-js";
+import {
+  Stripe,
+  StripeElements,
+  StripePaymentElementOptions,
+} from "@stripe/stripe-js";
 import OverlayLoader from "../OverlayLoader/OverlayLoader";
 import { Spinner } from "@material-tailwind/react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../store/store";
 import { addRental } from "../../store/slices/rentalSlice";
+import { jwtDecode } from "jwt-decode";
+import { MyJwtPayload } from "../../models/JwtTokenPayload/MyJwtPayload";
+import FormikInput from "../../components/FormikInput/FormikInput";
+import { Form, Formik } from "formik";
+import { object, string } from "yup";
+import dayjs from "dayjs";
 
 export const CheckoutForm = () => {
   const rentalState = useSelector((state: any) => state.rental);
+  const userState = useSelector((state: any) => state.user);
   const branchState = useSelector((state: any) => state.branch);
   const carsState = useSelector((state: any) => state.car);
   const dispatch = useDispatch<AppDispatch>();
-  const rentalData = {
-      startDate: rentalState.selectedStartDate,
-      endDate: rentalState.selectedEndDate,
-      //startLocation: branchState.selectedBranch.name,
-      carId: carsState.selectedCar.id,
-      customerId: 5,
-      employeeId: 1
-    };
 
-  
+  const [decode, setDecode] = useState<MyJwtPayload>();
+  const [userInformation, setUserInformation] = useState({
+    id: 0,
+    name: "",
+    surname: "",
+    email: "",
+    authorities: ["USER"],
+    gsm: "",
+  });
+
+  const rentalData = {
+    startDate: rentalState.selectedStartDate,
+    endDate: rentalState.selectedEndDate,
+    //startLocation: branchState.selectedBranch.name,
+    carId: carsState.selectedCar.id,
+    userId: decode?.id,
+    employeeId: 1,
+  };
+
   const stripe: Stripe | null = useStripe();
   const elements: StripeElements | null = useElements();
 
   const [message, setMessage] = useState<string | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(false);
 
-  
- 
-    console.log(rentalData);
-  
-  
+  useEffect(() => {
+    let token: string | null = localStorage.getItem("jsonwebtoken");
+    if (token) {
+      const jwtDecoded = jwtDecode(token) as MyJwtPayload;
+      setDecode(jwtDecoded);
+      // dispatch(userInfo(jwtDecoded.email || ""));
+    }
+  }, []);
+
+  console.log(rentalData);
+  console.log(decode);
+  console.log(carsState);
+
   useEffect(() => {
     if (!stripe) {
       return;
@@ -83,7 +112,7 @@ export const CheckoutForm = () => {
       elements,
       confirmParams: {
         // Burası ödemeden sonra yönlenicek sayfa path' i
-        return_url: "http://localhost:3000/payment",
+        return_url: "http://localhost:3000/payment/success",
       },
     });
 
@@ -97,33 +126,283 @@ export const CheckoutForm = () => {
     } else {
       setMessage("An unexpected error occurred.");
     }
-    
 
     setIsLoading(false);
   };
 
-
   const clickButton = () => {
-    dispatch(addRental(rentalData))
-  }
+    dispatch(addRental(rentalData));
+  };
 
   const paymentElementOptions: StripePaymentElementOptions = {
     layout: "tabs",
   };
 
+  const validationSchema = object({
+    name: string()
+      .required("İsim alanı zorunludur.")
+      .min(2, "İsim minimum 2 karakter uzunluğunda olmalıdır.")
+      .max(50),
+    surname: string()
+      .required("Soyad alanı zorunludur.")
+      .min(2, "Soyad minimum 2 karakter uzunluğunda olmalıdır.")
+      .max(50),
+    email: string().email("Geçersiz email").required("Mail boş geçilemez."),
+    password: string()
+      .min(5, "Şifre minimum 5 karakter uzunluğunda olmalıdır.")
+      .max(30),
+    gsm: string()
+      .required("İsim alanı zorunludur.")
+      .min(4, "Şifre minimum 17 karakter uzunluğunda olmalıdır.")
+      .max(13),
+  });
+  useEffect(() => {
+    setUserInformation((prevState) => ({
+      ...prevState,
+      id: userState.users.id || 0,
+      name: userState.users.name || "",
+      surname: userState.users.surname || "",
+      email: userState.users.email || "",
+      gsm: userState.users.gsm || "",
+    }));
+  }, [userState.users]);
+
+  const handleLogin = (values: any) => {
+    //window.location.reload();
+  };
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
-      <PaymentElement id="payment-element" options={paymentElementOptions} />
-      <button onClick={clickButton} disabled={isLoading || !stripe || !elements} id="submit">
-        <span id="button-text">
-          {isLoading ? <Spinner/> : "Pay now"}
-        </span>
-      </button>
-      {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
-    </form>
+    // <form id="payment-form" onSubmit={handleSubmit}>
+    //   <PaymentElement id="payment-element" options={paymentElementOptions} />
+    //   <button onClick={clickButton} disabled={isLoading || !stripe || !elements} id="submit">
+    //     <span id="button-text">
+    //       {isLoading ? <Spinner/> : "Pay now"}
+    //     </span>
+    //   </button>
+    //   {/* Show any error or success messages */}
+    //   {message && <div id="payment-message">{message}</div>}
+    // </form>
+    <div className="container mx-auto bg-delta-green-400 min-h-screen">
+      <div className="grid grid-cols-12 min-h-screen">
+        <div className="col-span-8 min-h-screen">
+          <div className="">
+            <div className=" p-6 min-h-screen">
+              {/* Araç Bilgileri */}
+
+              <div className="p-6 rounded-lg shadow-lg bg-delta-green-600">
+                <h2 className="font-bold text-2xl mb-4 text-delta-green-1200">
+                  Kiralama Detayları
+                </h2>
+                <div className="flex flex-col items-center justify-center mb-5">
+                  <img
+                    className="w-[610px] h-[243px] object-cover rounded-lg mb-4 "
+                    src="https://www.avis.com.tr/Avis/media/Avis/Cars/n-citroen-c-elysee.png"
+                    alt="Araç Resmi"
+                  />
+                  <div className="text-2xl text-delta-green-1200 font-medium">{`${carsState.selectedCar.model.brandName} ${carsState.selectedCar.model.name}`}</div>
+                </div>
+
+                <div className="grid grid-cols-12  text-center ">
+                  <div className="col-span-4 ">
+                    <div className="">
+                      <h3 className="text-lg font-semibold text-delta-green-1200 ">
+                        Araç Bilgileri
+                      </h3>
+                      <p className="text-gray-900">
+                        Marka: {carsState.selectedCar.model.brandName}
+                      </p>
+                      <p className="text-gray-900">
+                        Model: {carsState.selectedCar.model.name}
+                      </p>
+                      <p className="text-gray-900">
+                        Yıl: {carsState.selectedCar.year}
+                      </p>
+                      <p className="text-gray-900">
+                        Kilometre: {carsState.selectedCar.kilometer}
+                      </p>
+                      <p className="text-gray-900">
+                        Günlük Fiyat: {carsState.selectedCar.dailyPrice}₺
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-span-4">
+                    <div className="">
+                      <h3 className="text-lg font-semibold text-delta-green-1200">
+                        Kiralama Tarihleri
+                      </h3>
+                      <p className="text-gray-900">
+                        Alış Tarihi: {rentalState.selectedStartDate}
+                      </p>
+                      <p className="text-gray-900">
+                        Teslim Tarihi: {rentalState.selectedEndDate}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-span-4">
+                    <div className="">
+                      <h3 className="text-lg font-semibold text-delta-green-1200">
+                        Bulunduğu Şube
+                      </h3>
+                      <p className="text-gray-900">
+                        Şehir: {branchState.selectedBranch.city}
+                      </p>
+                      <p className="text-gray-900">
+                        Adı: {branchState.selectedBranch.name}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* Araç Bilgileri */}
+
+              {/* Kullanıcı Bilgileri */}
+              <div className="p-6 rounded-lg shadow-lg bg-delta-green-600 mt-3">
+                <div>
+                  <div className="flex flex-col justify-center">
+                    <h2 className="font-bold text-2xl mb-4 text-delta-green-1200">
+                      Kullanıcı Detayları
+                    </h2>
+                    <Formik
+                      initialValues={userInformation}
+                      onSubmit={(values) => {
+                        console.log("value", values);
+                        handleLogin(values);
+                      }}
+                      validationSchema={validationSchema}
+                      enableReinitialize={true}
+                    >
+                      <Form className="p-0 shadow-none min-w-[300px] ">
+                        <div className="grid grid-cols-2 gap-2">
+                          <div>
+                            <FormikInput
+                              name="name"
+                              label="Ad"
+                              type="text"
+                              placeholder="Adınızı giriniz..."
+                            />
+                          </div>
+                          <div>
+                            <FormikInput
+                              name="surname"
+                              label="Soyad"
+                              type="text"
+                              placeholder="Soyadınızı giriniz..."
+                            />
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2">
+                          <div>
+                            <FormikInput
+                              name="email"
+                              label="Email"
+                              type="email"
+                              placeholder="Mailinizi giriniz..."
+                            />
+                          </div>
+                          <div>
+                            <FormikInput
+                              name="gsm"
+                              label="Gsm"
+                              type="phone"
+                              placeholder="Numaranızı giriniz."
+                            />
+                          </div>
+                        </div>
+                      </Form>
+                    </Formik>
+                  </div>
+                </div>
+              </div>
+              {/* Kullanıcı Bilgileri */}
+
+              {/* Ödeme Bilgileri */}
+
+              <div>
+                <div className="p-6 rounded-lg shadow-lg bg-delta-green-600 mt-3">
+                  <h2 className="font-bold text-2xl mb-4 text-delta-green-1200">
+                    Ödeme Bilgileri
+                  </h2>
+                  <div className="flex justify-center">
+                    <form
+                      id="payment-form"
+                      onSubmit={handleSubmit}
+                      className="flex flex-col justify-center max-w-[70%] "
+                    >
+                      <PaymentElement
+                        id="payment-element"
+                        className="mb-6 w-full "
+                        options={paymentElementOptions}
+                      />
+                      <button
+                        type="submit"
+                        id="submit"
+                        onClick={clickButton}
+                        className="bg-blue-500 hover:bg-blue-700 w-full text-deltabg-delta-green-600 font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform "
+                        disabled={isLoading || !stripe || !elements}
+                      >
+                        {isLoading ? "İşleniyor..." : "Şimdi Öde"}
+                      </button>
+                      {message && (
+                        <div id="payment-message" className="text-red-500 mt-4">
+                          {message}
+                        </div>
+                      )}
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              {/* Ödeme Bilgileri */}
+            </div>
+          </div>
+        </div>
+
+        <div className="col-span-4  ">
+          <div className="min-h-[400px] ">
+            <div className=" p-6 min-h-full">
+              <div className="flex flex-col  p-6 rounded-lg shadow-lg bg-delta-green-600 min-h-[400px]">
+                <div>
+                  <h2 className="font-bold text-2xl mb-4 text-delta-green-1200 text-center ">
+                    Kiralama Özeti
+                  </h2>
+                </div>
+                <div className="min-h-[300px]">
+                  <div className="flex justify-between text-xl ">
+                    <div className="">{`Günlük fiyat`}</div>
+                    <div className="">
+                      {`${dayjs(rentalState.selectedEndDate).diff(
+                        dayjs(rentalState.selectedStartDate),
+                        "day"
+                      )} Gün x ${carsState.selectedCar.dailyPrice}₺`}
+                    </div>
+                    <div className="">
+                      {carsState.selectedCar.dailyPrice *
+                        dayjs(rentalState.selectedEndDate).diff(
+                          dayjs(rentalState.selectedStartDate),
+                          "day"
+                        )}
+                      ₺
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                <div className="flex justify-between mt-3 text-2xl">
+                  <div>ARA TOPLAM</div>
+                  <div>
+                    {carsState.selectedCar.dailyPrice *
+                      dayjs(rentalState.selectedEndDate).diff(
+                        dayjs(rentalState.selectedStartDate),
+                        "day"
+                      )}
+                    TL
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
-
 
 export default CheckoutForm;

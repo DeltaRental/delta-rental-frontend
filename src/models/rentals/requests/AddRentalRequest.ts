@@ -1,8 +1,8 @@
 export interface AddRentalRequest {
-	startDate: string;
-	endDate: string;
+	startDate?: string;
+	endDate?: string;
 	//startLocation: string;
-	carId: number;
-	customerId?: number;
+	carId?: number;
+	userId?: number;
 	employeeId?: number;
 }
