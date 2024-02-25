@@ -10,6 +10,7 @@ import { colorReducer } from './slices/colorSlice'
 import { userReducer } from './slices/userSlice'
 import { authReducer } from './slices/authSlice'
 import {adminPageReducer} from './slices/adminPageSlice'
+import { invoiceReducer } from './slices/invoiceSlice';
 export const store = configureStore({
   reducer: {
     car:carReducer,
@@ -21,8 +22,13 @@ export const store = configureStore({
     color: colorReducer,
     user: userReducer,
     auth: authReducer,
-    adminPage: adminPageReducer,
     dropdown: dropdownReducer,
+    adminPage: adminPageReducer,
+    invoice : invoiceReducer
+    
+    
+ 
+
   },
 })
 
