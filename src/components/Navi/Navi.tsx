@@ -137,39 +137,24 @@ const Navi = () => {
             <div className=" col-span-4 md:border-y border-y-delta-green-400">
               <ul className="justify-between text-base lg:text-lg  md:flex">
                 <li className="p-2 py-2 lg:p-2 border-b  md:border-0">
-                  <Link to="#">
-                    <p className="text-xl font-medium text-delta-green-400 dark:text-white">
-                      Company
+
+                  <Link to="/branch">
+                    <p className="text-xl font-medium text-white dark:text-white">
+                      Şubeler
+                    </p>
+                  </Link>
+                </li>
+                <li className="p-2 py-2 lg:p-2 border-b  md:border-0">
+                  <Link to="/contact">
+                    <p className="text-xl font-medium text-white dark:text-white">
+                      İletişim
+
                     </p>
                   </Link>
                 </li>
 
-                <div
-                  className="relative text-delta-green-400 hover:bg-delta-green-400 hover:text-delta-green-1000 transition ease-in duration-200"
-                  onMouseEnter={() => handleToggleDropdown("services")}
-                  onMouseLeave={() => handleToggleDropdown("services")}
-                >
-                  <li className="p-2 py-2 lg:p-2 border-b md:border-0 ">
-                    <Link to="#">
-                      <p className="text-xl font-medium  dark:text-white">
-                        Services
-                      </p>
-                    </Link>
-                    {dropdownStates.services && (
-                      <div className="md:absolute bg-delta-green-400 left-0 z-0 top-[41px] lg:top-[44px] md:w-[200px]">
-                        <div className="cursor-pointer p-4 text-delta-green-1000 hover:text-delta-green-400 hover:bg-delta-green-800 transition ease-in duration-100">
-                          Settings
-                        </div>
-                        <div className="cursor-pointer p-4 text-delta-green-1000 hover:text-delta-green-400 hover:bg-delta-green-800 transition ease-in duration-100">
-                          User
-                        </div>
-                        <div className="cursor-pointer p-4 text-delta-green-1000 hover:text-delta-green-400 hover:bg-delta-green-800 transition ease-in duration-100">
-                          Class
-                        </div>
-                      </div>
-                    )}
-                  </li>
-                </div>
+
+                
                 {localStorage.getItem("jsonwebtoken") == null ? (
                   <div className="relative">
                     <li className="p-2 py-2 lg:p-2 border-b md:border-0">

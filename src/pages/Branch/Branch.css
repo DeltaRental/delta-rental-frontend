@@ -1,0 +1,21 @@
+.sube-listesi {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .sube {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .sube h3 {
+    margin-top: 0;
+  }
+  
+  .sube p {
+    margin: 5px 0;
+  }
+  
+  

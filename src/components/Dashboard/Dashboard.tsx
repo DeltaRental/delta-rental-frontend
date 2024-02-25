@@ -17,6 +17,7 @@ import Rentals from "../../pages/User/Rentals";
 import Invoices from "../../pages/User/Invoices";
 import UserInfo from "../../pages/User/UserInfo";
 import PrivateRoutes from "../../core/utils/PrivateRoutes/PrivateRoutes";
+
 import { useDispatch, useSelector } from "react-redux";
 import { MyJwtPayload } from "../../models/JwtTokenPayload/MyJwtPayload";
 import { jwtDecode } from "jwt-decode";
@@ -25,6 +26,13 @@ import { AppDispatch } from "../../store/store";
 import { userInfo } from "../../store/slices/userSlice";
 import PaymentSuccess from "../../pages/PaymentPage/PaymentSuccess";
 import InvoiceByRental from "../InvoiceListByUser/InvoiceByRental";
+
+
+
+
+import Contact from "../../pages/Contact/Contact";
+import Branch from "../../pages/Branch/Branch";
+
 
 const Dashboard = () => {
   const userState = useSelector((state: any) => state.user);
@@ -54,6 +62,8 @@ const Dashboard = () => {
         {/* <Route path="/cars/:id" element={<CarDetail />}></Route> */}
         <Route path="/login" element={<Login />}></Route>
         <Route path="/about" element={<About />}></Route>
+        <Route path="/contact" element={<Contact />}></Route>
+        <Route path="/branch" element={<Branch />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/payment/success" element={<PaymentSuccess />} />
 

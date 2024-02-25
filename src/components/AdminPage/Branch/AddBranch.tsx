@@ -48,7 +48,7 @@ const AddBranch = (props: Props) => {
           <FormikInput name="managerName" label="Yönetici Adı" type="text" placeholder="Yönetici Adı"/>
           <FormikInput name="postCode" label="Posta Kodu" type="text" placeholder="Posta Kodu"/>
           <FormikInput name="city" label="Şehir" type="text" placeholder="Şehir"/>
-          <button type="submit" className="shadow-inner shadow-md shadow-gray-600 font-bold text-gray-800 bg-gray-300 text-sm border border-gray-400 rounded-xl w-[8rem] h-full">
+          <button type="submit" className="shadow-md shadow-gray-600 font-bold text-gray-800 bg-gray-300 text-sm border border-gray-400 rounded-xl w-[8rem] h-full">
             Şube Ekle
           </button>
         </Form>
