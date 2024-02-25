@@ -2,74 +2,79 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../../store/store";
 import { deleteModel, modelList } from "../../../store/slices/modelSlice";
+import { GetAllModelResponse } from "../../../models/carModels/response/getAllModelResponse";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import Modal from "../../Modal/Modal";
+import UpdateModel from "./UpdateModel";
 
 type Props = {};
 
 const Model = (props: Props) => {
   const dispatch = useDispatch<AppDispatch>();
-  const brandState = useSelector((state: any) => state.brand);
-  const modelState = useSelector((state: any) => state.model);
 
-  const [selectedBrand, setSelectedBrand] = useState<number | null>(null);
+  const modelState = useSelector((state: any) => state.model);
   const [selectedModel, setSelectedModel] = useState<number | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     dispatch(modelList());
-  }, []);
+  }, [dispatch]);
 
-  const handleModelSelectchange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const modelId = parseInt(e.target.value, 10);
-    setSelectedModel(modelId);
-  };
+  const handleUpdateModel = (modelId: number)=>{
+    setSelectedModel(modelId)
+    setModalOpen(true)
+  }
 
-  const handleBrandSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const brandId = parseInt(e.target.value, 10);
-    setSelectedBrand(brandId);
-  };
-
-  const filteredModels = selectedBrand
-    ? modelState.models.filter((model: any) => model.brandId === selectedBrand)
-    : modelState.models;
-
-  const handDeleteModel = async () => {
-    if (selectedModel !== null) {
-      await dispatch(deleteModel({ id: selectedModel }));
-      setSelectedModel(null);
+  const handleDeleteModel = async (modelId: number) => {
+    try {
+      await dispatch(deleteModel({ id: modelId }));
       dispatch(modelList());
+    } catch (error) {
+      console.error("Error deleting car:", error);
     }
   };
 
   return (
-    <div>
-      <div>
-        <label>Marka Seçiniz</label>
-        <select value={selectedBrand || ""} onChange={handleBrandSelectChange}>
-          <option value="" disabled>
-            Marka seç
-          </option>
-          {brandState.brands.map((brand: any) => (
-            <option key={brand.id} value={brand.id}>
-              {brand.name}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <label>Model Seçiniz</label>
-        <select value={selectedModel || ""} onChange={handleModelSelectchange}>
-          <option value="" disabled>
-            Model seç
-          </option>
-          {filteredModels.map((model: any) => (
-            <option key={model.id} value={model.id}>
-              {model.name}
-            </option>
-          ))}
-        </select>
-      </div>
-      <button onClick={handDeleteModel} disabled={selectedModel === null}>
-        Sil
-      </button>
+    <div className="shadow-xl shadow-gray-400 mt-6 ">
+      <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
+        <thead className=" text-sm uppercase bg-sidebar text-gray-200">
+          <tr>
+            <th scope="col" className="px-2 py-1">Marka</th>
+            <th scope="col" className="px-2 py-1">Model</th>
+            <th scope="col" className="px-2 py-1">Düzenle</th>
+            <th scope="col" className="px-2 py-1">Sil</th>
+          </tr>
+        </thead>
+        <tbody>
+          {console.log(modelState.models)}
+          {modelState.models.map((model: GetAllModelResponse)=>(
+          <tr key={model.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td className="px-2 py-1">
+                {model.brandName}</td>
+              <td className="px-2 py-1">{model.name}</td>
+              <td className="px-2">
+              <button className="px-2 rounded-md bg-sidebar text-gray-100" 
+              onClick={() => handleUpdateModel(model.id)}>
+              <FontAwesomeIcon icon={faPen} />
+              </button>
+              
+            </td>
+            <td className="px-2">
+              <button className="px-2 rounded-md bg-red-700 text-gray-100" 
+              onClick={() => handleDeleteModel(model.id)}>
+              <FontAwesomeIcon icon={faTrash} />
+              </button>
+            </td>
+          </tr>
+            ))}
+        </tbody>
+      </table>
+      {modalOpen && selectedModel !== null && (
+        <Modal onCloseModal={()=> {setModalOpen(false)}}>
+          <UpdateModel selectedModel={selectedModel} closeModal={()=> {setModalOpen(false)}}/>
+        </Modal>
+      )}
     </div>
   );
 };

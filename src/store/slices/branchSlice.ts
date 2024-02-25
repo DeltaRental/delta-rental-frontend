@@ -31,6 +31,21 @@ export const addBranch = createAsyncThunk(
         }
     }
 );
+
+export const deleteBranch = createAsyncThunk(
+    "branches/deleteBranch",
+    async ({id}: {id: number;}, thunkAPI) =>{
+        try {
+            await branchService.delete(id);
+            return{
+                deletedBranchId: id
+            };
+        } catch (error) {
+            console.error("Ofis silme hatası:", error);
+            throw error;
+        }
+    }
+);
 const branchSlice = createSlice({
 	name: "branch",
 	initialState: {
@@ -64,6 +79,18 @@ const branchSlice = createSlice({
             state.branches.push(action.payload);
         });
         builder.addCase(addBranch.rejected, state=>{
+            state.loading = "error";
+        });
+
+
+		builder.addCase(deleteBranch.pending, state =>{
+            state.loading = "loading";
+        });
+        builder.addCase(deleteBranch.fulfilled, (state, action) =>{
+            const deletedBranch = action.payload.deletedBranchId;
+            state.branches = state.branches.filter((branch: any) => branch.id !== deletedBranch);
+        });
+        builder.addCase(deleteBranch.rejected, state =>{
             state.loading = "error";
         });
 	},

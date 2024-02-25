@@ -18,7 +18,7 @@ import { fetchBranches } from "../../../store/slices/branchSlice";
 
 type Props = {
   onCloseModal: () => void;
-  selectedCar: number | null;
+  selectedCar: number ;
 };
 
 const UpdateCar = (props: Props) => {
@@ -63,8 +63,7 @@ const handleUpdateCar = async (values: {
       gearType: values.gearType,
       fuelType: values.fuelType,
       imageUrl: values.imageUrl}));
-    props.onCloseModal();
-  } 
+  } props.onCloseModal();
 };
 
 const initialValues = {
@@ -83,18 +82,17 @@ const initialValues = {
 
   
   return (
-    <div className="modal">
-      <div className="modal-content">
-        <span className="close" onClick={props.onCloseModal}>&times;</span>
-        <p>Araç Güncelle</p>
-        {props.selectedCar}
+   
+      <div className=" p-2 w-full overflow-y-auto h-full md:h-[40rem]">
+      
            <Formik
           initialValues={initialValues}
-          onSubmit={handleUpdateCar}
+          onSubmit={(values)=>
+            handleUpdateCar(values)}
           enableReinitialize={true}
           >
           
-            <Form className="bg-form">
+            <Form className="w-full">
             {props.selectedCar !== null && (
               <div>
                 <FormikInput
@@ -214,7 +212,6 @@ const initialValues = {
           </Formik> 
         
       </div>
-    </div>
   );
 };
 

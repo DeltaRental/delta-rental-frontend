@@ -4,37 +4,48 @@ import {  Form, Formik } from "formik";
 import { object, string } from "yup";
 import FormikInput from "../../FormikInput/FormikInput";
 import { addColor } from "../../../store/slices/colorSlice";
+import { useState } from "react";
 
 type Props = {};
 
 const AddColor = (props: Props) => {
   const dispatch = useDispatch<AppDispatch>();
-
+  const[selectedValue, setSelectedValue] = useState({});
   const initialValues = {
-    color: ''
+    name: ''
   }
   const validationSchema = object({
-    color: string().required("Renk alanı zorunludur").min(3)
+    name: string().required("Renk alanı zorunludur").min(3)
   })
+  const handleAddColor = (values: any)=>{
+    dispatch(addColor(values));
+    
+  }
+
   return (
-    <div className="bg-gray-800 border border-gray-800 rounded-lg top-0 h-[10rem] shadow-md shadow-blue-600 hover:shadow-lg hover:shadow-yellow-400">  
-      <Formik initialValues={initialValues}
-        onSubmit={(values) => {
-          if (values.color.trim() !== "") {
-            dispatch(addColor({ name: values.color }));
-            values.color = "";
-          }
-        }}
-        validationSchema={validationSchema}
-        >  
-        <Form className="p-3">  
-          <FormikInput name="color" label="Renk" type="text" placeholder="Renk ekle"/>
-          <button type="submit" className="shadow-inner shadow-md shadow-gray-600 font-bold text-gray-800 bg-gray-300 text-sm border border-gray-400 rounded-xl w-[8rem] h-full">
-            Renk Ekle
-          </button>
-        </Form>
-      </Formik>
-    </div>
+    <div className="shadow-2xl shadow-gray-600 rounded-lg mt-3">  
+    <Formik initialValues={initialValues}
+      onSubmit={(values, {resetForm}) => {
+        handleAddColor(values);
+        setSelectedValue(values);
+        resetForm();
+      }}
+      validationSchema={validationSchema}
+      >  
+      <Form className="w-full grid grid-cols-1 gap-4">  
+        <FormikInput 
+        name="name" 
+        label="Renk" 
+        type="text" 
+        placeholder="Renk ekle"/>
+        <button 
+        type="submit" 
+        className="bg-sidebar text-white w-[10rem] h-[2.75rem] rounded-lg font-bold mt-8 ml-6">
+          Renk Ekle
+        </button>
+      </Form>
+    </Formik>
+  </div>
   );
 };
 

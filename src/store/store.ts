@@ -22,7 +22,7 @@ export const store = configureStore({
     user: userReducer,
     auth: authReducer,
     adminPage: adminPageReducer,
-    dropdown: dropdownReducer
+    dropdown: dropdownReducer,
   },
 })
 

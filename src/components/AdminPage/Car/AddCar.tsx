@@ -46,9 +46,9 @@ const AddCar = (props: Props) => {
     year: number().required("Yıl alanı zorunludur").min(0),
     dailyPrice: number().required("Günlük fiyat alanı zorunludur").min(0),
     plate: string().required("Plaka alanı zorunludur").min(3),
-    modelId: number().required().min(0),
-    colorId: number().required().min(0),
-    branchId: number().required().min(0),
+    modelId: number().required("Model seçmek zorunlu").min(0),
+    colorId: number().required("Renk seçmek zorunlu").min(0),
+    branchId: number().required("Ofis seçmek zorunlu").min(0),
     carState: string().required("Araç durumu alanı zorunludur").min(3),
     gearType: string().required("Vites tipi alanı zorunludur").min(3),
     fuelType: string().required("Yakıt tipi alanı zorunludur").min(3),
@@ -57,28 +57,28 @@ const AddCar = (props: Props) => {
 
   const handleAddCar = (values: any) => {
     dispatch(addCar(values));
-    //values = "";
   };
 
   return (
-    <div className="mr-32 ">
+    <div className="shadow-2xl shadow-gray-600 rounded-lg mt-3">
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) => {
+        onSubmit={(values, {resetForm}) => {
           handleAddCar(values);
           setSelectedValue(values);
+          resetForm();
         }}
         validationSchema={validationSchema}
         enableReinitialize={true}
       >
-        <Form className="bg-form">
+        <Form className=" w-full grid grid-cols-2 gap-4">
           <div className="">
           <FormikInput
             name="kilometer"
             label="Kilometre"
             type="number"
             placeholder=""
-    
+            
           />
           </div>
           <div className="">
@@ -187,7 +187,7 @@ const AddCar = (props: Props) => {
             placeholder="Yüklenen görselin URL'ini ekle"
           />
           </div>
-          <button type="submit" className="bg-sidebar text-white w-[6rem] h-[2.75rem] rounded-lg font-bold">Araç Ekle</button>
+          <button type="submit" className="bg-sidebar text-white w-[10rem] h-[2.75rem] rounded-lg font-bold mt-8 ml-6">Araç Ekle</button>
         </Form>
       </Formik>
     </div>

@@ -4,22 +4,25 @@ import { AppDispatch } from "../../../store/store";
 import { deleteCar, fetchCars, updateCar } from "../../../store/slices/carListSlice";
 import { GetAllCarResponse } from "../../../models/cars/response/getAllCarResponse";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPen, faSearch, faTrash } from "@fortawesome/free-solid-svg-icons";
 import AddCar from "./AddCar";
 import UpdateCar from "./UpdateCar";
 import { GetAllModelResponse } from "../../../models/carModels/response/getAllModelResponse";
 import { GetAllColorResponse } from "../../../models/colors/response/GetAllColorResponse";
 import { GetAllBranchResponse } from "../../../models/branches/response/getAllBranchResponse";
+import Modal from "../../Modal/Modal";
 
-type Props = {};
+type Props = {
+  
+};
 
 const CarTable = (props: Props) => {
     const dispatch = useDispatch<AppDispatch>();
-
     
     const carState = useSelector((state: any)=> state.car);
     const [update, setUpdate] = useState(false);
     const [selectedCar, setSelectedCar] = useState<number | null>(null);
+    const [searchQuery, setSearchQuery] = useState("");
 
     const handleButtonClick = (carId: number) => {
       setUpdate(true); 
@@ -44,12 +47,30 @@ const CarTable = (props: Props) => {
       }
     };
   
-    
-    
+     const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+       setSearchQuery(e.target.value);
+      
+     };
+     
+     const filteredCars = carState.cars.filter((car: GetAllCarResponse) => {
+       const searchTerm = searchQuery.toLowerCase();
+       const brandMatch = car.model.brandName.toLowerCase().includes(searchTerm);
+       const branchMatch = car.branch.name?.toLowerCase().includes(searchTerm);
+       const carStateMatch = car.carState?.toLowerCase().includes(searchTerm);
+   return brandMatch || branchMatch || carStateMatch;
+     });
     
   return (
-    <div className="relative overflow-x-auto">
-      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <div className="relative w-full overflow-x-auto rounded-lg shadow-xl shadow-gray-400 mr-[3rem]">
+       <div className='h-10 mt-4 bg-white border border-gray-200 rounded-lg shadow-lg flex items-center'>
+            <FontAwesomeIcon icon={faSearch} className='pl-1 text-gray-400'/>
+            <input type="text" 
+            value={searchQuery}
+            onChange={handleSearchInputChange}
+            className='h-7 w- mt-1 border-none focus:outline-none focus:ring-1 focus:ring-white
+            rounded-lg content-center'/>
+        </div>
+      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
         <thead className="text-sm uppercase bg-sidebar text-gray-200">
           <tr>
             <th scope="col" className="px-2 py-1">Kilometre</th>
@@ -62,13 +83,14 @@ const CarTable = (props: Props) => {
             <th scope="col" className="px-2 py-1">Marka-Model</th>
             <th scope="col" className="px-2 py-1">Renk</th>
             <th scope="col" className="px-2 py-1">Şube</th>
+            
             <th scope="col" className="px-2 py-1"></th>
             <th scope="col" className="px-2 py-1"></th>
           </tr>
         </thead>
         <tbody>
           {console.log(carState.cars)}
-          {carState.cars.map((car: GetAllCarResponse)=>(
+          {filteredCars.map((car: any)=>(
           <tr key={car.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td className="px-2 py-1">
                 {car.kilometer}</td>
@@ -97,7 +119,11 @@ const CarTable = (props: Props) => {
             ))}
         </tbody>
       </table>
-      {update && selectedCar && <UpdateCar selectedCar={selectedCar} onCloseModal={handleCloseModal}/>}
+      {update && selectedCar !== null && (
+        <Modal onCloseModal={handleCloseModal}>
+        <UpdateCar selectedCar={selectedCar} onCloseModal={handleCloseModal}/>
+        </Modal>
+      )}
     </div>
   );
 };

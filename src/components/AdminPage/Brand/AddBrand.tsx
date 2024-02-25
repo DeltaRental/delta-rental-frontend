@@ -10,27 +10,38 @@ type Props = {};
 
 const AddBrand = (props: Props) => {
   const dispatch = useDispatch<AppDispatch>();
+  const[selectedValue, setSelectedValue] = useState({});
 
   const initialValues = {
-    brand: ''
+    name: ''
   }
   const validationSchema = object({
-    brand: string().required("Marka alanı zorunludur").min(3)
+    name: string().required("Marka alanı zorunludur").min(3)
   })
+
+  const handleAddBrand = (values: any)=>{
+    dispatch(addBrand(values));
+    
+  }
   return (
-    <div className="bg-gray-800 border border-gray-800 rounded-lg top-0 h-[10rem] shadow-md shadow-blue-600 hover:shadow-lg hover:shadow-yellow-400">  
+    <div className="shadow-2xl shadow-gray-600 rounded-lg mt-3">  
       <Formik initialValues={initialValues}
-        onSubmit={(values) => {
-          if (values.brand.trim() !== "") {
-            dispatch(addBrand({ name: values.brand }));
-            values.brand = "";
-          }
+        onSubmit={(values, {resetForm}) => {
+          handleAddBrand(values);
+          setSelectedValue(values);
+          resetForm();
         }}
         validationSchema={validationSchema}
         >  
-        <Form className="p-3">  
-          <FormikInput name="brand" label="Marka" type="text" placeholder="Marka ekle"/>
-          <button type="submit" className="shadow-inner shadow-md shadow-gray-600 font-bold text-gray-800 bg-gray-300 text-sm border border-gray-400 rounded-xl w-[8rem] h-full">
+        <Form className="w-full grid grid-cols-1 gap-4">  
+          <FormikInput 
+          name="name" 
+          label="Marka" 
+          type="text" 
+          placeholder="Marka ekle"/>
+          <button 
+          type="submit" 
+          className="bg-sidebar text-white w-[10rem] h-[2.75rem] rounded-lg font-bold mt-8 ml-6">
             Marka Ekle
           </button>
         </Form>

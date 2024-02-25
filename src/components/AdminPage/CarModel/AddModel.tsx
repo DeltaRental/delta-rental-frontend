@@ -1,79 +1,74 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../../store/store";
-import { object, string } from "yup";
+import { number, object, string } from "yup";
 import { Field, Form, Formik } from "formik";
 import { addModel } from "../../../store/slices/modelSlice";
 import { brandList } from "../../../store/slices/brandSlice";
+import FormikInput from "../../FormikInput/FormikInput";
 
 type Props = {};
 
 const AddModel = (props: Props) => {
   const dispatch = useDispatch<AppDispatch>();
+  const [selectedValue, setSelectedValue] = useState({});
   const brandState = useSelector((state: any) => state.brand);
 
-  const [modelName, setModelName] = useState("");
-  const [selectBrand, setSelectBrand] = useState<number | null>(null);
 
   useEffect(() => {
     dispatch(brandList());
   }, [dispatch]);
 
-  const handleAddModel = (values: { model: string }) => {
-    if (values.model.trim() !== "" && selectBrand !== null) {
-       dispatch(addModel({ brandId: selectBrand, name: values.model }));
-      setModelName("");
-      setSelectBrand(null);
-    }
+  const handleAddModel = (values: any) => {
+    dispatch(addModel(values));
   };
 
-
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectBrand(parseInt(e.target.value, 10));
-  };
 
   const initialValues = {
-    model: "",
+    name: "",
+    brandId: 0
   };
 
   const validationSchema = object({
-    model: string().required("Model alanı zorunludur").min(3),
+    name: string().required("Model alanı zorunludur").min(2),
+    brandId: number().required("Marka seçmek zorunlu").min(0)
   });
 
   return (
-    <div className="top-0 h-full bg-gray-800 border border-gray-800 rounded-lg shadow-md shadow-blue-600 hover:shadow-lg hover:shadow-yellow-400">
-      <h2 className="text-white font-bold ml-3 text-md">Marka Seç</h2>
+    <div className="shadow-2xl shadow-gray-600 rounded-lg mt-3">
+      
       <Formik
         initialValues={initialValues}
-        onSubmit={handleAddModel}
+        onSubmit={(values, {resetForm})=>{
+            handleAddModel(values);
+          setSelectedValue(values);
+          resetForm();
+        }}
         validationSchema={validationSchema}
       >
-        <Form className="p-3">
-          <select
-            className="rounded-lg mb-2"
-            value={selectBrand || ""}
-            onChange={handleSelectChange}
-          >
+        <Form className="w-full grid grid-cols-1 gap-3">
+        <div>
+          <label className="font-bold flex">Marka</label>
+          <Field name="brandId" as="select" className="mt-1 mb-1 text-gray-700 border border-gray-300 rounded-lg w-full">
             <option value="" disabled>
-              Marka Seç
+              Marka Seç{" "}
             </option>
             {brandState.brands.map((brand: any) => (
               <option key={brand.id} value={brand.id}>
-                {brand.name}
+                {`${brand.name}`}
               </option>
             ))}
-          </select>
-          <Field
+          </Field>
+          </div>
+          <FormikInput
+            name="name"
             label="Model"
             type="text"
             placeholder="Model ekle"
-            name="model"
-            value={modelName}
-            onChange={(e: any) => setModelName(e.target.value)}
           />
           <button
             type="submit"
-            className="shadow-inner shadow-md shadow-gray-600 font-bold text-gray-800 bg-gray-300 text-sm border border-gray-400 rounded-md w-[8rem] h-full"
+            className="bg-sidebar text-white w-[10rem] h-[2.75rem] rounded-lg font-bold mt-8 ml-6"
           >
             Model Ekle
           </button>

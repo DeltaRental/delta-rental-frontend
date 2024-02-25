@@ -36,6 +36,8 @@ module.exports = withMT({
         'delta-green-800': '#436850',
         'delta-green-600': '#ADBC9F',
         'delta-green-400': '#FBFADA',
+        'form': '#FBF6EE',
+        'admin': '#ebebeb'
       },
     },
   },

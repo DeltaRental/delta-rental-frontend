@@ -2,8 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleDropdown, selectOption } from "../../store/slices/dropdownSlice";
 import { setToggle, setActive } from "../../store/slices/adminPageSlice";
-import AddCar from "../../components/AdminPage/Crud/AddCar";
-import CarTable from "../../components/AdminPage/Crud/CarTable";
+import AddCar from "../../components/AdminPage/Car/AddCar";
+import CarTable from "../../components/AdminPage/Car/CarTable";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBookmark,
@@ -11,6 +11,7 @@ import {
   faCarSide,
   faChevronDown,
   faChevronLeft,
+  faHouse,
   faPalette,
   faPen,
   faRightFromBracket,
@@ -26,6 +27,10 @@ import AddColor from "../../components/AdminPage/Color/AddColor";
 import Branches from "../../components/AdminPage/Branch/Branches";
 import Rentals from "../../components/AdminPage/Rental/AdminRentals";
 import Model from "../../components/AdminPage/CarModel/Model";
+import AdminHomepage from "../../components/AdminPage/AdminHomePage/AdminHomepage";
+import AdminRentals from "../../components/AdminPage/Rental/AdminRentals";
+import AdminNav from "../../components/AdminPage/AdminNav/AdminNav";
+import BranchCards from "../../components/AdminPage/Branch/BranchCards";
 
 const AdminPage = () => {
   const dispatch = useDispatch();
@@ -38,7 +43,7 @@ const AdminPage = () => {
     dispatch(setToggle(!toggle));
   };
 
-  const handleSetActive = (text: string) => {
+  const handleSetActive = (text: string | any) => {
     dispatch(setActive(text));
   };
 
@@ -52,7 +57,7 @@ const AdminPage = () => {
 
   return (
     <div className="bg-white">
-      <div className="grid grid-rows-3 grid-flow-col gap-4 bg-fixed">
+      <div className="grid grid-rows-3 grid-flow-col gap-4 ">
         <div className="row-span-3 h-full fixed left-0 top-0 z-10 overflow-x-hidden">
           <div
             className={`${
@@ -87,7 +92,7 @@ const AdminPage = () => {
                 } @apply flex items-center mt-2 p-2 rounded-lg cursor-pointer hover:bg-white transition-all duration-300`}
               >
                 <div
-              className="absolute top-[2rem] flex right-0 justify-center items-center w-7 h-7 bg-white text-black rounded-full cursor-pointer"
+              className="absolute top-[2rem] flex right-2 justify-center items-center w-7 h-7 bg-white text-black rounded-full cursor-pointer"
               onClick={handleToggle}
             >
               <FontAwesomeIcon
@@ -97,6 +102,27 @@ const AdminPage = () => {
                 icon={faChevronLeft}
               />
             </div>
+            <div className="text-gray-400 mr-3 text-[1.2rem] ">
+                  <FontAwesomeIcon icon={faHouse} />{" "}
+                </div>
+                <div
+                  className={`${
+                    toggle ? "opacity-0 delay-200" : ""
+                  } text-gray-400 text-[1.2rem] whitespace-pre `}
+                >
+                  
+                    <button onClick={() => handleSetActive("Hoşgeldiniz")}>
+                      Hoşgeldiniz
+                    </button>
+                  
+                </div>
+                
+              </div> 
+              <div
+                className={`${
+                  toggle ? "last:w-[3.6rem]" : "last:w-[17rem]"
+                } @apply flex items-center mt-2 p-2 rounded-lg cursor-pointer hover:bg-white transition-all duration-300`}
+              >
                 <div className="text-gray-400 mr-3 text-[1.2rem]">
                   <FontAwesomeIcon icon={faCarSide} />{" "}
                 </div>
@@ -105,14 +131,13 @@ const AdminPage = () => {
                     toggle ? "opacity-0 delay-200" : ""
                   } text-gray-400 text-[1.2rem] whitespace-pre`}
                 >
-                  <nav>
+                  
                     <button onClick={() => handleSetActive("Araç Ekle")}>
                       Araç Ekle
                     </button>
-                  </nav>
+                  
                 </div>
               </div>
-
               <div
                 className={`${
                   toggle ? "last:w-[3.6rem]" : "last:w-[17rem]"
@@ -126,11 +151,11 @@ const AdminPage = () => {
                     toggle ? "opacity-0 delay-200" : ""
                   } text-gray-400 text-[1.2rem] whitespace-pre`}
                 >
-                  <nav>
+                  
                     <button onClick={() => handleSetActive("Araçlar")}>
                       Araçlar
                     </button>
-                  </nav>
+                  
                 </div>
               </div>
 
@@ -165,11 +190,11 @@ const AdminPage = () => {
                     toggle ? "opacity-0 delay-200" : ""
                   } text-gray-400 text-[1.2rem] whitespace-pre`}
                 >
-                  <nav>
+                  
                     <button onClick={() => handleSetActive("Renk Ekle")}>
                       Renk Ekle
                     </button>
-                  </nav>
+                  
                 </div>
               </div>
               <div
@@ -185,11 +210,11 @@ const AdminPage = () => {
                     toggle ? "opacity-0 delay-200" : ""
                   } text-gray-400 text-[1.2rem] whitespace-pre`}
                 >
-                  <nav>
+                  
                     <button onClick={() => handleSetActive("Ofisler")}>
                       Ofisler
                     </button>
-                  </nav>
+                  
                 </div>
               </div>
 
@@ -206,36 +231,27 @@ const AdminPage = () => {
                     toggle ? "opacity-0 delay-200" : ""
                   } text-gray-400 text-[1.2rem] whitespace-pre`}
                 >
-                  <nav>
+                  
                     <button onClick={() => handleSetActive("Kiralamalar")}>
                       Kiralamalar
                     </button>
-                  </nav>
+                  
                 </div>
               </div>
             </div>
 
-            <div
-              className={`${
-                toggle ? "last:w-[3.6rem]" : "last:w-[17rem]"
-              } @apply flex items-center mt-[13rem] p-2 rounded-lg cursor-pointer hover:bg-white transition-all duration-300 text-gray-400`}
-            >
-              <FontAwesomeIcon
-                icon={faRightFromBracket}
-                className="mr-1 text-[1.2rem]"
-              />
-              <div
-                className={`${
-                  toggle ? "opacity-0 delay-200" : ""
-                } text-gray-400 text-[1.2rem] whitespace-pre inset-x-0 bottom-0`}
-              >
-                LogOut
-              </div>
-            </div>
+            
             
           </div>
         </div>
-        <div className="row-span-2 ml-[23rem] mr-5 mt-2">
+        <div className={`${toggle ? "ml-[12rem] transition-all duration-500 " : "ml-[25rem]"} 
+        row-span-2  mr-5 mt-2 rounded-lg`}>
+         <div>
+          <AdminNav/>
+         </div>
+         <div>
+          <BranchCards/>
+         </div>
           {active === "Araç Ekle" && <AddCar />}
           {active === "Araçlar" && <CarTable />}
           {active === "Marka Ekle" && <AddBrand />}
@@ -244,8 +260,8 @@ const AdminPage = () => {
           {active === "Modeller" && <Model />}
           {active === "Renk Ekle" && <AddColor />}
           {active === "Ofisler" && <Branches />}
-          {active === "Kiralamalar" && <Rentals />}
-
+          {active === "Kiralamalar" && <AdminRentals />}
+          {active === "Hoşgeldiniz" && <AdminHomepage/>}
         </div>
       </div>
     </div>
