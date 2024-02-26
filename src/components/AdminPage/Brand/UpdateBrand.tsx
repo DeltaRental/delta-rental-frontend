@@ -6,7 +6,10 @@ import { brandList, updateBrand } from "../../../store/slices/brandSlice";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import FormikInput from "../../FormikInput/FormikInput";
 
-type Props = {};
+type Props = {
+  onCloseModal: () => void;
+  selectedBrand: number ;
+};
 
 const UpdateBrand = (props: Props) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -25,12 +28,10 @@ const UpdateBrand = (props: Props) => {
     setSelectedBrand(parseInt(e.target.value, 10));
   };
 
-  const handleUpdateBrand = (values: { brandName: string }) => {
-    if (values.brandName.trim() !== "" && selectedBrand !== null) {
-      dispatch(updateBrand({ id: selectedBrand, name: values.brandName }));
-      values.brandName = "";
-      dispatch(brandList());
-    }
+  const handleUpdateBrand = async (values: { brandName: string }) => {
+    if (props.selectedBrand !== null) {
+      dispatch(updateBrand({ id: props.selectedBrand, name: values.brandName }));
+    }props.onCloseModal();
   };
 
   const initialValues = {
@@ -44,8 +45,9 @@ const UpdateBrand = (props: Props) => {
       <h2 className="text-gray-400">Marka</h2>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) => {
+        onSubmit={(values, {resetForm}) => {
           handleUpdateBrand(values);
+          resetForm();
         }}
         validationSchema={validationSchema}
       >
@@ -61,9 +63,9 @@ const UpdateBrand = (props: Props) => {
               </option>
             ))}
           </select>
-          {selectedBrand !== null && (
+          {props.selectedBrand !== null && (
             <div>
-             <FormikInput label="Marka" type="text" name="brandName" placeholder="Marka ekle"/>
+             <FormikInput label="Marka" type="text" name="name" placeholder="Marka ekle"/>
               <button className="font-bold text-gray-800 bg-gray-300 text-sm border border-gray-400 rounded-md mr-2 w-[8rem] h-full" type="submit">Güncelle</button>
               <button className="font-bold text-gray-800 bg-gray-300 text-sm border border-gray-400 rounded-md w-[8rem] h-full" onClick={() => setSelectedBrand(null)}>Cancel</button>
             </div>

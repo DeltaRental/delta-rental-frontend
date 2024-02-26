@@ -61,17 +61,17 @@ const CarTable = (props: Props) => {
      });
     
   return (
-    <div className="relative w-full overflow-x-auto rounded-lg shadow-xl shadow-gray-400 mr-[3rem]">
-       <div className='h-10 mt-4 bg-white border border-gray-200 rounded-lg shadow-lg flex items-center'>
-            <FontAwesomeIcon icon={faSearch} className='pl-1 text-gray-400'/>
+    <div className="relative w-full overflow-x-auto rounded-lg mr-[3rem] shadow-xl ">
+       <div className='h-10 mt-4 bg-white border border-gray-200 rounded-lg flex items-center'>
+            <FontAwesomeIcon icon={faSearch} className='pl-1 text-delta-green-1000'/>
             <input type="text" 
             value={searchQuery}
             onChange={handleSearchInputChange}
             className='h-7 w- mt-1 border-none focus:outline-none focus:ring-1 focus:ring-white
             rounded-lg content-center'/>
         </div>
-      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
-        <thead className="text-sm uppercase bg-sidebar text-gray-200">
+      <table className="w-full text-sm text-left rtl:text-right text-delta-green-1000 dark:text-delta-green-400 ">
+        <thead className="text-sm uppercase bg-delta-green-1000 text-delta-green-400">
           <tr>
             <th scope="col" className="px-2 py-1">Kilometre</th>
             <th scope="col" className="px-2 py-1">Yıl</th>
@@ -104,13 +104,13 @@ const CarTable = (props: Props) => {
               <td className="px-2 py-1">{car.color.name} </td>
               <td className="px-2 py-1">{car.branch.name}</td>
               <td className="px-2 py-1">
-              <button className="px-2 py-1 bg-sidebar text-gray-100 rounded-lg" 
+              <button className="px-2 py-1 bg-delta-green-1000 text-delta-green-400 rounded-lg" 
               onClick={() => handleButtonClick(car.id)}>
               <FontAwesomeIcon icon={faPen}/>
               </button>
             </td>
             <td className="">
-              <button className="px-2 rounded-md bg-red-700 text-gray-100" 
+              <button className="px-2 rounded-md bg-red-700 text-delta-green-400" 
               onClick={() => handleDeleteCar(car.id)}>
               <FontAwesomeIcon icon={faTrash} />
               </button>

@@ -27,7 +27,7 @@ const Branches = (props: Props) => {
   return (
     <div className="relative overflow-x-auto rounded-lg shadow-xl shadow-gray-400 mt-6">
       <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400 ">
-        <thead className="text-sm uppercase bg-sidebar text-gray-200">
+        <thead className="text-sm uppercase bg-delta-green-1000 text-delta-green-400">
           <tr>
             <th scope="col" className="px-2 py-1">Ofis</th>
             <th scope="col" className="px-2 py-1">Adres</th>
@@ -50,7 +50,7 @@ const Branches = (props: Props) => {
               <td className="px-2 py-1">{branch.managerName} </td>
               <td className="px-2 py-1">{branch.city}</td>
             <td className="">
-              <button className="px-2 rounded-md bg-red-700 text-gray-100" 
+              <button className="px-2 rounded-md bg-red-700 text-delta-green-400" 
               onClick={() => handleDeleteBranch(branch.id)}>
               <FontAwesomeIcon icon={faTrash} />
               </button>

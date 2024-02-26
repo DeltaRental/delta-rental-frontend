@@ -60,7 +60,7 @@ const AddCar = (props: Props) => {
   };
 
   return (
-    <div className="shadow-2xl shadow-gray-600 rounded-lg mt-3">
+    <div className="shadow-2xl shadow-delta-green-800 bg-delta-green-600 rounded-lg mt-9">
       <Formik
         initialValues={initialValues}
         onSubmit={(values, {resetForm}) => {
@@ -187,7 +187,7 @@ const AddCar = (props: Props) => {
             placeholder="Yüklenen görselin URL'ini ekle"
           />
           </div>
-          <button type="submit" className="bg-sidebar text-white w-[10rem] h-[2.75rem] rounded-lg font-bold mt-8 ml-6">Araç Ekle</button>
+          <button type="submit" className="bg-delta-green-1000 text-delta-green-400 w-[10rem] h-[2.75rem] rounded-lg font-bold mt-8 ml-6">Araç Ekle</button>
         </Form>
       </Formik>
     </div>

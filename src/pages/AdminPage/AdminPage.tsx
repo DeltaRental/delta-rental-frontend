@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleDropdown, selectOption } from "../../store/slices/dropdownSlice";
 import { setToggle, setActive } from "../../store/slices/adminPageSlice";
@@ -35,10 +35,19 @@ import BranchCards from "../../components/AdminPage/Branch/BranchCards";
 const AdminPage = () => {
   const dispatch = useDispatch();
   const { toggle, active } = useSelector((state: any) => state.adminPage);
+  const [dropdown1IsOpen, setDropdown1IsOpen] = useState(false);
+  const [dropdown2IsOpen, setDropdown2IsOpen] = useState(false);
   const { isOpen, selectedOption } = useSelector(
     (state: any) => state.dropdown
   );
 
+  const closeOtherDropdowns = (dropdownNumber: number) => {
+    if (dropdownNumber === 1) {
+      setDropdown2IsOpen(false);
+    } else if (dropdownNumber === 2) {
+      setDropdown1IsOpen(false);
+    }
+  };
   const handleToggle = () => {
     dispatch(setToggle(!toggle));
   };
@@ -56,13 +65,13 @@ const AdminPage = () => {
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-delta-green-400">
       <div className="grid grid-rows-3 grid-flow-col gap-4 ">
         <div className="row-span-3 h-full fixed left-0 top-0 z-10 overflow-x-hidden">
           <div
             className={`${
               toggle ? "w-[5.8rem] h-full" : ""
-            } bg-sidebar text-gray-300 w-[20rem] h-full p-4 transition-all duration-500 border-solid border-glass relative  `}
+            } bg-delta-green-1000 text-delta-green-400 w-[20rem] h-full p-4 transition-all duration-500 border-solid border-glass relative  `}
           >
             <div
               className={`flex gap-4 items-center ${
@@ -74,7 +83,7 @@ const AdminPage = () => {
               <div className="min-w[3rem] h-[3rem] ">
                 <img
                   className="h-full rounded-full object-cover"
-                  src="https://c0.klipartz.com/pngpicture/831/88/gratis-png-perfil-de-usuario-iconos-de-la-computadora-interfaz-de-usuario-mistica-thumbnail.png"
+                  src="http://res.cloudinary.com/dxav6uhnu/image/upload/v1708778795/ui4uawgetua3ymvr2adg.jpg"
                   alt=""
                 />
               </div>
@@ -89,10 +98,11 @@ const AdminPage = () => {
               <div
                 className={`${
                   toggle ? "last:w-[3.6rem]" : "last:w-[17rem]"
-                } @apply flex items-center mt-2 p-2 rounded-lg cursor-pointer hover:bg-white transition-all duration-300`}
-              >
+                } @apply flex items-center mt-2 p-2 rounded-lg cursor-pointer hover:bg-white group transition-all duration-300`}
+                >
+                </div>
                 <div
-              className="absolute top-[2rem] flex right-2 justify-center items-center w-7 h-7 bg-white text-black rounded-full cursor-pointer"
+              className="absolute top-[2rem] flex right-2 justify-center items-center w-7 h-7 bg-white text-delta-green-1000 rounded-full cursor-pointer"
               onClick={handleToggle}
             >
               <FontAwesomeIcon
@@ -101,35 +111,20 @@ const AdminPage = () => {
                 } text-2xl transition-all duration-300`}
                 icon={faChevronLeft}
               />
-            </div>
-            <div className="text-gray-400 mr-3 text-[1.2rem] ">
-                  <FontAwesomeIcon icon={faHouse} />{" "}
-                </div>
-                <div
-                  className={`${
-                    toggle ? "opacity-0 delay-200" : ""
-                  } text-gray-400 text-[1.2rem] whitespace-pre `}
-                >
-                  
-                    <button onClick={() => handleSetActive("Hoşgeldiniz")}>
-                      Hoşgeldiniz
-                    </button>
-                  
-                </div>
-                
               </div> 
+                
               <div
                 className={`${
                   toggle ? "last:w-[3.6rem]" : "last:w-[17rem]"
-                } @apply flex items-center mt-2 p-2 rounded-lg cursor-pointer hover:bg-white transition-all duration-300`}
+                } @apply flex items-center mt-2 p-2 rounded-lg cursor-pointer hover:bg-white group hover:text-delta-green-1000 transition-all duration-300`}
               >
-                <div className="text-gray-400 mr-3 text-[1.2rem]">
+                <div className="text-delta-green-400 group-hover:text-delta-green-1000 mr-3 text-[1.2rem]">
                   <FontAwesomeIcon icon={faCarSide} />{" "}
                 </div>
                 <div
                   className={`${
                     toggle ? "opacity-0 delay-200" : ""
-                  } text-gray-400 text-[1.2rem] whitespace-pre`}
+                  } text-delta-green-400 group-hover:text-delta-green-1000 text-[1.2rem] whitespace-pre`}
                 >
                   
                     <button onClick={() => handleSetActive("Araç Ekle")}>
@@ -141,15 +136,15 @@ const AdminPage = () => {
               <div
                 className={`${
                   toggle ? "last:w-[3.6rem]" : "last:w-[17rem]"
-                } @apply flex items-center mt-2 p-2 rounded-lg cursor-pointer hover:bg-white transition-all duration-300`}
+                } @apply flex items-center mt-2 p-2 rounded-lg cursor-pointer hover:bg-white group transition-all duration-300`}
               >
-                <div className="text-gray-400 mr-3 text-[1.2rem]">
+                <div className="text-delta-green-400 group-hover:text-delta-green-1000 mr-3 text-[1.2rem]">
                   <FontAwesomeIcon icon={faPen} />{" "}
                 </div>
                 <div
                   className={`${
                     toggle ? "opacity-0 delay-200" : ""
-                  } text-gray-400 text-[1.2rem] whitespace-pre`}
+                  } text-delta-green-400 group-hover:text-delta-green-1000 text-[1.2rem] whitespace-pre`}
                 >
                   
                     <button onClick={() => handleSetActive("Araçlar")}>
@@ -166,6 +161,9 @@ const AdminPage = () => {
                 icon={<FontAwesomeIcon icon={faChevronDown} />}
                 icon2={<FontAwesomeIcon icon={faTag} />}
                 toggle={toggle}
+                isOpen={dropdown1IsOpen}
+        setIsOpen={setDropdown1IsOpen}
+        closeOtherDropdowns={() => closeOtherDropdowns(1)}
               />
 
               <Dropdown
@@ -175,20 +173,23 @@ const AdminPage = () => {
                 icon={<FontAwesomeIcon icon={faChevronDown} />}
                 icon2={<FontAwesomeIcon icon={faTags} />}
                 toggle={toggle}
+                isOpen={dropdown2IsOpen}
+        setIsOpen={setDropdown2IsOpen}
+        closeOtherDropdowns={() => closeOtherDropdowns(2)}
               />
 
               <div
                 className={`${
                   toggle ? "last:w-[3.6rem]" : "last:w-[17rem]"
-                } @apply flex items-center mt-2 p-2 rounded-lg cursor-pointer hover:bg-white transition-all duration-300`}
+                } @apply flex items-center mt-2 p-2 rounded-lg cursor-pointer hover:bg-white group transition-all duration-300`}
               >
-                <div className="text-gray-400 mr-3 text-[1.2rem]">
+                <div className="text-delta-green-400 group-hover:text-delta-green-1000 mr-3 text-[1.2rem]">
                   <FontAwesomeIcon icon={faPalette} />{" "}
                 </div>
                 <div
                   className={`${
                     toggle ? "opacity-0 delay-200" : ""
-                  } text-gray-400 text-[1.2rem] whitespace-pre`}
+                  } text-delta-green-400 group-hover:text-delta-green-1000 text-[1.2rem] whitespace-pre`}
                 >
                   
                     <button onClick={() => handleSetActive("Renk Ekle")}>
@@ -200,15 +201,15 @@ const AdminPage = () => {
               <div
                 className={`${
                   toggle ? "last:w-[3.6rem]" : "last:w-[17rem]"
-                } @apply flex items-center mt-2 p-2 rounded-lg cursor-pointer hover:bg-white transition-all duration-300`}
+                } @apply flex items-center mt-2 p-2 rounded-lg cursor-pointer hover:bg-white group transition-all duration-300`}
               >
-                <div className="text-gray-400 mr-3 text-[1.2rem]">
+                <div className="text-delta-green-400 group-hover:text-delta-green-1000 mr-3 text-[1.2rem]">
                   <FontAwesomeIcon icon={faBuilding} />{" "}
                 </div>
                 <div
                   className={`${
                     toggle ? "opacity-0 delay-200" : ""
-                  } text-gray-400 text-[1.2rem] whitespace-pre`}
+                  } text-delta-green-400 group-hover:text-delta-green-1000 text-[1.2rem] whitespace-pre`}
                 >
                   
                     <button onClick={() => handleSetActive("Ofisler")}>
@@ -221,15 +222,15 @@ const AdminPage = () => {
               <div
                 className={`${
                   toggle ? "last:w-[3.6rem]" : "last:w-[17rem]"
-                } @apply flex items-center mt-2 p-2 rounded-lg cursor-pointer hover:bg-white transition-all duration-300`}
+                } @apply flex items-center mt-2 p-2 rounded-lg cursor-pointer hover:bg-white group transition-all duration-300`}
               >
-                <div className="text-gray-400 mr-3 text-[1.2rem]">
+                <div className="text-delta-green-400 group-hover:text-delta-green-1000 mr-3 text-[1.2rem]">
                   <FontAwesomeIcon icon={faBookmark} />{" "}
                 </div>
                 <div
                   className={`${
                     toggle ? "opacity-0 delay-200" : ""
-                  } text-gray-400 text-[1.2rem] whitespace-pre`}
+                  } text-delta-green-400 group-hover:text-delta-green-1000 text-[1.2rem] whitespace-pre`}
                 >
                   
                     <button onClick={() => handleSetActive("Kiralamalar")}>
@@ -245,7 +246,7 @@ const AdminPage = () => {
           </div>
         </div>
         <div className={`${toggle ? "ml-[12rem] transition-all duration-500 " : "ml-[25rem]"} 
-        row-span-2  mr-5 mt-2 rounded-lg`}>
+        row-span-2  mr-5 mt-0 rounded-lg`}>
          <div>
           <AdminNav/>
          </div>
@@ -261,7 +262,6 @@ const AdminPage = () => {
           {active === "Renk Ekle" && <AddColor />}
           {active === "Ofisler" && <Branches />}
           {active === "Kiralamalar" && <AdminRentals />}
-          {active === "Hoşgeldiniz" && <AdminHomepage/>}
         </div>
       </div>
     </div>

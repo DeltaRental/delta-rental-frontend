@@ -1,42 +1,62 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBranches } from '../../../store/slices/branchSlice';
+import { AppDispatch } from '../../../store/store';
+import { fetchCars } from '../../../store/slices/carListSlice';
+import { brandList } from '../../../store/slices/brandSlice';
+import CircularProgressBar from '../../CircleProgressBar';
 
-type Props = {}
+const AdminStatisticsCard = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const branchState = useSelector((state: any) => state.branch);
+  const brandState = useSelector((state: any) => state.brand);
+  const carState = useSelector((state: any) => state.car);
+  
+  useEffect(() => {
+    dispatch(fetchBranches());
+    dispatch(fetchCars());
+    dispatch(brandList());
+  }, [dispatch]);
 
-const BranchCards = (props: Props) => {
   return (
-    <div className='border border-gray-200 bg-gray-100  
-    shadow-lg rounded-lg  h-full flex justify-between mt-[4rem]'>
-        
-            <div className='border border-gray-200 bg-white
-              shadow-lg rounded-lg flex items-stretch w-[20rem] h-[15rem]'>
-              <div className='rounded-lg shadow-xl shadow-gray-400 self-start ml-9 mt-2'>
-              <img className='rounded-lg' src="http://res.cloudinary.com/dxav6uhnu/image/upload/v1708845036/pswzjlxoj90guqswls8u.avif" alt="" />
-              </div>
-              <div className='self-end border border-gray-200 '>
-                <p>Şube</p>
-              </div>
-            </div>
-            <div className='border border-gray-200 bg-white
-              shadow-lg rounded-lg flex justify-items-stretch items-stretch w-[20rem] h-[15rem]'>
-            <div className='rounded-lg shadow-xl shadow-gray-400 self-start ml-9 mt-2'>
-              <img className='rounded-lg' src="http://res.cloudinary.com/dxav6uhnu/image/upload/v1708845036/pswzjlxoj90guqswls8u.avif" alt="" />
-              </div>
-              <div className='self-center justify-self-center border border-gray-200 mt-9'>
-                <p>Şube2</p>
-              </div>
-            </div>
-            <div className='border border-gray-200 bg-white
-              shadow-lg rounded-lg flex items-stretch w-[20rem] h-[15rem]'>
-            <div className='rounded-lg shadow-xl shadow-gray-400 self-start ml-9 mt-2'>
-              <img className='rounded-lg' src="http://res.cloudinary.com/dxav6uhnu/image/upload/v1708845036/pswzjlxoj90guqswls8u.avif" alt="" />
-              </div>
-              <div className='self-end border border-gray-200 '>
-                <p>Şube3</p>
-              </div>
-            </div>
-        
+    <div className="rounded-lg p-6 mt-6 mb-6">
+      <h2 className="text-lg text-delta-green-1000 font-semibold mb-4 text-center">Admin İstatistikleri</h2>
+      <div className="grid grid-cols-3 gap-4">
+        <div className="bg-gray-100  shadow-lg shadow-delta-green-600 rounded-lg p-4 flex items-center justify-between">
+          <div>
+            <h3 className="text-delta-green-800 font-semibold ml-4">Şubeler</h3>
+            <p className="text-3xl text-delta-green-800 ml-4">{branchState.branches.length}</p>
+          </div>
+          {/* Dairesel çubuk */}
+          <div className="relative w-20 h-20 ">
+            <CircularProgressBar progress={50} strokeWidth={5} circleSize={50} circleColor="#ADBC9F" progressColor="#436850" />
+          </div>
+        </div>
+        {/* İkinci istatistik */}
+        <div className="bg-gray-100  shadow-lg shadow-delta-green-600 rounded-lg p-4 flex items-center justify-between">
+          <div>
+            <h3 className="text-delta-green-800 font-semibold ml-4">Markalar</h3>
+            <p className="text-3xl text-delta-green-800 ml-4">{brandState.brands.length}</p>
+          </div>
+          {/* Dairesel çubuk */}
+          <div className="relative w-20 h-20">
+            <CircularProgressBar progress={75} strokeWidth={5} circleSize={50} circleColor="#ADBC9F" progressColor="#436850" />
+          </div>
+        </div>
+        {/*Üçüncü istatistik */}
+        <div className="bg-gray-100 rounded-lg  shadow-lg shadow-delta-green-600 p-4 flex items-center justify-between">
+          <div>
+            <h3 className="text-delta-green-800 font-semibold ml-4">Araçlar</h3>
+            <p className="text-3xl text-delta-green-800 ml-4">{carState.cars.length}</p>
+          </div>
+          {/* Dairesel çubuk */}
+          <div className="relative w-20 h-20">
+            <CircularProgressBar progress={25} strokeWidth={5} circleSize={50} circleColor="#ADBC9F" progressColor="#436850" />
+          </div>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default BranchCards
+export default AdminStatisticsCard;

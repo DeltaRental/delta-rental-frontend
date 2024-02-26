@@ -24,7 +24,7 @@ const AddBrand = (props: Props) => {
     
   }
   return (
-    <div className="shadow-2xl shadow-gray-600 rounded-lg mt-3">  
+    <div className="shadow-2xl shadow-gray-600 rounded-lg mt-3 bg-delta-green-600">  
       <Formik initialValues={initialValues}
         onSubmit={(values, {resetForm}) => {
           handleAddBrand(values);
@@ -41,7 +41,7 @@ const AddBrand = (props: Props) => {
           placeholder="Marka ekle"/>
           <button 
           type="submit" 
-          className="bg-sidebar text-white w-[10rem] h-[2.75rem] rounded-lg font-bold mt-8 ml-6">
+          className="bg-delta-green-1000 text-delta-green-400 w-[10rem] h-[2.75rem] rounded-lg font-bold mt-8 ml-6">
             Marka Ekle
           </button>
         </Form>
