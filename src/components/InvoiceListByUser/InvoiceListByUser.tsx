@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "../../store/store";
+import rentalService from "../../services/rentalService";
 
 type Props = {
   invoice: any;
   
 };
 
+
 const InvoiceListByUser = (props: Props) => {
+  const userState = useSelector((state: any) => state.user);
+  const dispatch = useDispatch<AppDispatch>();
+  const [rentals, setRentals] = useState([]);
+
+  useEffect(() => {
+    if (userState.users.id) {
+      rentalService.getRentalByUser(userState.users.id).then(
+        (response) => {
+          console.log(response);
+          setRentals(response.data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
+  }, [userState.users.id]);
   return (
     <section className="">
       <div className="max-w-5xl mx-auto py-16 bg-white">

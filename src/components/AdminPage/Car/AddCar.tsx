@@ -103,7 +103,7 @@ const AddCar = (props: Props) => {
           <div>
           <label className="font-bold flex">Model</label>
           <Field name="modelId" as="select" className="mt-1 text-gray-700 border border-gray-300 rounded-lg w-full">
-            <option value="" disabled>
+            <option value="" >
               Model Seç{" "}
             </option>
             {modelState.models.map((model: any) => (
@@ -116,7 +116,7 @@ const AddCar = (props: Props) => {
           <div>
           <label className="font-bold flex">Renk</label>
           <Field name="colorId" as="select" className="mt-1 text-gray-700 border border-gray-300 rounded-lg w-full">
-            <option value="" disabled>
+            <option value="" >
               Renk Seç{" "}
             </option>
             {colorState.colors.map((color: any) => (
@@ -129,7 +129,7 @@ const AddCar = (props: Props) => {
           <div>
           <label className="font-bold flex">Şube</label>
           <Field name="branchId" as="select" className="mt-1 text-gray-700 border border-gray-300 rounded-lg w-full">
-            <option value="" disabled>
+            <option value="" >
               Şube Seç{" "}
             </option>
             {branchState.branches.map((branch: any) => (

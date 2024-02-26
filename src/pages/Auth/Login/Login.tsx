@@ -44,7 +44,9 @@ const Login = (props: Props) => {
       (response) => {
         console.log(response);
         if (!response) {
-          throw new Error("Sunucudan yanıt alınamadı.");
+          alert('Kullanıcı adı veya Şifre Yanlış. Lütfen tekrar deneyiniz.');
+          //localStorage.removeItem('jsonwebtoken'); // Anahtarı sil
+          //navigate('/login'); // useNavigate ile giriş sayfasına yönlendir
         } else {
           const token = response.data.token;
           localStorage.setItem("jsonwebtoken", token);

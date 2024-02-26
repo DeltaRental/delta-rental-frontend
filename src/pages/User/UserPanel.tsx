@@ -46,7 +46,7 @@ function UserPanel({}: Props) {
               Siparişlerim
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link
               to={"/profile/invoices"}
               onClick={() => setActiveTab("invoices")}
@@ -58,12 +58,12 @@ function UserPanel({}: Props) {
             >
               Faturalarım
             </Link>
-          </li>
+          </li> */}
         </ul>
         <div className="col-span-10 p-6  text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800 rounded-lg border bg-delta-green-400">
           {activeTab === "profile" && <UserInfo />}
           {activeTab === "rentals" && <Rentals />}
-          {activeTab === "invoices" && <Invoices />}
+          {/* {activeTab === "invoices" && <Invoices />} */}
         </div>
       </div>
     </div>

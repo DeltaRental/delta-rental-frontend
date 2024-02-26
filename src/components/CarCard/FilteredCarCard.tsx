@@ -51,7 +51,7 @@ function FilteredCarCard({ car }: { car: GetAllCarResponse }) {
         <div className="p-4">
           <img
             className="w-full h-48 object-cover card-front-img"
-            src="https://www.avis.com.tr/Avis/media/Avis/Cars/n-citroen-c-elysee.png"
+            src={car.imageUrl}
             alt={`${car.model.brandName} ${car.model.name}`}
           />
           <FontAwesomeIcon

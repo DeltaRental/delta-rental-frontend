@@ -14,9 +14,12 @@ import {
   faBuilding,
 } from "@fortawesome/free-solid-svg-icons";
 import "./CarList.css";
+import { useNavigate } from "react-router-dom";
 
 const CarCard = ({ car }: { car: GetAllCarResponse }) => {
   const [isFlipped, setIsFlipped] = useState(false); // Define a state for flipping
+
+  const navigate = useNavigate()
 
   const handleAddToCart = (car: GetAllCarResponse) => {
     toast("Araç sepete eklendi.", {
@@ -26,6 +29,7 @@ const CarCard = ({ car }: { car: GetAllCarResponse }) => {
       className: "bg-success text-light",
       icon: "👏",
     });
+
   };
 
   const handleFlip = () => {
@@ -37,8 +41,8 @@ const CarCard = ({ car }: { car: GetAllCarResponse }) => {
       <div className="card-front relative bg-white shadow-lg rounded-lg overflow-hidden max-h-[400px]">
         <div className="p-4">
           <img
-            className="w-full h-48 object-cover card-front-img"
-            src="https://www.avis.com.tr/Avis/media/Avis/Cars/n-citroen-c-elysee.png"
+            className="w-full h-48 object-cover card-front-img bg-transparent"
+            src={car.imageUrl}
             alt={`${car.model.brandName} ${car.model.name}`}
           />
           <FontAwesomeIcon
@@ -78,10 +82,10 @@ const CarCard = ({ car }: { car: GetAllCarResponse }) => {
                 <p className="text-xs text-gray-600">Günlük Kiralama Ücreti</p>
               </div>
               <button
-                onClick={() => handleAddToCart(car)}
+                onClick={() => navigate("/")}
                 className="bg-delta-green-1000 hover:bg-delta-green-600 text-white hover:text-black px-4 py-2 rounded-lg"
               >
-                Hemen Kirala
+                Rezerve Et
               </button>
             </div>
           </div>
@@ -141,10 +145,10 @@ const CarCard = ({ car }: { car: GetAllCarResponse }) => {
               <p className="text-xs text-gray-600">Günlük Kiralama Ücreti</p>
             </div>
             <button
-              onClick={() => handleAddToCart(car)}
+              onClick={() =>navigate("/")}
               className="bg-delta-green-1000 hover:bg-delta-green-600 text-white hover:text-black px-4 py-2 rounded-lg"
             >
-              Hemen Kirala
+              Rezerve Et
             </button>
           </div>
         </div>

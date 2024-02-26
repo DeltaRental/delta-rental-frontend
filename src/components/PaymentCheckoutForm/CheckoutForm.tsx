@@ -195,7 +195,7 @@ export const CheckoutForm = () => {
                 <div className="flex flex-col items-center justify-center mb-5">
                   <img
                     className="w-[610px] h-[243px] object-cover rounded-lg mb-4 "
-                    src="https://www.avis.com.tr/Avis/media/Avis/Cars/n-citroen-c-elysee.png"
+                    src={carsState.selectedCar.imageUrl}
                     alt="Araç Resmi"
                   />
                   <div className="text-2xl text-delta-green-1200 font-medium">{`${carsState.selectedCar.model.brandName} ${carsState.selectedCar.model.name}`}</div>

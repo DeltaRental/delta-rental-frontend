@@ -88,7 +88,7 @@ function RentalListByUser(props: Props) {
           <div className="lg:col-span-3 flex justify-center items-center">
             <img
               className="object-contain w-80 h-40"
-              src="https://www.avis.com.tr/Avis/media/Avis/Cars/n-citroen-c-elysee.png"
+              src={props.rental.car.imageUrl}
               alt="Araç Resmi"
             />
           </div>

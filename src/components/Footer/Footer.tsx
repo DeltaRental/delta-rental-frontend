@@ -16,8 +16,8 @@ const Footer = (props: Props) => {
     <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
-              <a href="https://flowbite.com/" className="flex items-center">
-                  <img src="https://avatars.githubusercontent.com/u/156099996?s=200&v=4" className="h-8 me-3" alt="FlowBite Logo" />
+              <a href="/" className="flex items-center">
+                  <img src="http://res.cloudinary.com/dxav6uhnu/image/upload/v1708778795/ui4uawgetua3ymvr2adg.jpg" className="h-8 me-3" alt="FlowBite Logo" />
                   <span className="self-center text-2xl font-semibold whitespace-nowrap text-delta-green-400 ">Delta Rental</span>
               </a>
           </div>
