@@ -65,10 +65,9 @@ const Navi = () => {
   };
 
   //AdminPage' de navbarı etkisizleştirir.
-  if (location.pathname === "/admin"){
+  if (location.pathname === "/admin") {
     return null;
-  }
-  else if (location.pathname === "/payment/success") {
+  } else if (location.pathname === "/payment/success") {
     return null;
   }
 
@@ -137,24 +136,20 @@ const Navi = () => {
             <div className=" col-span-4 md:border-y border-y-delta-green-400">
               <ul className="justify-between text-base lg:text-lg  md:flex">
                 <li className="p-2 py-2 lg:p-2 border-b  md:border-0">
-
                   <Link to="/branch">
-                    <p className="text-xl font-medium text-white dark:text-white">
+                    <p className="text-xl font-medium text-delta-green-400 dark:text-white">
                       Şubeler
                     </p>
                   </Link>
                 </li>
                 <li className="p-2 py-2 lg:p-2 border-b  md:border-0">
                   <Link to="/contact">
-                    <p className="text-xl font-medium text-white dark:text-white">
+                    <p className="text-xl font-medium text-delta-green-400 dark:text-white">
                       İletişim
-
                     </p>
                   </Link>
                 </li>
 
-
-                
                 {localStorage.getItem("jsonwebtoken") == null ? (
                   <div className="relative">
                     <li className="p-2 py-2 lg:p-2 border-b md:border-0">

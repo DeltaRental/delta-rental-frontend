@@ -1,14 +1,12 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch } from '../../store/store';
-import { fetchCars } from '../../store/slices/carListSlice';
-import { fetchBranches } from '../../store/slices/branchSlice';
-import { GetAllBranchResponse } from '../../models/branches/response/getAllBranchResponse';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "../../store/store";
+import { fetchCars } from "../../store/slices/carListSlice";
+import { fetchBranches } from "../../store/slices/branchSlice";
+import { GetAllBranchResponse } from "../../models/branches/response/getAllBranchResponse";
 
-
-
-
-{/* <ul className="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
+{
+  /* <ul className="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
    <li className="pb-3 sm:pb-4">
       <div className="flex items-center space-x-4 rtl:space-x-reverse">
          <div className="flex-shrink-0">
@@ -27,63 +25,48 @@ import { GetAllBranchResponse } from '../../models/branches/response/getAllBranc
          </div>
       </div>
    </li>
-</ul> */}
-
+</ul> */
+}
 
 const Branch = () => {
-    const branchesState = useSelector((state: any) => state.branch);
-    const dispatch = useDispatch<AppDispatch>();
+  const branchesState = useSelector((state: any) => state.branch);
+  const dispatch = useDispatch<AppDispatch>();
 
-    useEffect(() => {
-        dispatch(fetchBranches());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchBranches());
+  }, [dispatch]);
 
-    console.log(branchesState);
+  console.log(branchesState);
 
-
-
-    return (
-<div className="container mx-auto pt-24 pb-24">
-  <div className="flex justify-center items-center flex-grow">
-    <div className="m-3 w-[49rem] h-[38rem] text-white rounded-lg bg-delta-green-600 shadow-lg overflow-y-auto">
-      <ul className="space-y-4 text-gray-500 list-disc list-inside dark:text-gray-400 p-4">
-
+  return (
+    <div className="container mx-auto pt-24 pb-24 h-screen bg-delta-green-400">
+      <div className="flex flex-wrap justify-center items-center">
         {branchesState.branches.map((branch: GetAllBranchResponse) => (
-          <li className="grid grid-cols-2 md:grid-cols-2 gap-4">
-            <div key={branch.id} className="sube mt-3 mb-3">
-              <h1 className="xl:text-3xl text-3xl pb-4 text-delta-green-1200 font-bold">{branch.city}</h1>
-              <ol className="ps-5 mt-2 space-y-1 list-decimal list-inside">
-                <p><strong className="pl-4 text-delta-green-1000 text-base" >Telefon:</strong>{branch.gsm}</p>
-                <p><strong className="pl-4 text-delta-green-1000 text-base" >Mail:</strong> {branch.email}</p>
-                <p ><strong className="pl-4 text-delta-green-1000 text-base" >Semt:</strong> {branch.name}</p>
-              </ol>
-              
+          <div key={branch.id} className="w-full md:w-1/3 p-3">
+            <div className="text-white rounded-lg shadow-lg p-4 bg-delta-green-600">
+              <h1 className="text-3xl pb-4 text-delta-green-1200 font-bold">
+                {branch.city}
+              </h1>
+              <p>
+                <strong className="text-delta-green-1000 text-base">Telefon:</strong> {branch.gsm}
+              </p>
+              <p>
+                <strong className="text-delta-green-1000 text-base">Mail:</strong> {branch.email}
+              </p>
+              <p>
+                <strong className="text-delta-green-1000 text-base">Semt:</strong> {branch.name}
+              </p>
+              <div className="pt-4">
+                <p>Hafta içi: 08.00 - 19.00</p>
+                <p>Hafta sonu: 10.00 - 18.00</p>
+              </div>
             </div>
-            <div className="flex flex-col justify-center items-center">
-              <ol className="ps-5 mt-2 space-y-1 list-decimal list-inside">
-                <p>Hafta içi : 08.00 - 19.00</p>
-                <p>Hafta sonu : 10.00 - 18.00</p>
-              </ol>
-              
-            </div>
-            
-          </li>
+          </div>
         ))}
-
-
-
-      </ul>
+      </div>
     </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-    )
-}
+  );
+  
+};
 
 export default Branch;

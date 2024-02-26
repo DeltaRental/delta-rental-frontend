@@ -23,6 +23,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import invoiceService from "../../services/invoiceService";
 import { AppDispatch } from "../../store/store";
 import { useDispatch } from "react-redux";
+import InvoiceListByUser from "../InvoiceListByUser/InvoiceListByUser";
+import InvoiceByUser from "../InvoiceListByUser/InvoiceByUser";
 type Props = {
   rental: any;
 };
@@ -76,13 +78,13 @@ function RentalListByUser(props: Props) {
   return (
     <div>
       <div className="flex flex-col mt-10 border-2 border-gray-300 dark:border-gray-700 rounded-2xl overflow-hidden shadow-xl">
-        <div className="bg-gradient-to-r from-green-400 to-blue-500 p-4 flex justify-between items-center">
-          <span className="text-xl font-bold text-white">
+        <div className="bg-gradient-to-r from-delta-green-1000 to-delta-green-400 p-4 flex justify-between items-center">
+          <span className="text-xl font-bold text-delta-green-400">
             SİPARİŞ DETAYLARI
           </span>
-          <span className="text-3xl text-white font-bold">{`${props.rental.totalPrice} TL`}</span>
+          <span className="text-3xl text-delta-green-1000 font-bold">{`${props.rental.totalPrice} TL`}</span>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-12 p-4 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 p-4 gap-4 ">
           <div className="lg:col-span-3 flex justify-center items-center">
             <img
               className="object-contain w-80 h-40"
@@ -90,7 +92,7 @@ function RentalListByUser(props: Props) {
               alt="Araç Resmi"
             />
           </div>
-          <div className="lg:col-span-9 lg:grid-cols-3 grid grid-cols-1  gap-4">
+          <div className="lg:col-span-9 lg:grid-cols-3 grid grid-cols-1  gap-4 ">
             <div className="lg:col-span-1 col-span-2 bg-white dark:bg-gray-800 p-2 rounded-lg shadow-lg">
               <div className="text-center font-semibold">{`Sipariş No: ${props.rental.id}`}</div>
               <div className="flex items-center whitespace-nowrap">
@@ -187,7 +189,7 @@ function RentalListByUser(props: Props) {
                 handleClickOpen("paper"); // Dialog'u açacak state'i günceller
                 handleRentalInfo(props.rental.id); // Rental ID'yi günceller
               }}
-              className="w-full flex justify-center bg-gradient-to-r from-purple-800 to-pink-700 hover:from-purple-700 hover:to-pink-600 text-white p-3 rounded-lg tracking-wide font-semibold cursor-pointer transition ease-in duration-300"
+              className="w-full flex justify-center bg-gradient-to-r from-delta-green-600 to-delta-green-800 hover:from-delta-green-1000 hover:to-delta-green-600 text-white p-3 rounded-lg tracking-wide font-semibold cursor-pointer transition ease-in duration-300"
             >
               Fatura Detayı
             </button>
@@ -207,13 +209,15 @@ function RentalListByUser(props: Props) {
                 tabIndex={-1}
                 className="w-[600px] h-[1000px] "
               >
-                {invoiceInfo && (invoiceInfo.name || invoiceInfo.date || invoiceInfo.amount || invoiceInfo.address) ? (
-                  <div className="text-black">
-                    <p>{`İsim: ${invoiceInfo.name}`}</p>
-                    <p>{`Tarih: ${invoiceInfo.date}`}</p>
-                    <p>{`Toplam Fiyat: ${invoiceInfo.amount} ₺`}</p>
-                    <p>{`Kimlik Numarası: ${invoiceInfo.address}`}</p>
-                  </div>
+                {invoiceInfo &&
+                (invoiceInfo.name ||
+                  invoiceInfo.date ||
+                  invoiceInfo.amount ||
+                  invoiceInfo.address) ? (
+                  <InvoiceByUser
+                    rentalInfo={props.rental}
+                    invoice={invoiceInfo}
+                  />
                 ) : (
                   <p>Faturası kesilmedi.</p>
                 )}

@@ -30,7 +30,7 @@ const FormikInput = (props: Props) => {
             <>
               <Field
                 type={show ? "text" : "password"} // type özelliğini show değişkenine göre belirleyin
-                className={`w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-gray-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400 ${
+                className={`w-full text-sm  px-4 py-3 bg-white focus:bg-gray-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-delta-green-1000 ${
                   meta.touched && meta.error ? "is-invalid" : ""
                 }`}
                 {...field}
@@ -77,7 +77,7 @@ const FormikInput = (props: Props) => {
                 countryCallingCodeEditable={false}
                 defaultCountry="TR"
                 type="phone"
-                className={`react-phone-number-input__input w-full text-sm px-4 py-3 bg-gray-200  border border-gray-200 rounded-lg focus:outline-none focus:border-purple-400 ${
+                className={`react-phone-number-input__input w-full text-sm px-4 py-3 bg-white  border border-gray-200 rounded-lg focus:outline-none focus:border-delta-green-1000 ${
                   meta.touched && meta.error ? "is-invalid" : ""
                 }`}
                 value={field.value}
@@ -90,7 +90,7 @@ const FormikInput = (props: Props) => {
           ) : (
             <Field
               type={props.type || "text"}
-              className={`w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-gray-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400 ${
+              className={`w-full text-sm  px-4 py-3 bg-white focus:bg-gray-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-delta-green-1000 ${
                 meta.touched && meta.error ? "is-invalid" : ""
               }`}
               {...field}

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { AppDispatch } from "../../store/store";
 import { addRental } from "../../store/slices/rentalSlice";
+import { useNavigate } from "react-router-dom";
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
@@ -18,7 +19,7 @@ const stripePromise = loadStripe(
 interface PaymentPageProps {}
 
 const PaymentPage: React.FC<PaymentPageProps> = () => {
-
+  const navigate = useNavigate();
   const [clientSecret, setClientSecret] = useState<string>("");
 
 
@@ -32,7 +33,12 @@ const PaymentPage: React.FC<PaymentPageProps> = () => {
       body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
     })
       .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
+      .then((data) => setClientSecret(data.clientSecret))
+      .catch((error) => {
+        alert('Oturum süreniz dolmuş olabilir. Lütfen tekrar giriş yapınız.');
+      localStorage.removeItem('jsonwebtoken'); // Anahtarı sil
+      navigate('/login'); // useNavigate ile giriş sayfasına yönlendir
+      })
   }, []);
 
  

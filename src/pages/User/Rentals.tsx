@@ -42,11 +42,9 @@ function Rentals({}: Props) {
     }
   }, [userState.users.id]);
 
- 
-
   return (
     <div className="">
-      <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+      <h3 className="text-lg font-bold  text-gray-900 dark:text-white mb-2">
         {`Merhaba ${userState.users.name} ${userState.users.surname}`}
       </h3>
       <p className="mb-2">

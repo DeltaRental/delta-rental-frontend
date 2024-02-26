@@ -1,11 +1,12 @@
+import dayjs from "dayjs";
 import React from "react";
 
 type Props = {
   invoice: any;
-  
+  rentalInfo: any;
 };
 
-const InvoiceListByUser = (props: Props) => {
+const InvoiceByUser = (props: Props) => {
   return (
     <section className="">
       <div className="max-w-5xl mx-auto py-16 bg-white">
@@ -19,7 +20,7 @@ const InvoiceListByUser = (props: Props) => {
                   alt="Logo"
                 />
                 <p className="text-xl font-extrabold tracking-tight uppercase font-body">
-                  Unwrapped.design
+                  Delta Rental Fatura
                 </p>
               </div>
             </div>
@@ -75,25 +76,25 @@ const InvoiceListByUser = (props: Props) => {
                         scope="col"
                         className="py-3.5 pl-4 pr-3 text-left text-sm font-normal text-slate-700 sm:pl-6 md:pl-0"
                       >
-                        Description
+                        Araç
                       </th>
                       <th
                         scope="col"
                         className="hidden py-3.5 px-3 text-right text-sm font-normal text-slate-700 sm:table-cell"
                       >
-                        Quantity
+                        Gün
                       </th>
                       <th
                         scope="col"
                         className="hidden py-3.5 px-3 text-right text-sm font-normal text-slate-700 sm:table-cell"
                       >
-                        Rate
+                        Günlük Ücret
                       </th>
                       <th
                         scope="col"
                         className="py-3.5 pl-3 pr-4 text-right text-sm font-normal text-slate-700 sm:pr-6 md:pr-0"
                       >
-                        Amount
+                        Ücret
                       </th>
                     </tr>
                   </thead>
@@ -102,20 +103,23 @@ const InvoiceListByUser = (props: Props) => {
                     <tr className="border-b border-slate-200">
                       <td className="py-4 pl-4 pr-3 text-sm sm:pl-6 md:pl-0">
                         <div className="font-medium text-slate-700">
-                          Tesla
+                          {`${props.rentalInfo.car.model.brandName} ${props.rentalInfo.car.model.name}`}
                         </div>
-                        <div className="mt-0.5 text-slate-500 sm:hidden">
-                          1 unit at $75.00
+                        <div className="mt-0.5 text-slate-500 sm:hidden"></div>
+                      </td>
+                      <td className="hidden px-3 py-4 text-sm text-right text-slate-500 sm:table-cell">
+                        <div className="">
+                          {`${dayjs(props.rentalInfo.endDate).diff(
+                            dayjs(props.rentalInfo.startDate),
+                            "day"
+                          )} Gün`}
                         </div>
                       </td>
                       <td className="hidden px-3 py-4 text-sm text-right text-slate-500 sm:table-cell">
-                        4
-                      </td>
-                      <td className="hidden px-3 py-4 text-sm text-right text-slate-500 sm:table-cell">
-                        $0.00
+                        {`${props.rentalInfo.car.dailyPrice}`}₺
                       </td>
                       <td className="py-4 pl-3 pr-4 text-sm text-right text-slate-500 sm:pr-6 md:pr-0">
-                        $0.00
+                        {props.invoice.amount}₺
                       </td>
                     </tr>
 
@@ -128,16 +132,16 @@ const InvoiceListByUser = (props: Props) => {
                         colSpan={3}
                         className="hidden pt-6 pl-6 pr-3 text-sm font-light text-right text-slate-500 sm:table-cell md:pl-0"
                       >
-                        Subtotal
+                        Ara Toplam
                       </th>
                       <th
                         scope="row"
                         className="pt-6 pl-4 pr-3 text-sm font-light text-left text-slate-500 sm:hidden"
                       >
-                        Subtotal
+                        Ara Toplam
                       </th>
                       <td className="pt-6 pl-3 pr-4 text-sm text-right text-slate-500 sm:pr-6 md:pr-0">
-                        $0.00
+                        0.00₺
                       </td>
                     </tr>
                     <tr>
@@ -146,16 +150,16 @@ const InvoiceListByUser = (props: Props) => {
                         colSpan={3}
                         className="hidden pt-6 pl-6 pr-3 text-sm font-light text-right text-slate-500 sm:table-cell md:pl-0"
                       >
-                        Discount
+                        İndirim
                       </th>
                       <th
                         scope="row"
                         className="pt-6 pl-4 pr-3 text-sm font-light text-left text-slate-500 sm:hidden"
                       >
-                        Discount
+                        İndirim
                       </th>
                       <td className="pt-6 pl-3 pr-4 text-sm text-right text-slate-500 sm:pr-6 md:pr-0">
-                        $0.00
+                        0.00₺
                       </td>
                     </tr>
                     <tr>
@@ -164,16 +168,16 @@ const InvoiceListByUser = (props: Props) => {
                         colSpan={3}
                         className="hidden pt-4 pl-6 pr-3 text-sm font-light text-right text-slate-500 sm:table-cell md:pl-0"
                       >
-                        Tax
+                        Vergi
                       </th>
                       <th
                         scope="row"
                         className="pt-4 pl-4 pr-3 text-sm font-light text-left text-slate-500 sm:hidden"
                       >
-                        Tax
+                        Vergi
                       </th>
                       <td className="pt-4 pl-3 pr-4 text-sm text-right text-slate-500 sm:pr-6 md:pr-0">
-                        $0.00
+                        0.00₺
                       </td>
                     </tr>
                     <tr>
@@ -182,16 +186,16 @@ const InvoiceListByUser = (props: Props) => {
                         colSpan={3}
                         className="hidden pt-4 pl-6 pr-3 text-sm font-normal text-right text-slate-700 sm:table-cell md:pl-0"
                       >
-                        Total
+                        Toplam
                       </th>
                       <th
                         scope="row"
                         className="pt-4 pl-4 pr-3 text-sm font-normal text-left text-slate-700 sm:hidden"
                       >
-                        Total
+                        Toplam
                       </th>
                       <td className="pt-4 pl-3 pr-4 text-sm font-normal text-right text-slate-700 sm:pr-6 md:pr-0">
-                        $0.00
+                        {props.invoice.amount}₺
                       </td>
                     </tr>
                   </tfoot>
@@ -224,4 +228,4 @@ const InvoiceListByUser = (props: Props) => {
   );
 };
 
-export default InvoiceListByUser;
+export default InvoiceByUser;
