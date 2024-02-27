@@ -4,7 +4,7 @@ import { AppDispatch } from '../../../store/store';
 import { deleteRental, rentalList } from '../../../store/slices/rentalSlice';
 import { GetAllRentalResponse } from '../../../models/rentals/response/GetAllRentalResponse';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faFileInvoice, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 type Props = {}
 
@@ -47,6 +47,10 @@ const Rentals = (props: Props) => {
               <td className="px-2 py-1">{`${rental.totalPrice} TL`}</td>
               <td className="px-2 py-1">{rental.car.plate} </td>
             <td className="">
+            <button className="px-2 me-2 rounded-md bg-red-700 text-delta-green-400" 
+              onClick={() => handleDeleteCar(rental.id)}>
+              <FontAwesomeIcon icon={faFileInvoice} />
+              </button>
               <button className="px-2 rounded-md bg-red-700 text-delta-green-400" 
               onClick={() => handleDeleteCar(rental.id)}>
               <FontAwesomeIcon icon={faTrash} />

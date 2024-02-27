@@ -8,12 +8,12 @@ import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 const NavDatePicker = () => {
 
   return (
-    <div className='text-white'>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <div className=' '>
+        <LocalizationProvider  dateAdapter={AdapterDayjs}>
         <DemoContainer components={["DesktopDatePicker"]}>
-          <DemoItem>
+          <DemoItem >
             <DateTimePicker
-              defaultValue={dayjs(new Date())} className='text-white'
+              defaultValue={dayjs(new Date())} className='text-white bg-delta-green-400 rounded-md'
             />
           </DemoItem>
         </DemoContainer>

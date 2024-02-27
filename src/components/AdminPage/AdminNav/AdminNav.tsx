@@ -2,6 +2,7 @@ import { useState } from "react";
 import NavDatePicker from "./NavDatePicker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import Link from "../../CustomLink/Link";
 
 
 type Props = {};
@@ -26,11 +27,12 @@ const AdminNav = (props: Props) => {
       <div
               className={` @apply flex items-center p-2 rounded-lg cursor-pointer text-delta-green-400`}
             >
-                <div
+                <Link
+                to={"/"}
                 className={`text-delta-green-400 pr-1 text-[1.2rem] whitespace-pre inset-x-0 bottom-0`}
               >
-                Çıkış
-              </div>
+                Ana Sayfa
+              </Link>
               <FontAwesomeIcon
                 icon={faRightFromBracket}
                 className="mr-1 text-[1.2rem]"

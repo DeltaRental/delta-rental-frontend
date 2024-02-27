@@ -5,9 +5,9 @@ type Props = {}
 
 const About = (props: Props) => {
     return (
-        <div className="flex flex-col justify-between min-h-screen">
+        <div className="flex flex-col justify-between min-h-screen container mx-auto">
             <div className="flex justify-center items-center flex-grow">
-                <div className="m-3 w-[49rem] h-[38rem] text-white rounded-lg bg-delta-green-800">
+                <div className="m-3  text-white rounded-lg bg-delta-green-800">
 
                     <p className='m-5 text-left text-4xl text-delta-green-1200'> Hakkımızda </p>
                     <hr />

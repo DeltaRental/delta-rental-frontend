@@ -50,7 +50,7 @@ function FilteredCarCard({ car }: { car: GetAllCarResponse }) {
       <div className="card-front relative rounded-lg overflow-hidden max-h-[400px]">
         <div className="p-4">
           <img
-            className="w-full h-48 object-cover card-front-img"
+            className="w-full h-48 object-cover card-front-img rounded-3xl"
             src={car.imageUrl}
             alt={`${car.model.brandName} ${car.model.name}`}
           />
