@@ -65,7 +65,7 @@ const AdminPage = () => {
   };
 
   return (
-    <div className="bg-delta-green-400">
+    <div className="bg-white ">
       <div className="grid grid-rows-3 grid-flow-col gap-4 ">
         <div className="row-span-3 h-full fixed left-0 top-0 z-10 overflow-x-hidden">
           <div
