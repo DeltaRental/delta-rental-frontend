@@ -5,7 +5,7 @@ import CarList from "../../pages/Car/CarList";
 import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
 import CarDetail from "../../pages/Car/CarDetail";
 import CarAdd from "../../pages/Car/CarAdd";
-import HomePage from "../../pages/HomePage";
+import HomePage from "../../pages/HomePage/HomePage";
 import CarAvailability from "../../pages/Car/CarAvailability";
 import PaymentPage from "../../pages/PaymentPage/PaymentPage";
 import Login from "../../pages/Auth/Login/Login";
@@ -27,12 +27,8 @@ import { userInfo } from "../../store/slices/userSlice";
 import PaymentSuccess from "../../pages/PaymentPage/PaymentSuccess";
 import InvoiceByRental from "../InvoiceListByUser/InvoiceByRental";
 
-
-
-
 import Contact from "../../pages/Contact/Contact";
 import Branch from "../../pages/Branch/Branch";
-
 
 const Dashboard = () => {
   const userState = useSelector((state: any) => state.user);

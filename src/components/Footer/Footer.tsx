@@ -12,7 +12,7 @@ const Footer = (props: Props) => {
     return null;
   }
   return (
-    <footer className="bg-delta-green-1000 bg-opacity-80 dark:bg-gray-900">
+    <footer className="bg-delta-green-1000 dark:bg-gray-900">
     <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">

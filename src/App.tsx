@@ -11,8 +11,8 @@ import { Route, Routes } from "react-router-dom";
 function App() {
   return (
     <>
-      <div className="bg-[#292929] relative z-0">
-        <div className="">
+      <div className="bg-gray-200 relative z-0">
+        {/* <div className="">
           <div className="flex justify-center ">
             <div className="absolute bg-transparent  stars bg-fixed h-full bg-cover bg-no-repeat"></div>
             <div className="absolute bg-transparent stars2 w-full bg-fixed h-full bg-cover bg-no-repeat"></div>
@@ -23,7 +23,7 @@ function App() {
             <div className="absolute bg-transparent stars2 w-full bg-fixed h-full bg-cover bg-no-repeat"></div>
             <div className="absolute bg-transparent stars3 w-full bg-fixed h-full bg-cover bg-no-repeat"></div>
           </div>
-        </div>
+        </div> */}
         <div className="App z-50">
           {/* <div
         className="h-screen bg-fixed bg-cover bg-no-repeat bg-black"
@@ -36,7 +36,7 @@ function App() {
       > */}
           <OverlayLoader />
           <Navi />
-          <Dashboard/>
+          <Dashboard />
           <Footer></Footer>
           {/* </div> */}
         </div>

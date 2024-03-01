@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 const CarCard = ({ car }: { car: GetAllCarResponse }) => {
   const [isFlipped, setIsFlipped] = useState(false); // Define a state for flipping
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleAddToCart = (car: GetAllCarResponse) => {
     toast("Araç sepete eklendi.", {
@@ -29,7 +29,6 @@ const CarCard = ({ car }: { car: GetAllCarResponse }) => {
       className: "bg-success text-light",
       icon: "👏",
     });
-
   };
 
   const handleFlip = () => {
@@ -38,7 +37,7 @@ const CarCard = ({ car }: { car: GetAllCarResponse }) => {
 
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-      <div className="card-front relative bg-white shadow-lg rounded-lg overflow-hidden max-h-[400px]">
+      <div className="card-front relative shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] rounded-lg overflow-hidden max-h-[400px]">
         <div className="p-4">
           <img
             className="w-full h-48 object-cover card-front-img bg-transparent rounded-3xl"
@@ -55,7 +54,11 @@ const CarCard = ({ car }: { car: GetAllCarResponse }) => {
               {car.model.brandName} {car.model.name}
             </h3>
             <p className="text-gray-600 flex items-center">
-            <img className="w-7 h-7 object-cover mr-2" src="https://www.svgrepo.com/show/232243/license-plate.svg" alt="Plaka" />
+              <img
+                className="w-7 h-7 object-cover mr-2"
+                src="https://www.svgrepo.com/show/232243/license-plate.svg"
+                alt="Plaka"
+              />
               {car.plate}
             </p>
             <p className="text-gray-600 flex items-center">
@@ -91,7 +94,7 @@ const CarCard = ({ car }: { car: GetAllCarResponse }) => {
           </div>
         </div>
       </div>
-      <div className="card-back relative bg-gray-100 shadow-lg rounded-lg overflow-hidden min-h-[400px] flex flex-col justify-between">
+      <div className="card-back relative shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] rounded-lg overflow-hidden min-h-[400px] flex flex-col justify-between">
         <div className="p-4">
           <FontAwesomeIcon
             icon={faSyncAlt}
@@ -116,7 +119,7 @@ const CarCard = ({ car }: { car: GetAllCarResponse }) => {
                 className="mr-2 text-yellow-500 w-7 h-7"
                 size="lg"
               />
-             {car.gearType}
+              {car.gearType}
             </p>
             <p className="text-gray-600 flex items-center">
               <FontAwesomeIcon
@@ -145,7 +148,7 @@ const CarCard = ({ car }: { car: GetAllCarResponse }) => {
               <p className="text-xs text-gray-600">Günlük Kiralama Ücreti</p>
             </div>
             <button
-              onClick={() =>navigate("/")}
+              onClick={() => navigate("/")}
               className="bg-delta-green-1000 hover:bg-delta-green-600 text-white hover:text-black px-4 py-2 rounded-lg"
             >
               Rezerve Et

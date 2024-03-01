@@ -47,7 +47,7 @@ function FilteredCarCard({ car }: { car: GetAllCarResponse }) {
   };
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-      <div className="card-front relative rounded-lg overflow-hidden max-h-[400px]">
+      <div className="card-front shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] relative rounded-lg overflow-hidden max-h-[400px]">
         <div className="p-4">
           <img
             className="w-full h-48 object-cover card-front-img rounded-3xl"
@@ -133,7 +133,7 @@ function FilteredCarCard({ car }: { car: GetAllCarResponse }) {
 
       {/* CARD - BACK */}
 
-      <div className="card-back relative rounded-lg overflow-hidden min-h-[400px] flex flex-col justify-between">
+      <div className="card-back relative shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] rounded-lg overflow-hidden min-h-[400px] flex flex-col justify-between">
         <div className="p-4">
           <FontAwesomeIcon
             icon={faSyncAlt}
