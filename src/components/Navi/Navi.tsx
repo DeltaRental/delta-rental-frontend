@@ -84,8 +84,8 @@ const Navi = () => {
           />
           <div className="md:hidden p-1  ">
             <img
-              className="md:mx-auto w-12 h-12 rounded-3xl object-contain"
-              src="http://res.cloudinary.com/dxav6uhnu/image/upload/v1708778795/ui4uawgetua3ymvr2adg.jpg"
+              className="md:mx-auto w-12 h-12 "
+              src="http://res.cloudinary.com/dxav6uhnu/image/upload/v1709388157/pcyuu3lgcvm96ks2p5c0.png"
               alt="logo_4"
               data-ezsrc="/static_files/images/logos/logo_4.png?ezimgfmt=rs:112x83/rscb1/ngcb1/notWebP"
             />
@@ -96,7 +96,9 @@ const Navi = () => {
           id="menu"
         >
           <div className="grid grid-cols-1 md:grid-cols-9 ">
-            <div className="col-span-4 text-base lg:text-lg md:border-y border-y-delta-green-400">
+            <div className="col-span-4 text-base lg:text-lg md:border-y border-y-delta-green-400" data-aos="fade-right"
+                  data-aos-duration="1500"
+                  data-aos-easing="ease-in-sine">
               <ul className="justify-between md:flex ">
                 <li className="p-2 py-2 lg:p-2 border-b  md:border-0">
                   <Link to="/">
@@ -121,19 +123,24 @@ const Navi = () => {
                 </li>
               </ul>
             </div>
-            <div className="hidden md:block relative">
+            <div className="hidden md:block relative" data-aos="fade-down"
+                  data-aos-duration="1500"
+                  data-aos-easing="ease-in-sine">
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="p-1 ">
                   <img
-                    className="md:mx-auto w-14 h-14 lg:w-20 lg:h-20 xl:w-24 xl:h-24 rounded-3xl object-contain"
-                    src="http://res.cloudinary.com/dxav6uhnu/image/upload/v1708778795/ui4uawgetua3ymvr2adg.jpg"
+                    className="md:mx-auto w-14 h-14 lg:w-20 lg:h-20 xl:w-24 xl:h-24 "
+                    src="http://res.cloudinary.com/dxav6uhnu/image/upload/v1709388157/pcyuu3lgcvm96ks2p5c0.png"
                     alt="logo_4"
                     data-ezsrc="/static_files/images/logos/logo_4.png?ezimgfmt=rs:112x83/rscb1/ngcb1/notWebP"
                   />
                 </div>
               </div>
             </div>
-            <div className=" col-span-4 md:border-y border-y-delta-green-400">
+            <div className=" col-span-4 md:border-y border-y-delta-green-400"
+            data-aos="fade-left"
+            data-aos-duration="1500"
+            data-aos-easing="ease-in-sine">
               <ul className="justify-between text-base lg:text-lg  md:flex">
                 <li className="p-2 py-2 lg:p-2 border-b  md:border-0">
                   <Link to="/branch">

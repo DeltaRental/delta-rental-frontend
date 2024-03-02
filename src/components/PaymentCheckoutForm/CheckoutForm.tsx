@@ -181,14 +181,19 @@ export const CheckoutForm = () => {
     //   {/* Show any error or success messages */}
     //   {message && <div id="payment-message">{message}</div>}
     // </form>
-    <div className="container mx-auto bg-delta-green-400 min-h-screen">
+    <div className="container mx-auto min-h-screen">
       <div className="grid grid-cols-12 min-h-screen">
         <div className="col-span-8 min-h-screen">
-          <div className="">
+          <div
+            className=""
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            data-aos-easing="ease-in-sine"
+          >
             <div className=" p-6 min-h-screen">
               {/* Araç Bilgileri */}
 
-              <div className="p-6 rounded-lg shadow-lg bg-delta-green-600">
+              <div className="p-6 rounded-lg shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] bg-white">
                 <h2 className="font-bold text-2xl mb-4 text-delta-green-1200">
                   Kiralama Detayları
                 </h2>
@@ -197,6 +202,10 @@ export const CheckoutForm = () => {
                     className="w-[610px] h-[243px] object-cover rounded-lg mb-4 "
                     src={carsState.selectedCar.imageUrl}
                     alt="Araç Resmi"
+                    data-aos="fade-right"
+                    data-aos-duration="1500"
+                    data-aos-easing="ease-in-sine"
+                    data-aos-delay="1000"
                   />
                   <div className="text-2xl text-delta-green-1200 font-medium">{`${carsState.selectedCar.model.brandName} ${carsState.selectedCar.model.name}`}</div>
                 </div>
@@ -255,7 +264,7 @@ export const CheckoutForm = () => {
               {/* Araç Bilgileri */}
 
               {/* Kullanıcı Bilgileri */}
-              <div className="p-6 rounded-lg shadow-lg bg-delta-green-600 mt-3">
+              <div className="p-6 rounded-lg shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] bg-white mt-3">
                 <div>
                   <div className="flex flex-col justify-center">
                     <h2 className="font-bold text-2xl mb-4 text-delta-green-1200">
@@ -317,7 +326,7 @@ export const CheckoutForm = () => {
               {/* Ödeme Bilgileri */}
 
               <div>
-                <div className="p-6 rounded-lg shadow-lg bg-delta-green-600 mt-3">
+                <div className="p-6 rounded-lg shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] bg-white mt-3">
                   <h2 className="font-bold text-2xl mb-4 text-delta-green-1200">
                     Ödeme Bilgileri
                   </h2>
@@ -336,7 +345,7 @@ export const CheckoutForm = () => {
                         type="submit"
                         id="submit"
                         onClick={clickButton}
-                        className="bg-blue-500 hover:bg-blue-700 w-full text-deltabg-delta-green-600 font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform "
+                        className="bg-blue-500 hover:bg-blue-700 w-full text-deltabg-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform "
                         disabled={isLoading || !stripe || !elements}
                       >
                         {isLoading ? "İşleniyor..." : "Şimdi Öde"}
@@ -356,10 +365,15 @@ export const CheckoutForm = () => {
           </div>
         </div>
 
-        <div className="col-span-4  ">
+        <div
+          className="col-span-4  "
+          data-aos="fade-left"
+          data-aos-duration="1500"
+          data-aos-easing="ease-in-sine"
+        >
           <div className="min-h-[400px] ">
             <div className=" p-6 min-h-full">
-              <div className="flex flex-col  p-6 rounded-lg shadow-lg bg-delta-green-600 min-h-[400px]">
+              <div className="flex flex-col  p-6 rounded-lg shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] bg-white min-h-[400px]">
                 <div>
                   <h2 className="font-bold text-2xl mb-4 text-delta-green-1200 text-center ">
                     Kiralama Özeti

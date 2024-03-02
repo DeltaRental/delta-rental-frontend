@@ -11,8 +11,14 @@ type Props = {};
 
 const Contact = (props: Props) => {
   return (
-    <div className="container mx-auto min-h-screen bg-delta-green-400 py-16 flex items-center justify-center">
-      <div className="bg-white rounded-lg shadow-xl overflow-hidden w-11/12 md:w-2/3 lg:w-1/2">
+    <div className="container mx-auto min-h-screen py-12 flex items-center justify-center">
+      <div
+        className="bg-white rounded-lg shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] overflow-hidden w-11/12 md:w-2/3 lg:w-1/2"
+        data-aos="fade-up"
+        data-aos-easing="linear"
+        data-aos-duration="1000"
+        data-aos-delay="800"
+      >
         <div className="p-8">
           <h1 className="text-4xl text-delta-green-1200 font-bold mb-6">
             Bize Ulaşın
@@ -50,7 +56,7 @@ const Contact = (props: Props) => {
             </div>
           </div>
         </div>
-        <div className="bg-delta-green-600 p-8">
+        <div className="bg-delta-green-1000 p-8">
           <h2 className="text-2xl text-white font-bold mb-6">
             Hızlı İletişim Formu
           </h2>
@@ -77,7 +83,7 @@ const Contact = (props: Props) => {
             </div>
             <button
               type="submit"
-              className="w-full bg-delta-green-1200 text-white p-3 rounded hover:bg-delta-green-900 transition-colors"
+              className="w-full bg-delta-green-800 text-white p-3 rounded hover:bg-delta-green-900 transition-colors"
             >
               Gönder
             </button>

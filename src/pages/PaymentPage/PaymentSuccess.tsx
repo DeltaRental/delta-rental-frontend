@@ -25,7 +25,7 @@ function PaymentSuccess({}: Props) {
   }, [navigate]);
 
   return (
-    <div className='h-screen bg-delta-green-400 flex flex-col gap-5 justify-center items-center'>
+    <div className='h-screen bg-gray-200 flex flex-col gap-5 justify-center items-center'>
       <FontAwesomeIcon className='text-8xl text-delta-green-1000' icon={faCircleCheck} />
       <h1 className='text-delta-green-1000 font-bold text-4xl'>ÖDEME BAŞARILI</h1>
       <p className='text-delta-green-1000 font-bold text-xl'>

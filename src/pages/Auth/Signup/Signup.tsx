@@ -62,19 +62,36 @@ const Signup = (props: Props) => {
       className="container w-full mx-auto flex justify-center items-center"
       style={{ height: "calc(100vh - 7rem)" }}
     >
-      <div className="w-[70%] h-[80%]  rounded-3xl">
-        <div className="grid grid-cols-2 p-2 h-full">
-          <div className="bg-delta-green-400 bg-opacity-40 grid grid-cols-1 rounded-s-3xl w-full px-10 shadow-[15px_0px_0px_-5px_#000000]">
-            <div className="flex flex-col justify-center">
-              <div className="flex justify-center">
+      <div className="w-[70%] h-[80%] ">
+        <div className="grid grid-cols-2  h-full">
+          <div
+            className="bg-delta-green-400 grid grid-cols-1 rounded-s-3xl w-full px-10 shadow-[15px_0px_0px_-5px_#000000]"
+            data-aos="fade-right"
+            data-aos-duration="1500"
+            data-aos-easing="ease-in-sine"
+          >
+            <div
+              className="flex flex-col justify-center"
+              data-aos="fade-down"
+              data-aos-duration="1500"
+              data-aos-easing="ease-in-sine"
+              data-aos-delay="500"
+            >
+              <div
+                className="flex justify-center"
+                data-aos="flip-left"
+                data-aos-duration="1500"
+                data-aos-easing="ease-in-sine"
+                data-aos-delay="800"
+              >
                 <img
-                  className="w-20 h-20 rounded-full shadow-[0px_0px_10px_10px_#12372A]"
-                  src="https://avatars.githubusercontent.com/u/156099996?s=200&v=4"
+                  className="w-40 h-40"
+                  src="http://res.cloudinary.com/dxav6uhnu/image/upload/v1709388157/pcyuu3lgcvm96ks2p5c0.png"
                   alt="DeltaLogo"
                 />
               </div>
 
-              <div className="flex justify-center  mt-10 text-3xl font-bold text-delta-green-400">
+              <div className="flex justify-center  mt-10 text-3xl font-bold text-delta-green-1000">
                 <p>ÜYE OL</p>
               </div>
 
@@ -87,7 +104,13 @@ const Signup = (props: Props) => {
                   }}
                   validationSchema={validationSchema}
                 >
-                  <Form className="p-0 shadow-none min-w-[300px] ">
+                  <Form
+                    className="p-0 shadow-none min-w-[300px] "
+                    data-aos="fade-right"
+                    data-aos-duration="1500"
+                    data-aos-easing="ease-in-sine"
+                    data-aos-delay="800"
+                  >
                     <div className="grid grid-cols-2 gap-2">
                       <div>
                         <FormikInput
@@ -132,16 +155,36 @@ const Signup = (props: Props) => {
               </div>
 
               <div className="flex items-center justify-center space-x-2 my-5">
-                <span className="h-px w-16 bg-delta-green-400"></span>
-                <span className="text-delta-green-400 font-normal">or</span>
-                <span className="h-px w-16 bg-delta-green-400"></span>
+                <span
+                  className="h-px w-16 bg-delta-green-1000"
+                  data-aos="fade-right"
+                  data-aos-duration="1500"
+                  data-aos-easing="ease-in-sine"
+                  data-aos-delay="800"
+                ></span>
+                <span
+                  className="text-delta-green-1000 font-normal"
+                  data-aos="fade-down"
+                  data-aos-duration="1500"
+                  data-aos-easing="ease-in-sine"
+                  data-aos-delay="800"
+                >
+                  or
+                </span>
+                <span
+                  className="h-px w-16 bg-delta-green-1000"
+                  data-aos="fade-left"
+                  data-aos-duration="1500"
+                  data-aos-easing="ease-in-sine"
+                  data-aos-delay="800"
+                ></span>
               </div>
 
               <div className="mb-7 flex justify-center">
-                <p className="text-delta-green-400 flex">
+                <p className="text-delta-green-1000 flex">
                   Hesabın var mı?
                   <Link
-                    className="text-delta-green-1000 hover:text-delta-green-400 ms-1 font-bold"
+                    className="text-delta-green-1000 hover:text-delta-green-800 ms-1 font-bold"
                     to="/login"
                   >
                     Giriş yap
@@ -151,8 +194,19 @@ const Signup = (props: Props) => {
             </div>
           </div>
 
-          <div className="bg-delta-green-800 text-delta-green-400 bg-opacity-40 grid grid-cols-1 rounded-e-3xl px-14">
-            <div className="flex flex-col justify-center">
+          <div
+            className="bg-delta-green-800 text-delta-green-400 bg-opacity-50 grid grid-cols-1 rounded-e-3xl px-14 shadow-[8.0px_0.0px_6.0px_rgba(0,0,0,0.38)]"
+            data-aos="fade-left"
+            data-aos-duration="1500"
+            data-aos-easing="ease-in-sine"
+          >
+            <div
+              className="flex flex-col justify-center"
+              data-aos="fade-left"
+              data-aos-duration="1500"
+              data-aos-easing="ease-in-sine"
+              data-aos-delay="800"
+            >
               <p className="text-6xl flex justify-center">Araç Kirala</p>
               <p className="mt-10 text-xl flex justify-center">
                 İstediğin aracı Delta Rental ile kirala.

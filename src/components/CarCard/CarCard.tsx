@@ -37,12 +37,21 @@ const CarCard = ({ car }: { car: GetAllCarResponse }) => {
 
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-      <div className="card-front relative shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] rounded-lg overflow-hidden max-h-[400px]">
+      <div
+        className="card-front relative shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] rounded-lg overflow-hidden max-h-[400px]"
+        data-aos="flip-right"
+        data-aos-duration="1200"
+        data-aos-delay="200"
+      >
         <div className="p-4">
           <img
             className="w-full h-48 object-cover card-front-img bg-transparent rounded-3xl"
             src={car.imageUrl}
             alt={`${car.model.brandName} ${car.model.name}`}
+            data-aos="fade-right"
+              data-aos-duration="1500"
+              data-aos-easing="linear"
+              data-aos-delay="1000"
           />
           <FontAwesomeIcon
             icon={faSyncAlt}
