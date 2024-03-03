@@ -77,3 +77,22 @@ Eğer projemize katkıda bulunmak istiyorsanız, lütfen bize mail ya da Issues 
 ## Proje Ekran Görüntüleri
 Projemizin frontend tarafında sunulan bazı ekran görüntüleri şunlardır:
 
+
+
+<details>
+ <summary> :red_circle:  Fotoğrafları görmek için tıklayın</summary>
+  <img src="https://github.com/DeltaRental/delta-rental-frontend/assets/58063753/0d2a60b1-8db6-4a2e-96f7-a3d62bf759bb" alt="Fotoğraf 1">
+  <img src="https://github.com/DeltaRental/delta-rental-frontend/assets/58063753/bf38c149-2ccd-4d47-9dd3-c76f256a8e90" alt="Fotoğraf 2" >
+  <img src="https://github.com/DeltaRental/delta-rental-frontend/assets/58063753/5de0610e-bf0b-44c3-b8d9-ba418a2ce001" alt="Fotoğraf 3" >
+  <img src="https://github.com/DeltaRental/delta-rental-frontend/assets/58063753/7f50f795-9a90-4845-9c11-057fe3344c6e" alt="Fotoğraf 4" >
+  <img src="https://github.com/DeltaRental/delta-rental-frontend/assets/58063753/d605bad8-733c-433c-9d42-68726165d212" alt="Fotoğraf 5" >
+  <img src="https://github.com/DeltaRental/delta-rental-frontend/assets/58063753/0992e841-e75c-4ade-8dff-4a38e46a0473" alt="Fotoğraf 6" >
+  <img src="https://github.com/DeltaRental/delta-rental-frontend/assets/58063753/44d99f81-39a4-49fc-a14b-c4be608126c3" alt="Fotoğraf 7" >
+  <img src="https://github.com/DeltaRental/delta-rental-frontend/assets/58063753/70e513bc-0766-48c2-b533-3aad781ad21c" alt="Fotoğraf 8" >
+  <img src="https://github.com/DeltaRental/delta-rental-frontend/assets/58063753/6e07477b-fc31-436f-8829-95db1dd39eed" alt="Fotoğraf 9" >
+  <img src="https://github.com/DeltaRental/delta-rental-frontend/assets/58063753/f3b53a26-29cd-4902-be98-34f3422d05f7" alt="Fotoğraf 10" >
+  <img src="https://github.com/DeltaRental/delta-rental-frontend/assets/58063753/4612c560-0861-4df9-b5ca-7450e33282bf" alt="Fotoğraf 11" >
+  <img src="https://github.com/DeltaRental/delta-rental-frontend/assets/58063753/6afb5b3f-248b-42b1-b8dc-ab32cc7ab07d" alt="Fotoğraf 12" >
+</details>
+
+
