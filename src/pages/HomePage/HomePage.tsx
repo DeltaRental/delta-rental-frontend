@@ -157,7 +157,7 @@ const HomePage = (props: Props) => {
             />
           </Carousel>
 
-          <div className="absolute top-96 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[49]">
+          <div className="absolute md:top-64 3xl:top-96 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[49]">
             <div
               data-aos="fade-down"
               data-aos-duration="1500"
@@ -233,10 +233,10 @@ const HomePage = (props: Props) => {
               </div>
             </div>
           </div>
-          <div className="bg-gradient-to-t from-gray-200 from-25% via-70% to-100%  absolute top-[300px]  w-full min-h-[1100px] ">
-            <div className="w-full mx-auto mt-[580px] flex justify-center space-x-4 ">
+          <div className="bg-gradient-to-t from-gray-200 from-25% via-70% to-100%  absolute md:top-[300px] md:min-h-[700px] 3xl:top-[300px]  w-full 3xl:min-h-[1100px] ">
+            <div className="w-full mx-auto md:mt-[260px] 3xl:mt-[580px] flex justify-center space-x-4 ">
               <div
-                className="relative grid h-[27rem] w-full max-w-[38rem] flex-col items-end justify-center overflow-hidden rounded-3xl bg-white bg-clip-border text-center text-gray-700 hover:scale-[1.02] transition ease-in duration-300 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]"
+                className="relative grid 3xl:h-[27rem] 3xl:max-w-[38rem]  md:h-[24rem] md:max-w-[35rem] w-full  flex-col items-end justify-center overflow-hidden rounded-3xl bg-white bg-clip-border text-center text-gray-700 hover:scale-[1.02] transition ease-in duration-300 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]"
                 data-aos="fade-right"
                 data-aos-easing="linear"
                 data-aos-duration="1500"
@@ -261,7 +261,7 @@ const HomePage = (props: Props) => {
               </div>
 
               <div
-                className="relative grid h-[27rem] w-full max-w-[38rem] flex-col items-end justify-center overflow-hidden rounded-3xl bg-white bg-clip-border text-center text-gray-700 hover:scale-[1.02] transition ease-in duration-300 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]"
+                className="relative grid 3xl:h-[27rem] 3xl:max-w-[38rem]  md:h-[24rem] md:max-w-[35rem] w-full flex-col items-end justify-center overflow-hidden rounded-3xl bg-white bg-clip-border text-center text-gray-700 hover:scale-[1.02] transition ease-in duration-300 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]"
                 data-aos="fade-down"
                 data-aos-easing="linear"
                 data-aos-duration="1500"
@@ -286,7 +286,7 @@ const HomePage = (props: Props) => {
               </div>
 
               <div
-                className="relative grid h-[27rem] w-full max-w-[38rem] flex-col items-end justify-center overflow-hidden rounded-3xl bg-white bg-clip-border text-center text-gray-700 hover:scale-[1.02] transition ease-in duration-300 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]"
+                className="relative grid 3xl:h-[27rem] 3xl:max-w-[38rem]  md:h-[24rem] md:max-w-[35rem] w-full flex-col items-end justify-center overflow-hidden rounded-3xl bg-white bg-clip-border text-center text-gray-700 hover:scale-[1.02] transition ease-in duration-300 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]"
                 data-aos="fade-left"
                 data-aos-easing="linear"
                 data-aos-duration="1500"
@@ -313,11 +313,11 @@ const HomePage = (props: Props) => {
           </div>
         </div>
 
-        <div className=" mt-[70px] container mx-auto text-4xl font-bold">
+        <div className="mt-[70px] container mx-auto text-4xl font-bold 3xl:px-[140px]">
           <h1>KAMPANYALAR</h1>
         </div>
         <div
-          className=" container mx-auto flex space-x-5 mt-10"
+          className=" container mx-auto flex justify-center space-x-5 mt-10"
           data-aos="fade-right"
           data-aos-offset="200"
           data-aos-delay="100"
@@ -338,11 +338,11 @@ const HomePage = (props: Props) => {
           </div>
         </div>
 
-        <div className="container mx-auto text-4xl mt-10 font-bold">
+        <div className="container mx-auto text-4xl mt-10 font-bold 3xl:px-[140px]">
           <h1>ŞUBELER</h1>
         </div>
         <div
-          className="container mx-auto w-full flex space-x-5 my-10"
+          className="container mx-auto w-full flex justify-center space-x-5 my-10"
           data-aos="fade-right"
           data-aos-easing="linear"
           data-aos-duration="1000"

@@ -24,6 +24,10 @@ module.exports = withMT({
 
       '2xl': '1536px',
       // => @media (min-width: 1536px) { ... }
+      '3xl': '2122px', //2k için ekran
+      
+      '4xl': '3840px', // 4k ekran için yeni bir ekran boyutu ekledik
+
     },
     extend: {
       colors: {
