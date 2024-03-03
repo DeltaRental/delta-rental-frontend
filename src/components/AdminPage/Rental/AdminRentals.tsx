@@ -5,8 +5,11 @@ import { deleteRental, rentalList } from '../../../store/slices/rentalSlice';
 import { GetAllRentalResponse } from '../../../models/rentals/response/GetAllRentalResponse';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileInvoice, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { addInvoice } from '../../../store/slices/invoiceSlice';
+import { addInvoiceRequest } from '../../../models/invoices/requests/addInvoiceRequest';
 
-type Props = {}
+type Props = {
+}
 
 const Rentals = (props: Props) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -22,6 +25,18 @@ const Rentals = (props: Props) => {
       dispatch(rentalList());
     } catch (error) {
       console.error("Error deleting car:", error);
+    }
+  };
+
+  const handleInvoiceAdd = async (rentalId: number) => {
+    try {
+      const newInvoice: addInvoiceRequest = {
+        rentalId: rentalId,
+      };
+      console.log("invoice eklendi!!" + rentalId)
+      await dispatch(addInvoice(newInvoice));
+    } catch (error) {
+      console.error("Fatura ekleme hatası:", error);
     }
   };
   return (
@@ -48,7 +63,7 @@ const Rentals = (props: Props) => {
               <td className="px-2 py-1">{rental.car.plate} </td>
             <td className="">
             <button className="px-2 me-2 rounded-md bg-red-700 text-delta-green-400" 
-              onClick={() => handleDeleteCar(rental.id)}>
+              onClick={() => handleInvoiceAdd(rental.id)}>
               <FontAwesomeIcon icon={faFileInvoice} />
               </button>
               <button className="px-2 rounded-md bg-red-700 text-delta-green-400" 
