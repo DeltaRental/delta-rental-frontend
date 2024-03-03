@@ -224,8 +224,8 @@ function RentalListByUser(props: Props) {
               </DialogContentText>
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleClose}>Cancel</Button>
-              <Button onClick={handleClose}>Subscribe</Button>
+              <Button onClick={handleClose}>Kapat</Button>
+
             </DialogActions>
           </Dialog>
         </div>

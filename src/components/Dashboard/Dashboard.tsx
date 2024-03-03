@@ -4,7 +4,6 @@ import Categories from "../Categories/Categories";
 import CarList from "../../pages/Car/CarList";
 import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
 import CarDetail from "../../pages/Car/CarDetail";
-import CarAdd from "../../pages/Car/CarAdd";
 import HomePage from "../../pages/HomePage/HomePage";
 import CarAvailability from "../../pages/Car/CarAvailability";
 import PaymentPage from "../../pages/PaymentPage/PaymentPage";
@@ -55,7 +54,7 @@ const Dashboard = () => {
           path="/cars/getCarAvailability"
           element={<CarAvailability />}
         ></Route>
-        {/* <Route path="/cars/:id" element={<CarDetail />}></Route> */}
+
         <Route path="/login" element={<Login />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/contact" element={<Contact />}></Route>

@@ -106,10 +106,11 @@ const HomePage = (props: Props) => {
     <>
       <div className="">
         <div
-          className=" w-full relative "
+          className=" w-full z-40"
           style={{ height: "calc(100vh - 7rem)" }}
         >
           <Carousel
+          className="-z-50"
             data-aos="fade-down"
             data-aos-duration="1500"
             data-aos-easing="ease-in-sine"
@@ -144,28 +145,28 @@ const HomePage = (props: Props) => {
             )}
           >
             <img
-              className="h-full w-full  object-cover"
+              className="h-full w-full  object-cover z-0"
               src="https://images.pexels.com/photos/1128527/pexels-photo-1128527.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             />
             <img
               src="https://images.pexels.com/photos/1172105/pexels-photo-1172105.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover z-0"
             />
             <img
               src="https://images.pexels.com/photos/11139552/pexels-photo-11139552.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover z-0"
             />
           </Carousel>
 
-          <div className="absolute md:top-64 3xl:top-96 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[49]">
+          <div className="absolute top-[370px] md:top-80 3xl:top-96 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[49]">
             <div
-              data-aos="fade-down"
-              data-aos-duration="1500"
-              data-aos-easing="ease-in-sine"
+            data-aos="fade-down"
+            data-aos-duration="1500"
+            data-aos-easing="ease-in-sine"
             >
-              <div className="  backdrop-blur-sm bg-gray-200/80  hover:backdrop-blur-lg hover:bg-gray-200 transition ease-in duration-500 w-[1000px] h-[200px] rounded-3xl p-5">
-                <div className="grid grid-cols-3 gap-2">
-                  <div className="me-4">
+              <div className="  backdrop-blur-sm bg-gray-200/80  hover:backdrop-blur-lg hover:bg-gray-200 transition ease-in duration-500 w-[400px] h-[370px] md:w-[1000px] md:h-[200px] rounded-3xl p-5">
+                <div className="grid grid-cols-1 w-full gap-2 md:grid md:grid-cols-3 md:gap-2">
+                  <div className="me-4 z-50">
                     <p>Şube:</p>
                     <ListBox />
                   </div>
@@ -233,14 +234,16 @@ const HomePage = (props: Props) => {
               </div>
             </div>
           </div>
-          <div className="bg-gradient-to-t from-gray-200 from-25% via-70% to-100%  absolute md:top-[300px] md:min-h-[700px] 3xl:top-[300px]  w-full 3xl:min-h-[1100px] ">
-            <div className="w-full mx-auto md:mt-[260px] 3xl:mt-[580px] flex justify-center space-x-4 ">
+          
+        </div>
+        <div className="p-2 md:p-0 mt-[-230px] md:mt-[-390px] 3xl:mt-[-450px] bg-gradient-to-t from-gray-200 from-70% via-80% to-100% md:from-25% md:via-70% md:to-100% md:min-h-[500px]">
+            <div className="  w-full mx-auto  grid grid-cols-1 justify-items-center gap-4 md:flex md:flex-row md:justify-center md:space-x-4 ">
               <div
-                className="relative grid 3xl:h-[27rem] 3xl:max-w-[38rem]  md:h-[24rem] md:max-w-[35rem] w-full  flex-col items-end justify-center overflow-hidden rounded-3xl bg-white bg-clip-border text-center text-gray-700 hover:scale-[1.02] transition ease-in duration-300 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]"
+                className="relative grid 3xl:h-[27rem] 3xl:max-w-[38rem]  md:h-[24rem] md:max-w-[35rem] h-[16rem] max-w-[31rem] w-full  flex-col items-end justify-center overflow-hidden rounded-3xl bg-white bg-clip-border text-center text-gray-700 hover:scale-[1.02] transition ease-in duration-300 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]"
                 data-aos="fade-right"
                 data-aos-easing="linear"
-                data-aos-duration="1500"
-                data-aos-delay="800"
+                data-aos-duration="1000"
+                data-aos-delay="500"
               >
                 <div className="absolute inset-0 m-0 h-full w-full overflow-hidden rounded-none bg-transparent bg-[url('http://res.cloudinary.com/dxav6uhnu/image/upload/v1708972542/tm5v1xjcrorybtvtshya.jpg')] bg-contain bg-no-repeat bg-clip-border bg-center text-gray-700 shadow-none">
                   <div className="absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-t from-delta-green-1000/80 via-black/50"></div>
@@ -248,24 +251,24 @@ const HomePage = (props: Props) => {
                 <div
                   className="relative p-6 px-6 py-14 md:px-12"
                   data-aos="fade-right"
-                  data-aos-duration="1500"
+                  data-aos-duration="1000"
                   data-aos-easing="ease-in-sine"
                 >
-                  <h2 className="mb-6 block font-sans text-4xl font-medium leading-[1.5] tracking-normal text-white antialiased">
+                  <h2 className="mb-6 block font-semibold text-2xl md:text-3xl leading-[1.5] tracking-normal text-white antialiased">
                     İstediğin aracı istediğin zaman kullanmanın tadını çıkar.
                   </h2>
-                  <h5 className="block mb-4 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-gray-200">
+                  <h5 className="block mb-4 font-sans text-2xl antialiased font-bold leading-snug tracking-normal text-gray-200">
                     Delta Rental
                   </h5>
                 </div>
               </div>
 
               <div
-                className="relative grid 3xl:h-[27rem] 3xl:max-w-[38rem]  md:h-[24rem] md:max-w-[35rem] w-full flex-col items-end justify-center overflow-hidden rounded-3xl bg-white bg-clip-border text-center text-gray-700 hover:scale-[1.02] transition ease-in duration-300 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]"
+                className="relative grid 3xl:h-[27rem] 3xl:max-w-[38rem]  md:h-[24rem] md:max-w-[35rem] h-[16rem] max-w-[31rem] w-full flex-col items-end justify-center overflow-hidden rounded-3xl bg-white bg-clip-border text-center text-gray-700 hover:scale-[1.02] transition ease-in duration-300 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]"
                 data-aos="fade-down"
                 data-aos-easing="linear"
-                data-aos-duration="1500"
-                data-aos-delay="800"
+                data-aos-duration="1000"
+                data-aos-delay="500"
               >
                 <div className="absolute inset-0 m-0 h-full w-full overflow-hidden rounded-none bg-transparent bg-[url('http://res.cloudinary.com/dxav6uhnu/image/upload/v1708972763/za4enayy9apdim2kufr9.png')] bg-contain bg-no-repeat bg-clip-border bg-center text-gray-700 shadow-none">
                   <div className="absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-t from-delta-green-1000/80 via-black/50"></div>
@@ -273,24 +276,24 @@ const HomePage = (props: Props) => {
                 <div
                   className="relative p-6 px-6 py-14 md:px-12"
                   data-aos="fade-down"
-                  data-aos-duration="1500"
+                  data-aos-duration="1000"
                   data-aos-easing="ease-in-sine"
                 >
-                  <h2 className="mb-6 block font-sans text-4xl font-medium leading-[1.5] tracking-normal text-white antialiased">
+                  <h2 className="mb-6 block font-semibold text-2xl md:text-3xl leading-[1.5] tracking-normal text-white antialiased">
                     Son model bir BMW deneyimlemek istemez miydin?
                   </h2>
-                  <h5 className="block mb-4 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-gray-200">
+                  <h5 className="block mb-4 font-sans text-2xl antialiased font-bold leading-snug tracking-normal text-gray-200">
                     Delta Rental
                   </h5>
                 </div>
               </div>
 
               <div
-                className="relative grid 3xl:h-[27rem] 3xl:max-w-[38rem]  md:h-[24rem] md:max-w-[35rem] w-full flex-col items-end justify-center overflow-hidden rounded-3xl bg-white bg-clip-border text-center text-gray-700 hover:scale-[1.02] transition ease-in duration-300 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]"
+                className="relative grid 3xl:h-[27rem] 3xl:max-w-[38rem]  md:h-[24rem] md:max-w-[35rem] h-[16rem] max-w-[31rem] w-full flex-col items-end justify-center overflow-hidden rounded-3xl bg-white bg-clip-border text-center text-gray-700 hover:scale-[1.02] transition ease-in duration-300 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]"
                 data-aos="fade-left"
                 data-aos-easing="linear"
-                data-aos-duration="1500"
-                data-aos-delay="800"
+                data-aos-duration="1000"
+                data-aos-delay="500"
               >
                 <div className="absolute inset-0 m-0 h-full w-full overflow-hidden rounded-none bg-transparent bg-[url('http://res.cloudinary.com/dxav6uhnu/image/upload/v1708969930/skkqsthap49n2re8b1ru.png')] bg-contain bg-no-repeat bg-clip-border bg-center text-gray-700 shadow-none">
                   <div className="absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-t from-delta-green-1000/80 via-black/50"></div>
@@ -298,51 +301,56 @@ const HomePage = (props: Props) => {
                 <div
                   className="relative p-6 px-6 py-14 md:px-12"
                   data-aos="fade-left"
-                  data-aos-duration="1500"
+                  data-aos-duration="1000"
                   data-aos-easing="ease-in-sine"
                 >
-                  <h2 className="mb-6 block font-sans text-4xl font-medium leading-[1.5] tracking-normal text-white antialiased">
+                  <h2 className="mb-6 block font-semibold text-2xl md:text-3xl leading-[1.5] tracking-normal text-white antialiased">
                     Elektrikli araçlar ile yeni bir çağa ayak uydur.
                   </h2>
-                  <h5 className="block mb-4 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-gray-200">
+                  <h5 className="block mb-4 font-sans text-2xl antialiased font-bold leading-snug tracking-normal text-gray-200">
                     Delta Rental
                   </h5>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="mt-[70px] container mx-auto text-4xl font-bold 3xl:px-[140px]">
+        
+        <div className="container mx-auto flex justify-center md:justify-start md:container md:mx-auto text-4xl font-bold mt-10 3xl:flex 3xl:justify-center">
           <h1>KAMPANYALAR</h1>
         </div>
         <div
-          className=" container mx-auto flex justify-center space-x-5 mt-10"
+          className="p-2 md:p-0 container mx-auto grid justify-items-center gap-5 md:flex md:justify-center mt-10"
           data-aos="fade-right"
           data-aos-offset="200"
           data-aos-delay="100"
           data-aos-duration="1000"
           data-aos-easing="ease-in-out"
         >
-          <div className="hover:scale-[1.02] transition ease-in duration-300 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] rounded-3xl">
+          <div className="hover:scale-[1.02] transition ease-in duration-300 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] rounded-3xl max-w-[31rem]">
             <img
-              className="rounded-3xl"
+              className="rounded-3xl w-full"
               src="http://res.cloudinary.com/dxav6uhnu/image/upload/v1709327747/xr1nssvtbepbvcgom1rb.jpg"
             />
           </div>
-          <div className="hover:scale-[1.02] transition ease-in duration-300 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] rounded-3xl">
-            <img className="rounded-3xl" src="http://res.cloudinary.com/dxav6uhnu/image/upload/v1709327811/f2vkcvlypakk0vjoa7pb.jpg" />
+          <div className="hover:scale-[1.02] transition ease-in duration-300 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] rounded-3xl max-w-[31rem]">
+            <img
+              className="rounded-3xl w-full"
+              src="http://res.cloudinary.com/dxav6uhnu/image/upload/v1709327811/f2vkcvlypakk0vjoa7pb.jpg"
+            />
           </div>
-          <div className="hover:scale-[1.02] transition ease-in duration-300 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] rounded-3xl">
-            <img className="rounded-3xl" src="http://res.cloudinary.com/dxav6uhnu/image/upload/v1709327831/r7k1qlb9ru8yngailxex.jpg" />
+          <div className="hover:scale-[1.02] transition ease-in duration-300 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] rounded-3xl max-w-[31rem]">
+            <img
+              className="rounded-3xl w-full"
+              src="http://res.cloudinary.com/dxav6uhnu/image/upload/v1709327831/r7k1qlb9ru8yngailxex.jpg"
+            />
           </div>
         </div>
 
-        <div className="container mx-auto text-4xl mt-10 font-bold 3xl:px-[140px]">
+        <div className="container mx-auto flex justify-center md:justify-start md:container md:mx-auto text-4xl mt-10 font-bold 3xl:flex 3xl:justify-center">
           <h1>ŞUBELER</h1>
         </div>
         <div
-          className="container mx-auto w-full flex justify-center space-x-5 my-10"
+          className="p-2 md:p-0 container mx-auto grid justify-items-center gap-5 md:flex md:justify-center 3xl:flex 3xl:justify-center my-10"
           data-aos="fade-right"
           data-aos-easing="linear"
           data-aos-duration="1000"

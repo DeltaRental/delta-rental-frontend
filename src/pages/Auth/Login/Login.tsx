@@ -68,13 +68,13 @@ const Login = (props: Props) => {
   };
   return (
     <div
-      className="container w-full mx-auto flex justify-center items-center"
-      style={{ height: "calc(100vh - 7rem)" }}
+      className="container w-full mx-auto flex justify-center items-center md:pt-2 md:pb-20 py-10 h-screen"
+      // style={{ height: "calc(100vh - 7rem)" }}
     >
-      <div className="w-[70%] h-[80%] ">
-        <div className="grid grid-cols-2  h-full ">
+      <div className="md:w-[70%] md:h-[80%] w-[80%] h-[80%] ">
+        <div className="grid grid-cols-1 md:grid-cols-2  h-full ">
           <div
-            className="bg-delta-green-400  grid grid-cols-1 rounded-s-3xl w-full px-10 shadow-[15px_0px_0px_-5px_#000000]"
+            className="bg-delta-green-400  grid grid-cols-1  md:rounded-s-3xl w-full md:px-10 px-2 md:shadow-[15px_0px_0px_-5px_#000000]"
             data-aos="fade-right"
             data-aos-duration="1500"
             data-aos-easing="ease-in-sine"
@@ -94,7 +94,7 @@ const Login = (props: Props) => {
                 data-aos-delay="800"
               >
                 <img
-                  className="w-40 h-40 "
+                  className="md:w-40 md:h-40 w-20 h-20"
                   src="http://res.cloudinary.com/dxav6uhnu/image/upload/v1709388157/pcyuu3lgcvm96ks2p5c0.png"
                   alt="DeltaLogo"
                 />
@@ -114,7 +114,7 @@ const Login = (props: Props) => {
                   validationSchema={validationSchema}
                 >
                   <Form
-                    className="p-0 shadow-none min-w-[300px] "
+                    className="p-0 shadow-none min-w-[100px] "
                     data-aos="fade-right"
                     data-aos-duration="1500"
                     data-aos-easing="ease-in-sine"
@@ -197,7 +197,7 @@ const Login = (props: Props) => {
           </div>
 
           <div
-            className="bg-delta-green-800 text-delta-green-400 bg-opacity-50 grid grid-cols-1 rounded-e-3xl px-14 shadow-[8.0px_0.0px_6.0px_rgba(0,0,0,0.38)]"
+            className="hidden md:bg-delta-green-800 md:text-delta-green-400 md:bg-opacity-50 md:grid md:grid-cols-1 md:rounded-e-3xl md:px-14 md:shadow-[8.0px_0.0px_6.0px_rgba(0,0,0,0.38)]"
             data-aos="fade-left"
             data-aos-duration="1500"
             data-aos-easing="ease-in-sine"

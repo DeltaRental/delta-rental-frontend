@@ -55,7 +55,7 @@ function FilteredCarCard({ car }: { car: GetAllCarResponse }) {
       >
         <div className="p-4">
           <img
-            className="w-full h-48 object-cover card-front-img rounded-3xl"
+            className="w-full h-48 object-contain card-front-img rounded-3xl"
             src={car.imageUrl}
             alt={`${car.model.brandName} ${car.model.name}`}
             data-aos="fade-right"

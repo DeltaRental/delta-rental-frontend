@@ -96,7 +96,9 @@ const Navi = () => {
           id="menu"
         >
           <div className="grid grid-cols-1 md:grid-cols-9 ">
-            <div className="col-span-4 text-base lg:text-lg md:border-y border-y-delta-green-400">
+            <div className="col-span-4 text-base lg:text-lg md:border-y border-y-delta-green-400" data-aos="fade-right"
+                  data-aos-duration="1500"
+                  data-aos-easing="ease-in-sine">
               <ul className="justify-between md:flex ">
                 <li className="p-2 py-2 lg:p-2 border-b  md:border-0">
                   <Link to="/">
@@ -121,7 +123,9 @@ const Navi = () => {
                 </li>
               </ul>
             </div>
-            <div className="hidden md:block relative">
+            <div className="hidden md:block relative" data-aos="fade-down"
+                  data-aos-duration="1500"
+                  data-aos-easing="ease-in-sine">
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="p-1 ">
                   <img
@@ -134,7 +138,9 @@ const Navi = () => {
               </div>
             </div>
             <div className=" col-span-4 md:border-y border-y-delta-green-400"
-            >
+            data-aos="fade-left"
+            data-aos-duration="1500"
+            data-aos-easing="ease-in-sine">
               <ul className="justify-between text-base lg:text-lg  md:flex">
                 <li className="p-2 py-2 lg:p-2 border-b  md:border-0">
                   <Link to="/branch">
@@ -195,12 +201,7 @@ const Navi = () => {
                           >
                             Siparişlerim
                           </Link>
-                          <Link
-                            className="w-full justify-start flex cursor-pointer p-4 text-delta-green-1000 hover:text-delta-green-400 hover:bg-delta-green-800 transition ease-in duration-100"
-                            to={"/profile/invoices"}
-                          >
-                            Faturalarım
-                          </Link>
+                        
                           <button
                             className="w-full justify-start flex cursor-pointer p-4 text-delta-green-1000 hover:text-delta-green-400 hover:bg-delta-green-800 transition ease-in duration-100"
                             onClick={handleLogOut}

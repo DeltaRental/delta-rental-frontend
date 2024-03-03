@@ -19,8 +19,8 @@ const CarList = () => {
 
 
   return (
-    <div className="container mx-auto mt-5 min-h-screen">
-      <div className="grid grid-cols-3 gap-5">
+    <div className="container mx-auto my-5 min-h-screen">
+      <div className="grid grid-cols-1 gap-3 p-3 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3 lg:gap-5 ">
         <Toaster />
         {carsState.cars.map((car: GetAllCarResponse) =>
           car.carState == "AVAILABLE" ? (

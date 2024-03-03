@@ -26,9 +26,9 @@ const Branch = (props: Props) => {
         data-aos-duration="1500"
         data-aos-delay="800"
       >
-        <h1 className="text-left text-4xl text-black font-bold">ŞUBELER</h1>
+        <h1 className="md:text-left text-4xl text-black font-bold text-center">ŞUBELER</h1>
       </div>
-      <div className="container mx-auto w-full flex h-screen space-x-4 ">
+      <div className="container mx-auto w-full h-screen grid md:grid-cols-3 grid-cols-1 gap-5">
         {branchesState.branches.map((branch: GetAllBranchResponse) => (
           <div
             key={branch.id}

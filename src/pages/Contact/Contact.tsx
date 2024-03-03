@@ -11,7 +11,7 @@ type Props = {};
 
 const Contact = (props: Props) => {
   return (
-    <div className="container mx-auto min-h-screen py-12 flex items-center justify-center">
+    <div className="container mx-auto min-h-screen flex items-center justify-center">
       <div
         className="bg-white rounded-lg shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] overflow-hidden w-11/12 md:w-2/3 lg:w-1/2"
         data-aos="fade-up"

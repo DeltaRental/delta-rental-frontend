@@ -109,7 +109,7 @@ const UserInfo = (props: Props) => {
           enableReinitialize={true}
         >
           <Form className="p-0 shadow-none min-w-[300px] ">
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <div>
                 <FormikInput
                   name="name"
@@ -127,7 +127,7 @@ const UserInfo = (props: Props) => {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <div>
                 <FormikInput
                   name="email"

@@ -183,7 +183,7 @@ export const CheckoutForm = () => {
     // </form>
     <div className="container mx-auto min-h-screen">
       <div className="grid grid-cols-12 min-h-screen">
-        <div className="col-span-8 min-h-screen">
+        <div className="col-span-12 lg:col-span-8 min-h-screen">
           <div
             className=""
             data-aos="fade-right"
@@ -199,7 +199,7 @@ export const CheckoutForm = () => {
                 </h2>
                 <div className="flex flex-col items-center justify-center mb-5">
                   <img
-                    className="w-[610px] h-[243px] object-cover rounded-lg mb-4 "
+                    className="w-[610px] h-[243px] object-contain rounded-lg mb-4 "
                     src={carsState.selectedCar.imageUrl}
                     alt="Araç Resmi"
                     data-aos="fade-right"
@@ -211,7 +211,7 @@ export const CheckoutForm = () => {
                 </div>
 
                 <div className="grid grid-cols-12  text-center ">
-                  <div className="col-span-4 ">
+                  <div className="col-span-12 md:col-span-4 ">
                     <div className="">
                       <h3 className="text-lg font-semibold text-delta-green-1200 ">
                         Araç Bilgileri
@@ -233,7 +233,7 @@ export const CheckoutForm = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="col-span-4">
+                  <div className="col-span-12 md:col-span-4">
                     <div className="">
                       <h3 className="text-lg font-semibold text-delta-green-1200">
                         Kiralama Tarihleri
@@ -246,7 +246,7 @@ export const CheckoutForm = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="col-span-4">
+                  <div className="col-span-12 md:col-span-4">
                     <div className="">
                       <h3 className="text-lg font-semibold text-delta-green-1200">
                         Bulunduğu Şube
@@ -279,8 +279,8 @@ export const CheckoutForm = () => {
                       validationSchema={validationSchema}
                       enableReinitialize={true}
                     >
-                      <Form className="p-0 shadow-none min-w-[300px] ">
-                        <div className="grid grid-cols-2 gap-2">
+                      <Form className="p-0 shadow-none min-w-[100px] ">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                           <div>
                             <FormikInput
                               name="name"
@@ -298,7 +298,7 @@ export const CheckoutForm = () => {
                             />
                           </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-2">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                           <div>
                             <FormikInput
                               name="email"
@@ -334,7 +334,7 @@ export const CheckoutForm = () => {
                     <form
                       id="payment-form"
                       onSubmit={handleSubmit}
-                      className="flex flex-col justify-center max-w-[70%] "
+                      className="flex flex-col justify-center md:max-w-[70%]  "
                     >
                       <PaymentElement
                         id="payment-element"
@@ -366,7 +366,7 @@ export const CheckoutForm = () => {
         </div>
 
         <div
-          className="col-span-4  "
+          className="col-span-12 lg:col-span-4 "
           data-aos="fade-left"
           data-aos-duration="1500"
           data-aos-easing="ease-in-sine"
